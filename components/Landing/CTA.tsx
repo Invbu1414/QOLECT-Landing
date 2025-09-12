@@ -5,14 +5,14 @@ export default function CTA() {
     <section className="cta-section">
       <div className="container">
         <div className="cta-content">
-          <h2 className="cta-title">YOUR ADVENTURE STARTS NOW</h2>
+          <h2 className="cta-title">TU AVENTURA COMIENZA AHORA</h2>
           <p className="cta-description">
-            Stop scrolling. Stop dreaming. Start living the extraordinary life you deserve. 
-            The world is waiting for rebels like you.
+            Deja de desplazarte. Deja de soñar. Empieza a vivir la vida extraordinaria que mereces. 
+            El mundo está esperando a rebeldes como tú.
           </p>
           <div className="cta-actions">
-            <button className="btn-primary">BOOK MY ESCAPE</button>
-            <button className="btn-secondary">TELL ME MORE</button>
+            <button className="btn-primary">RESERVA MI ESCAPE</button>
+            <button className="btn-secondary">CUÉNTAME MÁS</button>
           </div>
         </div>
       </div>

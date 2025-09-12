@@ -1,13 +1,13 @@
 import React from 'react'
 
 const galleryItems = [
-  { id: 1, icon: '🌋', title: 'VOLCANO BOARDING', subtitle: 'Nicaragua' },
-  { id: 2, icon: '🎨', title: 'STREET ART TOURS', subtitle: 'Berlin' },
-  { id: 3, icon: '🦁', title: 'SHARK CAGE DIVING', subtitle: 'South Africa' },
-  { id: 4, icon: '🌙', title: 'MIDNIGHT SUN HIKING', subtitle: 'Iceland' },
-  { id: 5, icon: '🎭', title: 'UNDERGROUND RAVES', subtitle: 'Bucharest' },
-  { id: 6, icon: '🎆', title: 'AURORA CHASING', subtitle: 'Lapland' },
-  { id: 7, icon: '🌴', title: 'JUNGLE SURVIVAL', subtitle: 'Amazon' }
+  { id: 1, icon: '🌋', title: 'BOARDING EN VOLCÁN', subtitle: 'Nicaragua' },
+  { id: 2, icon: '🎨', title: 'TOURS DE ARTE CALLEJERO', subtitle: 'Berlín' },
+  { id: 3, icon: '🦁', title: 'BUCEO CON TIBURONES', subtitle: 'Sudáfrica' },
+  { id: 4, icon: '🌙', title: 'SENDERISMO SOL DE MEDIANOCHE', subtitle: 'Islandia' },
+  { id: 5, icon: '🎭', title: 'RAVES SUBTERRÁNEOS', subtitle: 'Bucarest' },
+  { id: 6, icon: '🎆', title: 'CAZANDO AURORAS', subtitle: 'Laponia' },
+  { id: 7, icon: '🌴', title: 'SUPERVIVENCIA EN LA JUNGLA', subtitle: 'Amazonas' }
 ]
 
 export default function Gallery() {
@@ -15,7 +15,7 @@ export default function Gallery() {
     <section className="gallery-section">
       <div className="container">
         <div className="gallery-header">
-          <h2 className="gallery-title">EPIC EXPERIENCES AWAIT</h2>
+          <h2 className="gallery-title">EXPERIENCIAS ÉPICAS TE ESPERAN</h2>
         </div>
         
         <div className="gallery-grid">

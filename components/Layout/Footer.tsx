@@ -11,44 +11,44 @@ export default function Footer() {
               <span className="logo-subtitle">TRAVEL</span>
             </div>
             <p className="footer-description">
-              We don't just plan trips - we architect life-changing experiences 
-              for adventurers who refuse to live ordinary lives.
+              No solo planificamos viajes - arquitectamos experiencias que cambian la vida 
+              para aventureros que se niegan a vivir vidas ordinarias.
             </p>
           </div>
           
           <div className="footer-section">
-            <h4>ADVENTURES</h4>
+            <h4>AVENTURAS</h4>
             <ul className="footer-links">
-              <li><a href="#">Extreme Sports</a></li>
-              <li><a href="#">Underground Culture</a></li>
-              <li><a href="#">Wild Nature</a></li>
-              <li><a href="#">Urban Exploration</a></li>
+              <li><a href="#">Deportes Extremos</a></li>
+              <li><a href="#">Cultura Subterránea</a></li>
+              <li><a href="#">Naturaleza Salvaje</a></li>
+              <li><a href="#">Exploración Urbana</a></li>
             </ul>
           </div>
           
           <div className="footer-section">
-            <h4>DESTINATIONS</h4>
+            <h4>DESTINOS</h4>
             <ul className="footer-links">
-              <li><a href="#">Hidden Europe</a></li>
-              <li><a href="#">Wild Asia</a></li>
-              <li><a href="#">Raw Americas</a></li>
-              <li><a href="#">Untamed Africa</a></li>
+              <li><a href="#">Europa Oculta</a></li>
+              <li><a href="#">Asia Salvaje</a></li>
+              <li><a href="#">Américas Crudas</a></li>
+              <li><a href="#">África Indómita</a></li>
             </ul>
           </div>
           
           <div className="footer-section">
-            <h4>TRIBE</h4>
+            <h4>TRIBU</h4>
             <ul className="footer-links">
-              <li><a href="#">Join Community</a></li>
-              <li><a href="#">Share Stories</a></li>
-              <li><a href="#">Get Support</a></li>
-              <li><a href="#">Become Guide</a></li>
+              <li><a href="#">Únete a la Comunidad</a></li>
+              <li><a href="#">Comparte Historias</a></li>
+              <li><a href="#">Obtén Apoyo</a></li>
+              <li><a href="#">Conviértete en Guía</a></li>
             </ul>
           </div>
         </div>
         
         <div className="footer-bottom">
-          <p>&copy; 2024 Qolect Travel. Born to be wild. 🌈✨</p>
+          <p>&copy; 2024 Qolect Travel. Nacido para ser salvaje. 🌈✨</p>
         </div>
       </div>
     </footer>

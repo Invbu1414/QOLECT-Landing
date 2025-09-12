@@ -3,12 +3,12 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Qolect Travel - Unleash Your Wanderlust 🌈',
-  description: 'Bold, vibrant travel experiences that break the mold. Discover extraordinary adventures with Qolect Travel - where every journey is a masterpiece.',
-  keywords: 'creative travel, unique experiences, adventure travel, bold destinations, artistic journeys',
+  title: 'Qolect Travel - Desata tu Sed de Aventura 🌈',
+  description: 'Experiencias de viaje audaces y vibrantes que rompen el molde. Descubre aventuras extraordinarias con Qolect Travel - donde cada viaje es una obra maestra.',
+  keywords: 'viajes creativos, experiencias únicas, viajes de aventura, destinos audaces, viajes artísticos',
   openGraph: {
-    title: 'Qolect Travel - Unleash Your Wanderlust 🌈',
-    description: 'Bold, vibrant travel experiences that break the mold',
+    title: 'Qolect Travel - Desata tu Sed de Aventura 🌈',
+    description: 'Experiencias de viaje audaces y vibrantes que rompen el molde',
     type: 'website',
   }
 }
@@ -19,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="es">
       <body>{children}</body>
     </html>
   )

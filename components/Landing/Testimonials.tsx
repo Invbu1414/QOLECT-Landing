@@ -3,23 +3,23 @@ import React from 'react'
 const testimonials = [
   {
     id: 1,
-    quote: "Qolect turned my boring vacation into an INSANE adventure! Swimming with sharks was just the beginning. These people are certifiably crazy in the best way possible.",
-    author: "Maya Rodriguez",
-    location: "Los Angeles, CA",
+    quote: "¡Qolect convirtió mis vacaciones aburridas en una aventura INCREÍBLE! Nadar con tiburones fue solo el comienzo. Esta gente está certificadamente loca de la mejor manera posible.",
+    author: "Maya Rodríguez",
+    location: "Los Ángeles, CA",
     avatar: "🤘"
   },
   {
     id: 2,
-    quote: "I thought I knew travel until I met Qolect. They showed me hidden underground scenes and experiences I never knew existed. My Instagram has never looked better!",
+    quote: "Pensé que conocía los viajes hasta que conocí Qolect. Me mostraron escenas subterráneas ocultas y experiencias que nunca supe que existían. ¡Mi Instagram nunca se había visto mejor!",
     author: "Jake Thompson",
-    location: "London, UK", 
+    location: "Londres, Reino Unido", 
     avatar: "😎"
   },
   {
     id: 3,
-    quote: "From volcano boarding to midnight raves in abandoned warehouses - Qolect doesn't just plan trips, they curate LEGENDARY experiences. My friends think I'm living in a movie.",
+    quote: "Desde el boarding en volcán hasta raves de medianoche en almacenes abandonados - Qolect no solo planifica viajes, curan experiencias LEGENDARIAS. Mis amigos piensan que estoy viviendo en una película.",
     author: "Zara Kim",
-    location: "Seoul, South Korea",
+    location: "Seúl, Corea del Sur",
     avatar: "🤩"
   }
 ]
@@ -29,7 +29,7 @@ export default function Testimonials() {
     <section className="testimonials-section">
       <div className="container">
         <div className="testimonials-header">
-          <h2 className="testimonials-title">LEGENDS IN THE MAKING</h2>
+          <h2 className="testimonials-title">LEYENDAS EN CONSTRUCCIÓN</h2>
         </div>
         
         <div className="testimonials-grid">

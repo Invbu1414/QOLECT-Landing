@@ -11,15 +11,15 @@ export default function Header() {
           </div>
           
           <nav className="nav">
-            <a href="#adventures" className="nav-link">ADVENTURES</a>
-            <a href="#destinations" className="nav-link">PLACES</a>
-            <a href="#stories" className="nav-link">STORIES</a>
-            <a href="#community" className="nav-link">TRIBE</a>
+            <a href="#adventures" className="nav-link">AVENTURAS</a>
+            <a href="#destinations" className="nav-link">LUGARES</a>
+            <a href="#stories" className="nav-link">HISTORIAS</a>
+            <a href="#community" className="nav-link">TRIBU</a>
           </nav>
           
           <div className="header-actions">
-            <button className="btn-ghost">LOGIN</button>
-            <button className="btn-primary">JOIN NOW</button>
+            <button className="btn-ghost">INICIAR SESIÓN</button>
+            <button className="btn-primary">ÚNETE AHORA</button>
           </div>
         </div>
       </div>
