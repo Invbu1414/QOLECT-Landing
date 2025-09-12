@@ -1,10 +1,10 @@
 import React from 'react'
 
 const stats = [
-  { number: '50K+', label: 'Happy Travelers' },
-  { number: '1,200+', label: 'Unique Experiences' },
-  { number: '85', label: 'Countries' },
-  { number: '4.9', label: 'Average Rating' }
+  { number: '50K+', label: 'Viajeros Felices' },
+  { number: '1,200+', label: 'Experiencias Únicas' },
+  { number: '85', label: 'Países' },
+  { number: '4.9', label: 'Calificación Promedio' }
 ]
 
 export default function Stats() {

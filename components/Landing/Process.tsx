@@ -3,23 +3,23 @@ import React from 'react'
 const steps = [
   {
     id: 1,
-    title: 'Discover',
-    description: 'Browse curated experiences in your destination, filtered by interests and preferences.'
+    title: 'Descubre',
+    description: 'Explora experiencias curadas en tu destino, filtradas por intereses y preferencias.'
   },
   {
     id: 2,
-    title: 'Connect',
-    description: 'Get matched with verified local guides and experience providers in your chosen location.'
+    title: 'Conecta',
+    description: 'Conéctate con guías locales verificados y proveedores de experiencias en tu ubicación elegida.'
   },
   {
     id: 3,
-    title: 'Book',
-    description: 'Secure your spot with our simple booking system and receive instant confirmation.'
+    title: 'Reserva',
+    description: 'Asegura tu lugar con nuestro sistema de reserva simple y recibe confirmación instantánea.'
   },
   {
     id: 4,
-    title: 'Experience',
-    description: 'Enjoy your authentic local experience and create memories that last a lifetime.'
+    title: 'Experimenta',
+    description: 'Disfruta tu experiencia local auténtica y crea recuerdos que duran toda la vida.'
   }
 ]
 
@@ -28,10 +28,10 @@ export default function Process() {
     <section className="process-section">
       <div className="container">
         <div className="section-header">
-          <h2 className="section-title">How It Works</h2>
+          <h2 className="section-title">Cómo Funciona</h2>
           <p className="section-description">
-            Our streamlined process makes it easy to find and book authentic travel experiences 
-            that match your interests and travel style.
+            Nuestro proceso simplificado hace fácil encontrar y reservar experiencias de viaje auténticas 
+            que coincidan con tus intereses y estilo de viaje.
           </p>
         </div>
         

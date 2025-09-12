@@ -11,44 +11,44 @@ export default function Footer() {
               <span className="logo-subtitle">Travel</span>
             </div>
             <p className="footer-description">
-              Connecting discerning travelers with authentic local experiences 
-              and cultural immersion opportunities worldwide.
+              Conectando viajeros exigentes con experiencias locales auténticas 
+              y oportunidades de inmersión cultural en todo el mundo.
             </p>
           </div>
           
           <div className="footer-section">
-            <h4>Experiences</h4>
+            <h4>Experiencias</h4>
             <ul className="footer-links">
-              <li><a href="#">Cultural Immersion</a></li>
-              <li><a href="#">Culinary Tours</a></li>
-              <li><a href="#">Adventure Activities</a></li>
-              <li><a href="#">Wellness Retreats</a></li>
+              <li><a href="#">Inmersión Cultural</a></li>
+              <li><a href="#">Tours Culinarios</a></li>
+              <li><a href="#">Actividades de Aventura</a></li>
+              <li><a href="#">Retiros de Bienestar</a></li>
             </ul>
           </div>
           
           <div className="footer-section">
-            <h4>Destinations</h4>
+            <h4>Destinos</h4>
             <ul className="footer-links">
-              <li><a href="#">Europe</a></li>
-              <li><a href="#">Asia Pacific</a></li>
-              <li><a href="#">Americas</a></li>
-              <li><a href="#">Africa & Middle East</a></li>
+              <li><a href="#">Europa</a></li>
+              <li><a href="#">Asia Pacífico</a></li>
+              <li><a href="#">Américas</a></li>
+              <li><a href="#">África y Medio Oriente</a></li>
             </ul>
           </div>
           
           <div className="footer-section">
-            <h4>Support</h4>
+            <h4>Soporte</h4>
             <ul className="footer-links">
-              <li><a href="#">Help Center</a></li>
-              <li><a href="#">Contact Us</a></li>
-              <li><a href="#">Privacy Policy</a></li>
-              <li><a href="#">Terms of Service</a></li>
+              <li><a href="#">Centro de Ayuda</a></li>
+              <li><a href="#">Contáctanos</a></li>
+              <li><a href="#">Política de Privacidad</a></li>
+              <li><a href="#">Términos de Servicio</a></li>
             </ul>
           </div>
         </div>
         
         <div className="footer-bottom">
-          <p>&copy; 2024 Qolect Travel. All rights reserved.</p>
+          <p>&copy; 2024 Qolect Travel. Todos los derechos reservados.</p>
         </div>
       </div>
     </footer>

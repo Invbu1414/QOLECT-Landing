@@ -3,12 +3,12 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Qolect Travel - Premium Travel Experiences',
-  description: 'Discover authentic, curated travel experiences with Qolect Travel. Connect with local cultures and create unforgettable memories.',
-  keywords: 'premium travel, authentic experiences, cultural immersion, luxury travel',
+  title: 'Qolect Travel - Experiencias de Viaje Premium',
+  description: 'Descubre experiencias de viaje auténticas y curadas con Qolect Travel. Conéctate con culturas locales y crea recuerdos inolvidables.',
+  keywords: 'viajes premium, experiencias auténticas, inmersión cultural, viajes de lujo',
   openGraph: {
-    title: 'Qolect Travel - Premium Travel Experiences',
-    description: 'Discover authentic, curated travel experiences with Qolect Travel',
+    title: 'Qolect Travel - Experiencias de Viaje Premium',
+    description: 'Descubre experiencias de viaje auténticas y curadas con Qolect Travel',
     type: 'website',
   }
 }
@@ -19,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="es">
       <body>{children}</body>
     </html>
   )

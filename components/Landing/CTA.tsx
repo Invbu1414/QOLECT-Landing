@@ -5,14 +5,14 @@ export default function CTA() {
     <section className="cta-section">
       <div className="container">
         <div className="cta-content">
-          <h2 className="cta-title">Ready to Start Your Journey?</h2>
+          <h2 className="cta-title">¿Listo para Comenzar tu Viaje?</h2>
           <p className="cta-description">
-            Join thousands of travelers who have discovered authentic experiences 
-            and created unforgettable memories with Qolect Travel.
+            Únete a miles de viajeros que han descubierto experiencias auténticas 
+            y creado recuerdos inolvidables con Qolect Travel.
           </p>
           <div className="cta-actions">
-            <button className="btn-primary">Browse Experiences</button>
-            <button className="btn-secondary">Learn More</button>
+            <button className="btn-primary">Explorar Experiencias</button>
+            <button className="btn-secondary">Saber Más</button>
           </div>
         </div>
       </div>

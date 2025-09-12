@@ -6,21 +6,21 @@ export default function Hero() {
       <div className="hero-container">
         <div className="hero-content">
           <h1 className="hero-title">
-            Premium Travel <span className="hero-highlight">Experiences</span> That Transform
+            Experiencias de Viaje <span className="hero-highlight">Premium</span> Que Transforman
           </h1>
           <p className="hero-subtitle">
-            Discover carefully curated, authentic experiences that connect you with local cultures 
-            and create lasting memories. Every journey is designed for discerning travelers.
+            Descubre experiencias auténticas cuidadosamente curadas que te conectan con culturas locales 
+            y crean recuerdos duraderos. Cada viaje está diseñado para viajeros exigentes.
           </p>
           <div className="hero-actions">
-            <button className="btn-primary">Explore Experiences</button>
-            <button className="btn-secondary">Watch Demo</button>
+            <button className="btn-primary">Explorar Experiencias</button>
+            <button className="btn-secondary">Ver Demo</button>
           </div>
         </div>
         <div className="hero-visual">
           <div className="hero-visual-content">
             <div className="visual-icon">🌍</div>
-            <div className="visual-text">Connecting travelers with authentic local experiences worldwide</div>
+            <div className="visual-text">Conectando viajeros con experiencias locales auténticas en todo el mundo</div>
           </div>
         </div>
       </div>

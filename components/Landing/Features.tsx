@@ -4,38 +4,38 @@ const features = [
   {
     id: 1,
     icon: '🌟',
-    title: 'Curated Experiences',
-    description: 'Every experience is hand-selected and verified by our local experts to ensure authenticity and quality.'
+    title: 'Experiencias Curadas',
+    description: 'Cada experiencia es seleccionada y verificada por nuestros expertos locales para garantizar autenticidad y calidad.'
   },
   {
     id: 2,
     icon: '📍',
-    title: 'Local Connections',
-    description: 'Connect directly with passionate locals who share their culture, stories, and hidden gems.'
+    title: 'Conexiones Locales',
+    description: 'Conéctate directamente con locales apasionados que comparten su cultura, historias y joyas ocultas.'
   },
   {
     id: 3,
     icon: '🔒',
-    title: 'Seamless Booking',
-    description: 'Simple, secure booking process with instant confirmation and 24/7 customer support.'
+    title: 'Reserva Sin Complicaciones',
+    description: 'Proceso de reserva simple y seguro con confirmación instantánea y soporte al cliente 24/7.'
   },
   {
     id: 4,
     icon: '🌎',
-    title: 'Global Reach',
-    description: 'Access unique experiences in over 85 countries, from bustling cities to remote destinations.'
+    title: 'Alcance Global',
+    description: 'Accede a experiencias únicas en más de 85 países, desde ciudades bulliciosas hasta destinos remotos.'
   },
   {
     id: 5,
     icon: '⭐',
-    title: 'Quality Assured',
-    description: 'All experiences are rated 4.8+ stars with comprehensive reviews from verified travelers.'
+    title: 'Calidad Garantizada',
+    description: 'Todas las experiencias tienen calificación de 4.8+ estrellas con reseñas completas de viajeros verificados.'
   },
   {
     id: 6,
     icon: '💱',
-    title: 'Fair Pricing',
-    description: 'Transparent pricing with no hidden fees. 100% of tips go directly to local guides.'
+    title: 'Precios Justos',
+    description: 'Precios transparentes sin tarifas ocultas. El 100% de las propinas van directamente a los guías locales.'
   }
 ]
 
@@ -44,10 +44,10 @@ export default function Features() {
     <section className="features-section">
       <div className="container">
         <div className="section-header">
-          <h2 className="section-title">Why Choose Qolect Travel</h2>
+          <h2 className="section-title">Por Qué Elegir Qolect Travel</h2>
           <p className="section-description">
-            We’ve built a platform that prioritizes authenticity, quality, and meaningful connections 
-            between travelers and local communities.
+            Hemos construido una plataforma que prioriza la autenticidad, calidad y conexiones significativas 
+            entre viajeros y comunidades locales.
           </p>
         </div>
         
