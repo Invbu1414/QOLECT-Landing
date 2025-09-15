@@ -87,7 +87,7 @@ export default function Hero() {
             </button>
           </div>
 
-          {/* Image cards grid */}
+          {/* Book stack of cards */}
           <div 
             style={{
               display: 'flex',
@@ -97,17 +97,38 @@ export default function Hero() {
           >
             <div 
               style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(2, 1fr)',
-                gap: '1rem',
-                maxWidth: '24rem'
+                position: 'relative',
+                width: '28rem',
+                height: '26rem',
+                cursor: 'pointer'
+              }}
+              onMouseEnter={(e) => {
+                const cards = e.currentTarget.children;
+                for (let i = 0; i < cards.length; i++) {
+                  const card = cards[i];
+                  const translateX = i * 80; // Spread horizontally like book pages
+                  card.style.transform = `translateX(${translateX}px) scale(1.08)`;
+                  card.style.zIndex = 20 + i;
+                }
+              }}
+              onMouseLeave={(e) => {
+                const cards = e.currentTarget.children;
+                for (let i = 0; i < cards.length; i++) {
+                  const card = cards[i];
+                  const translateX = i * 12; // Subtle book stacking
+                  card.style.transform = `translateX(${translateX}px)`;
+                  card.style.zIndex = 20 - i;
+                }
               }}
             >
-              {/* Card 1 */}
+              {/* Card 1 - Aventuras */}
               <div 
                 style={{
-                  width: '11rem',
-                  height: '14rem',
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '18rem',
+                  height: '22rem',
                   background: 'rgba(255, 255, 255, 0.15)',
                   borderRadius: '1.5rem',
                   backdropFilter: 'blur(12px)',
@@ -116,50 +137,42 @@ export default function Hero() {
                   flexDirection: 'column',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  position: 'relative',
-                  padding: '1rem',
+                  padding: '2rem',
                   boxShadow: '0 16px 48px rgba(0, 0, 0, 0.16)',
-                  transition: 'all 0.3s ease'
-                }}
-                onMouseEnter={(e) => {
-                  e.target.style.transform = 'translateY(-4px)'
-                  e.target.style.boxShadow = '0 20px 60px rgba(0, 0, 0, 0.2)'
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.transform = 'translateY(0)'
-                  e.target.style.boxShadow = '0 16px 48px rgba(0, 0, 0, 0.16)'
+                  transition: 'all 0.4s ease',
+                  transform: 'translateX(0px)',
+                  zIndex: 20
                 }}
               >
                 <div style={{ textAlign: 'center', color: 'white' }}>
                   <div 
                     style={{
-                      width: '3rem',
-                      height: '3rem',
+                      width: '5rem',
+                      height: '5rem',
                       background: 'rgba(245, 197, 66, 0.3)',
                       borderRadius: '50%',
-                      margin: '0 auto 0.75rem auto',
+                      margin: '0 auto 1rem auto',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      fontSize: '1.5rem'
+                      fontSize: '2.5rem'
                     }}
                   >
                     🏔️
                   </div>
-                  <p style={{ fontSize: '0.875rem', fontWeight: '600', marginBottom: '0.5rem' }}>
+                  <p style={{ fontSize: '1rem', fontWeight: '600', marginBottom: '0.5rem' }}>
                     Aventuras
                   </p>
-                  <p style={{ fontSize: '0.75rem', opacity: 0.8 }}>
-                    Montañas épicas
+                  <p style={{ fontSize: '0.875rem', opacity: 0.8 }}>
+                    Montañas épicas y experiencias extremas
                   </p>
                 </div>
                 
-                {/* Badge */}
                 <div 
                   style={{
                     position: 'absolute',
-                    top: '0.5rem',
-                    right: '0.5rem',
+                    top: '1rem',
+                    right: '1rem',
                     background: '#F5C542',
                     color: '#0F172A',
                     padding: '0.25rem 0.5rem',
@@ -172,11 +185,14 @@ export default function Hero() {
                 </div>
               </div>
 
-              {/* Card 2 */}
+              {/* Card 2 - Playas */}
               <div 
                 style={{
-                  width: '11rem',
-                  height: '14rem',
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '18rem',
+                  height: '22rem',
                   background: 'rgba(255, 255, 255, 0.15)',
                   borderRadius: '1.5rem',
                   backdropFilter: 'blur(12px)',
@@ -185,50 +201,46 @@ export default function Hero() {
                   flexDirection: 'column',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  position: 'relative',
-                  padding: '1rem',
+                  padding: '2rem',
                   boxShadow: '0 16px 48px rgba(0, 0, 0, 0.16)',
-                  transition: 'all 0.3s ease'
-                }}
-                onMouseEnter={(e) => {
-                  e.target.style.transform = 'translateY(-4px)'
-                  e.target.style.boxShadow = '0 20px 60px rgba(0, 0, 0, 0.2)'
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.transform = 'translateY(0)'
-                  e.target.style.boxShadow = '0 16px 48px rgba(0, 0, 0, 0.16)'
+                  transition: 'all 0.4s ease',
+                  transform: 'translateX(12px)',
+                  zIndex: 19
                 }}
               >
                 <div style={{ textAlign: 'center', color: 'white' }}>
                   <div 
                     style={{
-                      width: '3rem',
-                      height: '3rem',
+                      width: '5rem',
+                      height: '5rem',
                       background: 'rgba(245, 197, 66, 0.3)',
                       borderRadius: '50%',
-                      margin: '0 auto 0.75rem auto',
+                      margin: '0 auto 1rem auto',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      fontSize: '1.5rem'
+                      fontSize: '2.5rem'
                     }}
                   >
                     🏝️
                   </div>
-                  <p style={{ fontSize: '0.875rem', fontWeight: '600', marginBottom: '0.5rem' }}>
+                  <p style={{ fontSize: '1rem', fontWeight: '600', marginBottom: '0.5rem' }}>
                     Playas
                   </p>
-                  <p style={{ fontSize: '0.75rem', opacity: 0.8 }}>
-                    Paraísos tropicales
+                  <p style={{ fontSize: '0.875rem', opacity: 0.8 }}>
+                    Paraísos tropicales únicos
                   </p>
                 </div>
               </div>
 
-              {/* Card 3 */}
+              {/* Card 3 - Retiros */}
               <div 
                 style={{
-                  width: '11rem',
-                  height: '14rem',
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '18rem',
+                  height: '22rem',
                   background: 'rgba(255, 255, 255, 0.15)',
                   borderRadius: '1.5rem',
                   backdropFilter: 'blur(12px)',
@@ -237,50 +249,46 @@ export default function Hero() {
                   flexDirection: 'column',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  position: 'relative',
-                  padding: '1rem',
+                  padding: '2rem',
                   boxShadow: '0 16px 48px rgba(0, 0, 0, 0.16)',
-                  transition: 'all 0.3s ease'
-                }}
-                onMouseEnter={(e) => {
-                  e.target.style.transform = 'translateY(-4px)'
-                  e.target.style.boxShadow = '0 20px 60px rgba(0, 0, 0, 0.2)'
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.transform = 'translateY(0)'
-                  e.target.style.boxShadow = '0 16px 48px rgba(0, 0, 0, 0.16)'
+                  transition: 'all 0.4s ease',
+                  transform: 'translateX(36px)',
+                  zIndex: 18
                 }}
               >
                 <div style={{ textAlign: 'center', color: 'white' }}>
                   <div 
                     style={{
-                      width: '3rem',
-                      height: '3rem',
+                      width: '5rem',
+                      height: '5rem',
                       background: 'rgba(245, 197, 66, 0.3)',
                       borderRadius: '50%',
-                      margin: '0 auto 0.75rem auto',
+                      margin: '0 auto 1rem auto',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      fontSize: '1.5rem'
+                      fontSize: '2.5rem'
                     }}
                   >
                     🧘
                   </div>
-                  <p style={{ fontSize: '0.875rem', fontWeight: '600', marginBottom: '0.5rem' }}>
+                  <p style={{ fontSize: '1rem', fontWeight: '600', marginBottom: '0.5rem' }}>
                     Retiros
                   </p>
-                  <p style={{ fontSize: '0.75rem', opacity: 0.8 }}>
-                    Bienestar personal
+                  <p style={{ fontSize: '0.875rem', opacity: 0.8 }}>
+                    Bienestar y crecimiento personal
                   </p>
                 </div>
               </div>
 
-              {/* Card 4 */}
+              {/* Card 4 - Cultura */}
               <div 
                 style={{
-                  width: '11rem',
-                  height: '14rem',
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '18rem',
+                  height: '22rem',
                   background: 'rgba(255, 255, 255, 0.15)',
                   borderRadius: '1.5rem',
                   backdropFilter: 'blur(12px)',
@@ -289,41 +297,130 @@ export default function Hero() {
                   flexDirection: 'column',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  position: 'relative',
-                  padding: '1rem',
+                  padding: '2rem',
                   boxShadow: '0 16px 48px rgba(0, 0, 0, 0.16)',
-                  transition: 'all 0.3s ease'
-                }}
-                onMouseEnter={(e) => {
-                  e.target.style.transform = 'translateY(-4px)'
-                  e.target.style.boxShadow = '0 20px 60px rgba(0, 0, 0, 0.2)'
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.transform = 'translateY(0)'
-                  e.target.style.boxShadow = '0 16px 48px rgba(0, 0, 0, 0.16)'
+                  transition: 'all 0.4s ease',
+                  transform: 'translateX(36px)',
+                  zIndex: 17
                 }}
               >
                 <div style={{ textAlign: 'center', color: 'white' }}>
                   <div 
                     style={{
-                      width: '3rem',
-                      height: '3rem',
+                      width: '5rem',
+                      height: '5rem',
                       background: 'rgba(245, 197, 66, 0.3)',
                       borderRadius: '50%',
-                      margin: '0 auto 0.75rem auto',
+                      margin: '0 auto 1rem auto',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      fontSize: '1.5rem'
+                      fontSize: '2.5rem'
                     }}
                   >
                     🏛️
                   </div>
-                  <p style={{ fontSize: '0.875rem', fontWeight: '600', marginBottom: '0.5rem' }}>
+                  <p style={{ fontSize: '1rem', fontWeight: '600', marginBottom: '0.5rem' }}>
                     Cultura
                   </p>
-                  <p style={{ fontSize: '0.75rem', opacity: 0.8 }}>
-                    Historia viva
+                  <p style={{ fontSize: '0.875rem', opacity: 0.8 }}>
+                    Historia viva y tradiciones
+                  </p>
+                </div>
+              </div>
+
+              {/* Card 5 - Gastronomía */}
+              <div 
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '18rem',
+                  height: '22rem',
+                  background: 'rgba(255, 255, 255, 0.15)',
+                  borderRadius: '1.5rem',
+                  backdropFilter: 'blur(12px)',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  padding: '2rem',
+                  boxShadow: '0 16px 48px rgba(0, 0, 0, 0.16)',
+                  transition: 'all 0.4s ease',
+                  transform: 'translateX(48px)',
+                  zIndex: 16
+                }}
+              >
+                <div style={{ textAlign: 'center', color: 'white' }}>
+                  <div 
+                    style={{
+                      width: '5rem',
+                      height: '5rem',
+                      background: 'rgba(245, 197, 66, 0.3)',
+                      borderRadius: '50%',
+                      margin: '0 auto 1rem auto',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '2.5rem'
+                    }}
+                  >
+                    🍽️
+                  </div>
+                  <p style={{ fontSize: '1rem', fontWeight: '600', marginBottom: '0.5rem' }}>
+                    Gastronomía
+                  </p>
+                  <p style={{ fontSize: '0.875rem', opacity: 0.8 }}>
+                    Sabores auténticos del mundo
+                  </p>
+                </div>
+              </div>
+
+              {/* Card 6 - Safari */}
+              <div 
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '18rem',
+                  height: '22rem',
+                  background: 'rgba(255, 255, 255, 0.15)',
+                  borderRadius: '1.5rem',
+                  backdropFilter: 'blur(12px)',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  padding: '2rem',
+                  boxShadow: '0 16px 48px rgba(0, 0, 0, 0.16)',
+                  transition: 'all 0.4s ease',
+                  transform: 'translateX(60px)',
+                  zIndex: 15
+                }}
+              >
+                <div style={{ textAlign: 'center', color: 'white' }}>
+                  <div 
+                    style={{
+                      width: '5rem',
+                      height: '5rem',
+                      background: 'rgba(245, 197, 66, 0.3)',
+                      borderRadius: '50%',
+                      margin: '0 auto 1rem auto',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '2.5rem'
+                    }}
+                  >
+                    🦁
+                  </div>
+                  <p style={{ fontSize: '1rem', fontWeight: '600', marginBottom: '0.5rem' }}>
+                    Safari
+                  </p>
+                  <p style={{ fontSize: '0.875rem', opacity: 0.8 }}>
+                    Vida salvaje africana
                   </p>
                 </div>
               </div>
@@ -331,39 +428,6 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Scroll indicator */}
-        <div 
-          style={{
-            position: 'absolute',
-            bottom: '2rem',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            textAlign: 'center',
-            color: 'rgba(255, 255, 255, 0.6)'
-          }}
-        >
-          <div 
-            style={{
-              width: '0.25rem',
-              height: '4rem',
-              background: 'rgba(255, 255, 255, 0.3)',
-              borderRadius: '9999px',
-              margin: '0 auto 0.5rem auto',
-              position: 'relative'
-            }}
-          >
-            <div 
-              style={{
-                width: '0.25rem',
-                height: '1rem',
-                background: 'rgba(255, 255, 255, 0.6)',
-                borderRadius: '9999px',
-                animation: 'pulse 2s infinite'
-              }}
-            ></div>
-          </div>
-          <p style={{ fontSize: '0.875rem' }}>Desliza hacia abajo</p>
-        </div>
       </div>
     </section>
   )
