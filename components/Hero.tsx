@@ -73,14 +73,14 @@ export default function Hero() {
                 boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)'
               }}
               onMouseEnter={(e) => {
-                e.target.style.transform = 'translateY(-2px)'
-                e.target.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.12)'
-                e.target.style.filter = 'brightness(1.1)'
+                e.currentTarget.style.transform = 'translateY(-2px)'
+                e.currentTarget.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.12)'
+                e.currentTarget.style.filter = 'brightness(1.1)'
               }}
               onMouseLeave={(e) => {
-                e.target.style.transform = 'translateY(0)'
-                e.target.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.08)'
-                e.target.style.filter = 'brightness(1)'
+                e.currentTarget.style.transform = 'translateY(0)'
+                e.currentTarget.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.08)'
+                e.currentTarget.style.filter = 'brightness(1)'
               }}
             >
               Explorar experiencias
@@ -98,27 +98,8 @@ export default function Hero() {
             <div 
               style={{
                 position: 'relative',
-                width: '28rem',
-                height: '26rem',
-                cursor: 'pointer'
-              }}
-              onMouseEnter={(e) => {
-                const cards = e.currentTarget.children;
-                for (let i = 0; i < cards.length; i++) {
-                  const card = cards[i];
-                  const translateX = i * 80; // Spread horizontally like book pages
-                  card.style.transform = `translateX(${translateX}px) scale(1.08)`;
-                  card.style.zIndex = 20 + i;
-                }
-              }}
-              onMouseLeave={(e) => {
-                const cards = e.currentTarget.children;
-                for (let i = 0; i < cards.length; i++) {
-                  const card = cards[i];
-                  const translateX = i * 12; // Subtle book stacking
-                  card.style.transform = `translateX(${translateX}px)`;
-                  card.style.zIndex = 20 - i;
-                }
+                width: '45rem',
+                height: '26rem'
               }}
             >
               {/* Card 1 - Aventuras */}
@@ -133,6 +114,7 @@ export default function Hero() {
                   borderRadius: '1.5rem',
                   backdropFilter: 'blur(12px)',
                   border: '1px solid rgba(255, 255, 255, 0.2)',
+                  borderRight: '3px solid rgba(245, 197, 66, 0.6)',
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
@@ -141,7 +123,18 @@ export default function Hero() {
                   boxShadow: '0 16px 48px rgba(0, 0, 0, 0.16)',
                   transition: 'all 0.4s ease',
                   transform: 'translateX(0px)',
-                  zIndex: 20
+                  zIndex: 20,
+                  cursor: 'pointer'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateX(-20px) translateY(-20px) scale(1.1)';
+                  e.currentTarget.style.zIndex = 30;
+                  e.currentTarget.style.boxShadow = '0 24px 60px rgba(0, 0, 0, 0.25)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateX(0px)';
+                  e.currentTarget.style.zIndex = 20;
+                  e.currentTarget.style.boxShadow = '0 16px 48px rgba(0, 0, 0, 0.16)';
                 }}
               >
                 <div style={{ textAlign: 'center', color: 'white' }}>
@@ -197,6 +190,7 @@ export default function Hero() {
                   borderRadius: '1.5rem',
                   backdropFilter: 'blur(12px)',
                   border: '1px solid rgba(255, 255, 255, 0.2)',
+                  borderRight: '3px solid rgba(245, 197, 66, 0.6)',
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
@@ -204,8 +198,19 @@ export default function Hero() {
                   padding: '2rem',
                   boxShadow: '0 16px 48px rgba(0, 0, 0, 0.16)',
                   transition: 'all 0.4s ease',
-                  transform: 'translateX(12px)',
-                  zIndex: 19
+                  transform: 'translateX(45px)',
+                  zIndex: 19,
+                  cursor: 'pointer'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateX(-10px) translateY(-15px) scale(1.1)';
+                  e.currentTarget.style.zIndex = 30;
+                  e.currentTarget.style.boxShadow = '0 24px 60px rgba(0, 0, 0, 0.25)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateX(45px)';
+                  e.currentTarget.style.zIndex = 19;
+                  e.currentTarget.style.boxShadow = '0 16px 48px rgba(0, 0, 0, 0.16)';
                 }}
               >
                 <div style={{ textAlign: 'center', color: 'white' }}>
@@ -245,6 +250,7 @@ export default function Hero() {
                   borderRadius: '1.5rem',
                   backdropFilter: 'blur(12px)',
                   border: '1px solid rgba(255, 255, 255, 0.2)',
+                  borderRight: '3px solid rgba(245, 197, 66, 0.6)',
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
@@ -252,8 +258,19 @@ export default function Hero() {
                   padding: '2rem',
                   boxShadow: '0 16px 48px rgba(0, 0, 0, 0.16)',
                   transition: 'all 0.4s ease',
-                  transform: 'translateX(36px)',
-                  zIndex: 18
+                  transform: 'translateX(90px)',
+                  zIndex: 18,
+                  cursor: 'pointer'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateX(10px) translateY(-10px) scale(1.1)';
+                  e.currentTarget.style.zIndex = 30;
+                  e.currentTarget.style.boxShadow = '0 24px 60px rgba(0, 0, 0, 0.25)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateX(90px)';
+                  e.currentTarget.style.zIndex = 18;
+                  e.currentTarget.style.boxShadow = '0 16px 48px rgba(0, 0, 0, 0.16)';
                 }}
               >
                 <div style={{ textAlign: 'center', color: 'white' }}>
@@ -293,6 +310,7 @@ export default function Hero() {
                   borderRadius: '1.5rem',
                   backdropFilter: 'blur(12px)',
                   border: '1px solid rgba(255, 255, 255, 0.2)',
+                  borderRight: '3px solid rgba(245, 197, 66, 0.6)',
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
@@ -300,8 +318,19 @@ export default function Hero() {
                   padding: '2rem',
                   boxShadow: '0 16px 48px rgba(0, 0, 0, 0.16)',
                   transition: 'all 0.4s ease',
-                  transform: 'translateX(36px)',
-                  zIndex: 17
+                  transform: 'translateX(135px)',
+                  zIndex: 17,
+                  cursor: 'pointer'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateX(20px) translateY(-5px) scale(1.1)';
+                  e.currentTarget.style.zIndex = 30;
+                  e.currentTarget.style.boxShadow = '0 24px 60px rgba(0, 0, 0, 0.25)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateX(135px)';
+                  e.currentTarget.style.zIndex = 17;
+                  e.currentTarget.style.boxShadow = '0 16px 48px rgba(0, 0, 0, 0.16)';
                 }}
               >
                 <div style={{ textAlign: 'center', color: 'white' }}>
@@ -341,6 +370,7 @@ export default function Hero() {
                   borderRadius: '1.5rem',
                   backdropFilter: 'blur(12px)',
                   border: '1px solid rgba(255, 255, 255, 0.2)',
+                  borderRight: '3px solid rgba(245, 197, 66, 0.6)',
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
@@ -348,8 +378,19 @@ export default function Hero() {
                   padding: '2rem',
                   boxShadow: '0 16px 48px rgba(0, 0, 0, 0.16)',
                   transition: 'all 0.4s ease',
-                  transform: 'translateX(48px)',
-                  zIndex: 16
+                  transform: 'translateX(180px)',
+                  zIndex: 16,
+                  cursor: 'pointer'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateX(30px) translateY(0px) scale(1.1)';
+                  e.currentTarget.style.zIndex = 30;
+                  e.currentTarget.style.boxShadow = '0 24px 60px rgba(0, 0, 0, 0.25)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateX(180px)';
+                  e.currentTarget.style.zIndex = 16;
+                  e.currentTarget.style.boxShadow = '0 16px 48px rgba(0, 0, 0, 0.16)';
                 }}
               >
                 <div style={{ textAlign: 'center', color: 'white' }}>
@@ -389,6 +430,7 @@ export default function Hero() {
                   borderRadius: '1.5rem',
                   backdropFilter: 'blur(12px)',
                   border: '1px solid rgba(255, 255, 255, 0.2)',
+                  borderRight: '3px solid rgba(245, 197, 66, 0.6)',
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
@@ -396,8 +438,19 @@ export default function Hero() {
                   padding: '2rem',
                   boxShadow: '0 16px 48px rgba(0, 0, 0, 0.16)',
                   transition: 'all 0.4s ease',
-                  transform: 'translateX(60px)',
-                  zIndex: 15
+                  transform: 'translateX(225px)',
+                  zIndex: 15,
+                  cursor: 'pointer'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateX(40px) translateY(5px) scale(1.1)';
+                  e.currentTarget.style.zIndex = 30;
+                  e.currentTarget.style.boxShadow = '0 24px 60px rgba(0, 0, 0, 0.25)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateX(225px)';
+                  e.currentTarget.style.zIndex = 15;
+                  e.currentTarget.style.boxShadow = '0 16px 48px rgba(0, 0, 0, 0.16)';
                 }}
               >
                 <div style={{ textAlign: 'center', color: 'white' }}>
