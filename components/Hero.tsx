@@ -127,14 +127,18 @@ export default function Hero() {
                   cursor: 'pointer'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateX(-20px) translateY(-20px) scale(1.1)';
+                  e.currentTarget.style.transform = 'translateX(0px) scale(1.1) rotateY(-8deg) rotateX(2deg)';
                   e.currentTarget.style.zIndex = 30;
-                  e.currentTarget.style.boxShadow = '0 24px 60px rgba(0, 0, 0, 0.25)';
+                  e.currentTarget.style.boxShadow = '0 30px 60px rgba(0, 0, 0, 0.3)';
+                  e.currentTarget.style.filter = 'brightness(1.15)';
+                  e.currentTarget.style.transformOrigin = 'right center';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateX(0px)';
+                  e.currentTarget.style.transform = 'translateX(0px) scale(1) rotateY(0deg) rotateX(0deg)';
                   e.currentTarget.style.zIndex = 20;
                   e.currentTarget.style.boxShadow = '0 16px 48px rgba(0, 0, 0, 0.16)';
+                  e.currentTarget.style.filter = 'brightness(1)';
+                  e.currentTarget.style.transformOrigin = 'center center';
                 }}
               >
                 <div style={{ textAlign: 'center', color: 'white' }}>
@@ -203,14 +207,18 @@ export default function Hero() {
                   cursor: 'pointer'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateX(-10px) translateY(-15px) scale(1.1)';
+                  e.currentTarget.style.transform = 'translateX(45px) scale(1.1) rotateY(-6deg) rotateX(1deg)';
                   e.currentTarget.style.zIndex = 30;
-                  e.currentTarget.style.boxShadow = '0 24px 60px rgba(0, 0, 0, 0.25)';
+                  e.currentTarget.style.boxShadow = '0 30px 60px rgba(0, 0, 0, 0.3)';
+                  e.currentTarget.style.filter = 'brightness(1.15)';
+                  e.currentTarget.style.transformOrigin = 'right center';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateX(45px)';
+                  e.currentTarget.style.transform = 'translateX(45px) scale(1) rotateY(0deg) rotateX(0deg)';
                   e.currentTarget.style.zIndex = 19;
                   e.currentTarget.style.boxShadow = '0 16px 48px rgba(0, 0, 0, 0.16)';
+                  e.currentTarget.style.filter = 'brightness(1)';
+                  e.currentTarget.style.transformOrigin = 'center center';
                 }}
               >
                 <div style={{ textAlign: 'center', color: 'white' }}>
@@ -263,14 +271,18 @@ export default function Hero() {
                   cursor: 'pointer'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateX(10px) translateY(-10px) scale(1.1)';
+                  e.currentTarget.style.transform = 'translateX(90px) scale(1.1) rotateY(-4deg) rotateX(1deg)';
                   e.currentTarget.style.zIndex = 30;
-                  e.currentTarget.style.boxShadow = '0 24px 60px rgba(0, 0, 0, 0.25)';
+                  e.currentTarget.style.boxShadow = '0 30px 60px rgba(0, 0, 0, 0.3)';
+                  e.currentTarget.style.filter = 'brightness(1.15)';
+                  e.currentTarget.style.transformOrigin = 'right center';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateX(90px)';
+                  e.currentTarget.style.transform = 'translateX(90px) scale(1) rotateY(0deg) rotateX(0deg)';
                   e.currentTarget.style.zIndex = 18;
                   e.currentTarget.style.boxShadow = '0 16px 48px rgba(0, 0, 0, 0.16)';
+                  e.currentTarget.style.filter = 'brightness(1)';
+                  e.currentTarget.style.transformOrigin = 'center center';
                 }}
               >
                 <div style={{ textAlign: 'center', color: 'white' }}>
@@ -323,14 +335,18 @@ export default function Hero() {
                   cursor: 'pointer'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateX(20px) translateY(-5px) scale(1.1)';
+                  e.currentTarget.style.transform = 'translateX(135px) scale(1.1) rotateY(-2deg) rotateX(0.5deg)';
                   e.currentTarget.style.zIndex = 30;
-                  e.currentTarget.style.boxShadow = '0 24px 60px rgba(0, 0, 0, 0.25)';
+                  e.currentTarget.style.boxShadow = '0 30px 60px rgba(0, 0, 0, 0.3)';
+                  e.currentTarget.style.filter = 'brightness(1.15)';
+                  e.currentTarget.style.transformOrigin = 'right center';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateX(135px)';
+                  e.currentTarget.style.transform = 'translateX(135px) scale(1) rotateY(0deg) rotateX(0deg)';
                   e.currentTarget.style.zIndex = 17;
                   e.currentTarget.style.boxShadow = '0 16px 48px rgba(0, 0, 0, 0.16)';
+                  e.currentTarget.style.filter = 'brightness(1)';
+                  e.currentTarget.style.transformOrigin = 'center center';
                 }}
               >
                 <div style={{ textAlign: 'center', color: 'white' }}>
@@ -383,14 +399,18 @@ export default function Hero() {
                   cursor: 'pointer'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateX(30px) translateY(0px) scale(1.1)';
+                  e.currentTarget.style.transform = 'translateX(180px) scale(1.1) rotateY(0deg) rotateX(0deg)';
                   e.currentTarget.style.zIndex = 30;
-                  e.currentTarget.style.boxShadow = '0 24px 60px rgba(0, 0, 0, 0.25)';
+                  e.currentTarget.style.boxShadow = '0 30px 60px rgba(0, 0, 0, 0.3)';
+                  e.currentTarget.style.filter = 'brightness(1.15)';
+                  e.currentTarget.style.transformOrigin = 'center center';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateX(180px)';
+                  e.currentTarget.style.transform = 'translateX(180px) scale(1) rotateY(0deg) rotateX(0deg)';
                   e.currentTarget.style.zIndex = 16;
                   e.currentTarget.style.boxShadow = '0 16px 48px rgba(0, 0, 0, 0.16)';
+                  e.currentTarget.style.filter = 'brightness(1)';
+                  e.currentTarget.style.transformOrigin = 'center center';
                 }}
               >
                 <div style={{ textAlign: 'center', color: 'white' }}>
@@ -443,14 +463,18 @@ export default function Hero() {
                   cursor: 'pointer'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateX(40px) translateY(5px) scale(1.1)';
+                  e.currentTarget.style.transform = 'translateX(225px) scale(1.1) rotateY(2deg) rotateX(-0.5deg)';
                   e.currentTarget.style.zIndex = 30;
-                  e.currentTarget.style.boxShadow = '0 24px 60px rgba(0, 0, 0, 0.25)';
+                  e.currentTarget.style.boxShadow = '0 30px 60px rgba(0, 0, 0, 0.3)';
+                  e.currentTarget.style.filter = 'brightness(1.15)';
+                  e.currentTarget.style.transformOrigin = 'left center';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateX(225px)';
+                  e.currentTarget.style.transform = 'translateX(225px) scale(1) rotateY(0deg) rotateX(0deg)';
                   e.currentTarget.style.zIndex = 15;
                   e.currentTarget.style.boxShadow = '0 16px 48px rgba(0, 0, 0, 0.16)';
+                  e.currentTarget.style.filter = 'brightness(1)';
+                  e.currentTarget.style.transformOrigin = 'center center';
                 }}
               >
                 <div style={{ textAlign: 'center', color: 'white' }}>
