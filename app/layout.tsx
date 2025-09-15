@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import CursorFollower from '@/components/CursorFollower'
 
 export const metadata: Metadata = {
   title: 'Qolect - Descubre Experiencias Inolvidables',
@@ -22,6 +23,7 @@ export default function RootLayout({
     <html lang="es">
       <body>
         {children}
+        <CursorFollower />
       </body>
     </html>
   )

@@ -64,6 +64,14 @@ body {
   color: var(--text-dark);
   background: var(--bg-light);
   overflow-x: hidden;
+  cursor: none; /* Ocultar cursor predeterminado en desktop */
+}
+
+/* Mostrar cursor normal en dispositivos táctiles */
+@media (hover: none) and (pointer: coarse) {
+  body {
+    cursor: auto;
+  }
 }
 
 /* Typography */
