@@ -97,12 +97,12 @@ export default function HowItWorks() {
                   transition: 'all 0.3s ease'
                 }}
                 onMouseEnter={(e) => {
-                  e.target.style.transform = 'scale(1.1)'
-                  e.target.style.boxShadow = '0 12px 40px rgba(29, 183, 191, 0.4)'
+                  e.currentTarget.style.transform = 'scale(1.1)'
+                  e.currentTarget.style.boxShadow = '0 12px 40px rgba(29, 183, 191, 0.4)'
                 }}
                 onMouseLeave={(e) => {
-                  e.target.style.transform = 'scale(1)'
-                  e.target.style.boxShadow = '0 8px 32px rgba(29, 183, 191, 0.3)'
+                  e.currentTarget.style.transform = 'scale(1)'
+                  e.currentTarget.style.boxShadow = '0 8px 32px rgba(29, 183, 191, 0.3)'
                 }}
               >
                 <span style={{ fontSize: '2rem' }}>{step.icon}</span>
@@ -172,14 +172,14 @@ export default function HowItWorks() {
               boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)'
             }}
             onMouseEnter={(e) => {
-              e.target.style.transform = 'translateY(-2px)'
-              e.target.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.12)'
-              e.target.style.filter = 'brightness(1.1)'
+              e.currentTarget.style.transform = 'translateY(-2px)'
+              e.currentTarget.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.12)'
+              e.currentTarget.style.filter = 'brightness(1.1)'
             }}
             onMouseLeave={(e) => {
-              e.target.style.transform = 'translateY(0)'
-              e.target.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.08)'
-              e.target.style.filter = 'brightness(1)'
+              e.currentTarget.style.transform = 'translateY(0)'
+              e.currentTarget.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.08)'
+              e.currentTarget.style.filter = 'brightness(1)'
             }}
           >
             Comenzar mi aventura

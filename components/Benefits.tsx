@@ -22,12 +22,12 @@ export default function Benefits() {
               transition: 'all 0.3s ease'
             }}
             onMouseEnter={(e) => {
-              e.target.style.transform = 'translateY(-4px)'
-              e.target.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.12)'
+              e.currentTarget.style.transform = 'translateY(-4px)'
+              e.currentTarget.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.12)'
             }}
             onMouseLeave={(e) => {
-              e.target.style.transform = 'translateY(0)'
-              e.target.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.08)'
+              e.currentTarget.style.transform = 'translateY(0)'
+              e.currentTarget.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.08)'
             }}
           >
             <div 
@@ -70,12 +70,12 @@ export default function Benefits() {
               transition: 'all 0.3s ease'
             }}
             onMouseEnter={(e) => {
-              e.target.style.transform = 'translateY(-4px)'
-              e.target.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.12)'
+              e.currentTarget.style.transform = 'translateY(-4px)'
+              e.currentTarget.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.12)'
             }}
             onMouseLeave={(e) => {
-              e.target.style.transform = 'translateY(0)'
-              e.target.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.08)'
+              e.currentTarget.style.transform = 'translateY(0)'
+              e.currentTarget.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.08)'
             }}
           >
             <div 
@@ -118,12 +118,12 @@ export default function Benefits() {
               transition: 'all 0.3s ease'
             }}
             onMouseEnter={(e) => {
-              e.target.style.transform = 'translateY(-4px)'
-              e.target.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.12)'
+              e.currentTarget.style.transform = 'translateY(-4px)'
+              e.currentTarget.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.12)'
             }}
             onMouseLeave={(e) => {
-              e.target.style.transform = 'translateY(0)'
-              e.target.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.08)'
+              e.currentTarget.style.transform = 'translateY(0)'
+              e.currentTarget.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.08)'
             }}
           >
             <div 
@@ -167,8 +167,8 @@ export default function Benefits() {
                   cursor: 'pointer',
                   transition: 'opacity 0.2s ease'
                 }}
-                onMouseEnter={(e) => e.target.style.opacity = '0.8'}
-                onMouseLeave={(e) => e.target.style.opacity = '1'}
+                onMouseEnter={(e) => e.currentTarget.style.opacity = '0.8'}
+                onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
               >
                 📱 App Store
               </div>
@@ -182,8 +182,8 @@ export default function Benefits() {
                   cursor: 'pointer',
                   transition: 'opacity 0.2s ease'
                 }}
-                onMouseEnter={(e) => e.target.style.opacity = '0.8'}
-                onMouseLeave={(e) => e.target.style.opacity = '1'}
+                onMouseEnter={(e) => e.currentTarget.style.opacity = '0.8'}
+                onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
               >
                 🤖 Google Play
               </div>

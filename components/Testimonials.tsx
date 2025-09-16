@@ -1,5 +1,7 @@
 'use client'
 
+import { useScrollReveal, useCountUp } from '@/lib/hooks/useScrollReveal'
+
 export default function Testimonials() {
   const testimonials = [
     {
@@ -34,10 +36,26 @@ export default function Testimonials() {
     }
   ]
 
+  const headerReveal = useScrollReveal({ delay: 100 })
+  const gridReveal = useScrollReveal({ delay: 300 })
+  const statsReveal = useScrollReveal({ delay: 500 })
+  
+  // Animated counters for trust indicators
+  const ratingCount = useCountUp(4.9, 2000)
+  const experiencesCount = useCountUp(2500, 2500)
+  const recommendationCount = useCountUp(98, 2000)
+
   return (
     <section style={{ padding: '6rem 0', background: 'linear-gradient(135deg, #F8FAFC 0%, #EEF2FF 100%)' }}>
       <div className="container">
-        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+        <div 
+          ref={headerReveal.ref}
+          style={{ 
+            textAlign: 'center', 
+            marginBottom: '4rem',
+            ...headerReveal.animationStyle
+          }}
+        >
           <h2 
             style={{
               fontSize: 'clamp(2rem, 4vw, 3rem)',
@@ -54,11 +72,13 @@ export default function Testimonials() {
         </div>
 
         <div 
+          ref={gridReveal.ref}
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
             gap: '2rem',
-            alignItems: 'start'
+            alignItems: 'start',
+            ...gridReveal.animationStyle
           }}
         >
           {testimonials.map((testimonial, index) => (
@@ -208,17 +228,20 @@ export default function Testimonials() {
 
         {/* Trust indicators */}
         <div 
+          ref={statsReveal.ref}
           style={{
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
             gap: '3rem',
             marginTop: '4rem',
-            flexWrap: 'wrap'
+            flexWrap: 'wrap',
+            ...statsReveal.animationStyle
           }}
         >
           <div style={{ textAlign: 'center' }}>
             <div 
+              ref={ratingCount.ref}
               style={{
                 fontSize: '2.5rem',
                 fontWeight: '700',
@@ -226,13 +249,14 @@ export default function Testimonials() {
                 marginBottom: '0.5rem'
               }}
             >
-              4.9/5
+              {ratingCount.count.toFixed(1)}/5
             </div>
             <p style={{ color: '#64748B', fontSize: '0.875rem' }}>Valoración promedio</p>
           </div>
           
           <div style={{ textAlign: 'center' }}>
             <div 
+              ref={experiencesCount.ref}
               style={{
                 fontSize: '2.5rem',
                 fontWeight: '700',
@@ -240,13 +264,14 @@ export default function Testimonials() {
                 marginBottom: '0.5rem'
               }}
             >
-              2,500+
+              {experiencesCount.count.toLocaleString()}+
             </div>
             <p style={{ color: '#64748B', fontSize: '0.875rem' }}>Experiencias realizadas</p>
           </div>
           
           <div style={{ textAlign: 'center' }}>
             <div 
+              ref={recommendationCount.ref}
               style={{
                 fontSize: '2.5rem',
                 fontWeight: '700',
@@ -254,7 +279,7 @@ export default function Testimonials() {
                 marginBottom: '0.5rem'
               }}
             >
-              98%
+              {recommendationCount.count}%
             </div>
             <p style={{ color: '#64748B', fontSize: '0.875rem' }}>Recomendación</p>
           </div>

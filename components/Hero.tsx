@@ -1,6 +1,133 @@
 'use client'
 
+import { useState } from 'react'
+import ExperienceDetailPanel from './ExperienceDetailPanel'
+import { useScrollReveal, useParallax } from '@/lib/hooks/useScrollReveal'
+
+const experiencesData = {
+  aventuras: {
+    id: 1,
+    title: 'Aventuras Extremas',
+    subtitle: 'Montañas épicas y experiencias extremas',
+    description: 'Conquista cumbres desafiantes y vive la adrenalina pura',
+    longDescription: 'Sumérgete en aventuras que desafían tus límites físicos y mentales. Desde escalada en roca hasta parapente en los paisajes más espectaculares del mundo, cada experiencia está diseñada para conectarte con tu espíritu aventurero y crear recuerdos que durarán toda la vida.',
+    price: '€899 - €2,499',
+    duration: '3-14 días',
+    difficulty: 'Intermedio - Avanzado',
+    location: 'Alpes, Patagonia, Himalaya',
+    included: ['Guía especializado', 'Equipo técnico', 'Alojamiento', 'Comidas', 'Seguro de aventura'],
+    notIncluded: ['Vuelos internacionales', 'Bebidas alcohólicas', 'Propinas', 'Equipo personal'],
+    images: ['🏔️', '🧗‍♂️', '🪂', '⛰️'],
+    availableDates: ['Mar 2024', 'Jun 2024', 'Sep 2024'],
+    rating: 4.9,
+    reviews: 127,
+    highlights: ['Vistas panorámicas únicas', 'Experiencia con guías locales', 'Equipamiento de alta calidad', 'Grupos reducidos máximo 8 personas']
+  },
+  playas: {
+    id: 2,
+    title: 'Paraísos Tropicales',
+    subtitle: 'Playas vírgenes y aguas cristalinas',
+    description: 'Descubre las costas más hermosas del planeta',
+    longDescription: 'Escápate a destinos paradisíacos donde el tiempo se detiene. Desde playas privadas en islas remotas hasta experiencias de buceo en arrecifes de coral prístinos. Cada momento está diseñado para la relajación total y la conexión con la naturaleza marina.',
+    price: '€1,299 - €3,899',
+    duration: '5-12 días',
+    difficulty: 'Fácil - Intermedio',
+    location: 'Maldivas, Seychelles, Polinesia',
+    included: ['Resort de lujo', 'Actividades acuáticas', 'Spa treatments', 'Gastronomía gourmet', 'Traslados privados'],
+    notIncluded: ['Vuelos internacionales', 'Bebidas premium', 'Excursiones opcionales', 'Servicios personales'],
+    images: ['🏝️', '🏖️', '🐠', '🏄‍♀️'],
+    availableDates: ['Abr 2024', 'Jul 2024', 'Oct 2024'],
+    rating: 4.8,
+    reviews: 89,
+    highlights: ['Playas privadas exclusivas', 'Buceo en arrecifes vírgenes', 'Resorts eco-sostenibles', 'Experiencias gastronómicas únicas']
+  },
+  retiros: {
+    id: 3,
+    title: 'Retiros de Bienestar',
+    subtitle: 'Reconexión y crecimiento personal',
+    description: 'Encuentra tu equilibrio interior en entornos sagrados',
+    longDescription: 'Embárcate en un viaje de autodescubrimiento que combina prácticas milenarias con técnicas modernas de bienestar. Desde meditación en templos tibetanos hasta terapias de sonido en la selva amazónica, cada retiro está diseñado para sanar cuerpo, mente y espíritu.',
+    price: '€799 - €2,199',
+    duration: '4-10 días',
+    difficulty: 'Todos los niveles',
+    location: 'Bali, India, Costa Rica',
+    included: ['Alojamiento eco-lodge', 'Sesiones de yoga', 'Meditaciones guiadas', 'Terapias holísticas', 'Alimentación orgánica'],
+    notIncluded: ['Vuelos', 'Terapias adicionales', 'Compras personales', 'Excursiones opcionales'],
+    images: ['🧘', '🕯️', '🌿', '🏞️'],
+    availableDates: ['May 2024', 'Ago 2024', 'Nov 2024'],
+    rating: 4.9,
+    reviews: 156,
+    highlights: ['Maestros certificados internacionalmente', 'Entornos naturales únicos', 'Programas personalizados', 'Comunidad global de buscadores']
+  },
+  cultura: {
+    id: 4,
+    title: 'Inmersión Cultural',
+    subtitle: 'Historia viva y tradiciones milenarias',
+    description: 'Vive la autenticidad de culturas ancestrales',
+    longDescription: 'Sumérgete en la riqueza de civilizaciones que han moldeado nuestro mundo. Desde ceremonias tribales en África hasta festivales tradicionales en Asia, cada experiencia te conecta íntimamente con las tradiciones, el arte y la sabiduría de culturas extraordinarias.',
+    price: '€1,099 - €2,799',
+    duration: '6-15 días',
+    difficulty: 'Fácil - Intermedio',
+    location: 'Japón, Perú, Marruecos',
+    included: ['Guías culturales locales', 'Experiencias auténticas', 'Alojamiento tradicional', 'Talleres artesanales', 'Ceremonias especiales'],
+    notIncluded: ['Vuelos internacionales', 'Comidas no especificadas', 'Compras personales', 'Donaciones ceremoniales'],
+    images: ['🏛️', '🎭', '🕌', '🗿'],
+    availableDates: ['Mar 2024', 'Sep 2024', 'Dic 2024'],
+    rating: 4.7,
+    reviews: 98,
+    highlights: ['Acceso a sitios restringidos', 'Encuentros con artesanos maestros', 'Participación en rituales sagrados', 'Grupos pequeños para mayor inmersión']
+  },
+  gastronomia: {
+    id: 5,
+    title: 'Viajes Gastronómicos',
+    subtitle: 'Sabores auténticos del mundo',
+    description: 'Descubre culturas a través de sus sabores únicos',
+    longDescription: 'Embárcate en un viaje sensorial que despierta todos tus sentidos. Desde mercados locales hasta restaurantes con estrellas Michelin, cada experiencia gastronómica te lleva a descubrir los secretos culinarios mejor guardados del mundo, con chefs locales y productores artesanales.',
+    price: '€1,499 - €3,299',
+    duration: '5-12 días',
+    difficulty: 'Todos los niveles',
+    location: 'Francia, Tailandia, México',
+    included: ['Chef guía especializado', 'Degustaciones exclusivas', 'Clases de cocina', 'Visitas a productores', 'Cenas en restaurantes premiados'],
+    notIncluded: ['Vuelos', 'Bebidas alcohólicas premium', 'Compras en mercados', 'Propinas'],
+    images: ['🍽️', '👨‍🍳', '🍷', '🦞'],
+    availableDates: ['Abr 2024', 'Jun 2024', 'Oct 2024'],
+    rating: 4.8,
+    reviews: 142,
+    highlights: ['Acceso a cocinas privadas', 'Encuentros con chefs reconocidos', 'Ingredientes locales únicos', 'Experiencias de campo a mesa']
+  },
+  safari: {
+    id: 6,
+    title: 'Safari Africano',
+    subtitle: 'Vida salvaje en su hábitat natural',
+    description: 'Conecta con la naturaleza más pura de África',
+    longDescription: 'Vive la magia de África en estado puro, donde cada amanecer trae nuevas aventuras y encuentros únicos con la vida salvaje. Desde la Gran Migración hasta encuentros íntimos con los Big Five, cada safari está diseñado para crear conexiones profundas con la naturaleza y las comunidades locales.',
+    price: '€2,299 - €4,999',
+    duration: '7-14 días',
+    difficulty: 'Fácil - Intermedio',
+    location: 'Kenia, Tanzania, Sudáfrica',
+    included: ['Lodge de lujo', 'Game drives diarios', 'Guía ranger especializado', 'Todas las comidas', 'Traslados en avioneta'],
+    notIncluded: ['Vuelos internacionales', 'Bebidas alcohólicas', 'Actividades opcionales', 'Visas'],
+    images: ['🦁', '🐘', '🦒', '🌅'],
+    availableDates: ['Jul 2024', 'Sep 2024', 'Feb 2025'],
+    rating: 4.9,
+    reviews: 203,
+    highlights: ['Avistamiento de los Big Five', 'Lodges eco-sostenibles', 'Experiencias con comunidades Masai', 'Fotografía de vida salvaje']
+  }
+}
+
 export default function Hero() {
+  const [selectedExperience, setSelectedExperience] = useState<any>(null)
+  const [isPanelOpen, setIsPanelOpen] = useState(false)
+
+  const handleCardClick = (experienceKey: keyof typeof experiencesData) => {
+    setSelectedExperience(experiencesData[experienceKey])
+    setIsPanelOpen(true)
+  }
+
+  const handleClosePanel = () => {
+    setIsPanelOpen(false)
+    setTimeout(() => setSelectedExperience(null), 300)
+  }
   return (
     <section 
       style={{
@@ -126,16 +253,17 @@ export default function Hero() {
                   zIndex: 20,
                   cursor: 'pointer'
                 }}
+                onClick={() => handleCardClick('aventuras')}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'translateX(0px) scale(1.1) rotateY(-8deg) rotateX(2deg)';
-                  e.currentTarget.style.zIndex = 30;
+                  e.currentTarget.style.zIndex = '30';
                   e.currentTarget.style.boxShadow = '0 30px 60px rgba(0, 0, 0, 0.3)';
                   e.currentTarget.style.filter = 'brightness(1.15)';
                   e.currentTarget.style.transformOrigin = 'right center';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = 'translateX(0px) scale(1) rotateY(0deg) rotateX(0deg)';
-                  e.currentTarget.style.zIndex = 20;
+                  e.currentTarget.style.zIndex = '20';
                   e.currentTarget.style.boxShadow = '0 16px 48px rgba(0, 0, 0, 0.16)';
                   e.currentTarget.style.filter = 'brightness(1)';
                   e.currentTarget.style.transformOrigin = 'center center';
@@ -206,16 +334,17 @@ export default function Hero() {
                   zIndex: 19,
                   cursor: 'pointer'
                 }}
+                onClick={() => handleCardClick('playas')}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'translateX(45px) scale(1.1) rotateY(-6deg) rotateX(1deg)';
-                  e.currentTarget.style.zIndex = 30;
+                  e.currentTarget.style.zIndex = '30';
                   e.currentTarget.style.boxShadow = '0 30px 60px rgba(0, 0, 0, 0.3)';
                   e.currentTarget.style.filter = 'brightness(1.15)';
                   e.currentTarget.style.transformOrigin = 'right center';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = 'translateX(45px) scale(1) rotateY(0deg) rotateX(0deg)';
-                  e.currentTarget.style.zIndex = 19;
+                  e.currentTarget.style.zIndex = '19';
                   e.currentTarget.style.boxShadow = '0 16px 48px rgba(0, 0, 0, 0.16)';
                   e.currentTarget.style.filter = 'brightness(1)';
                   e.currentTarget.style.transformOrigin = 'center center';
@@ -270,16 +399,17 @@ export default function Hero() {
                   zIndex: 18,
                   cursor: 'pointer'
                 }}
+                onClick={() => handleCardClick('retiros')}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'translateX(90px) scale(1.1) rotateY(-4deg) rotateX(1deg)';
-                  e.currentTarget.style.zIndex = 30;
+                  e.currentTarget.style.zIndex = '30';
                   e.currentTarget.style.boxShadow = '0 30px 60px rgba(0, 0, 0, 0.3)';
                   e.currentTarget.style.filter = 'brightness(1.15)';
                   e.currentTarget.style.transformOrigin = 'right center';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = 'translateX(90px) scale(1) rotateY(0deg) rotateX(0deg)';
-                  e.currentTarget.style.zIndex = 18;
+                  e.currentTarget.style.zIndex = '18';
                   e.currentTarget.style.boxShadow = '0 16px 48px rgba(0, 0, 0, 0.16)';
                   e.currentTarget.style.filter = 'brightness(1)';
                   e.currentTarget.style.transformOrigin = 'center center';
@@ -334,16 +464,17 @@ export default function Hero() {
                   zIndex: 17,
                   cursor: 'pointer'
                 }}
+                onClick={() => handleCardClick('cultura')}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'translateX(135px) scale(1.1) rotateY(-2deg) rotateX(0.5deg)';
-                  e.currentTarget.style.zIndex = 30;
+                  e.currentTarget.style.zIndex = '30';
                   e.currentTarget.style.boxShadow = '0 30px 60px rgba(0, 0, 0, 0.3)';
                   e.currentTarget.style.filter = 'brightness(1.15)';
                   e.currentTarget.style.transformOrigin = 'right center';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = 'translateX(135px) scale(1) rotateY(0deg) rotateX(0deg)';
-                  e.currentTarget.style.zIndex = 17;
+                  e.currentTarget.style.zIndex = '17';
                   e.currentTarget.style.boxShadow = '0 16px 48px rgba(0, 0, 0, 0.16)';
                   e.currentTarget.style.filter = 'brightness(1)';
                   e.currentTarget.style.transformOrigin = 'center center';
@@ -398,16 +529,17 @@ export default function Hero() {
                   zIndex: 16,
                   cursor: 'pointer'
                 }}
+                onClick={() => handleCardClick('gastronomia')}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'translateX(180px) scale(1.1) rotateY(0deg) rotateX(0deg)';
-                  e.currentTarget.style.zIndex = 30;
+                  e.currentTarget.style.zIndex = '30';
                   e.currentTarget.style.boxShadow = '0 30px 60px rgba(0, 0, 0, 0.3)';
                   e.currentTarget.style.filter = 'brightness(1.15)';
                   e.currentTarget.style.transformOrigin = 'center center';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = 'translateX(180px) scale(1) rotateY(0deg) rotateX(0deg)';
-                  e.currentTarget.style.zIndex = 16;
+                  e.currentTarget.style.zIndex = '16';
                   e.currentTarget.style.boxShadow = '0 16px 48px rgba(0, 0, 0, 0.16)';
                   e.currentTarget.style.filter = 'brightness(1)';
                   e.currentTarget.style.transformOrigin = 'center center';
@@ -462,16 +594,17 @@ export default function Hero() {
                   zIndex: 15,
                   cursor: 'pointer'
                 }}
+                onClick={() => handleCardClick('safari')}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'translateX(225px) scale(1.1) rotateY(2deg) rotateX(-0.5deg)';
-                  e.currentTarget.style.zIndex = 30;
+                  e.currentTarget.style.zIndex = '30';
                   e.currentTarget.style.boxShadow = '0 30px 60px rgba(0, 0, 0, 0.3)';
                   e.currentTarget.style.filter = 'brightness(1.15)';
                   e.currentTarget.style.transformOrigin = 'left center';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = 'translateX(225px) scale(1) rotateY(0deg) rotateX(0deg)';
-                  e.currentTarget.style.zIndex = 15;
+                  e.currentTarget.style.zIndex = '15';
                   e.currentTarget.style.boxShadow = '0 16px 48px rgba(0, 0, 0, 0.16)';
                   e.currentTarget.style.filter = 'brightness(1)';
                   e.currentTarget.style.transformOrigin = 'center center';
@@ -506,6 +639,13 @@ export default function Hero() {
         </div>
 
       </div>
+
+      {/* Experience Detail Panel */}
+      <ExperienceDetailPanel 
+        isOpen={isPanelOpen}
+        onClose={handleClosePanel}
+        experience={selectedExperience}
+      />
     </section>
   )
 }

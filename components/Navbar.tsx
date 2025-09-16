@@ -75,12 +75,12 @@ export default function Navbar() {
                   textDecoration: 'none'
                 }}
                 onMouseEnter={(e) => {
-                  e.target.style.color = '#F5C542'
-                  e.target.style.background = 'rgba(255, 255, 255, 0.1)'
+                  e.currentTarget.style.color = '#F5C542'
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)'
                 }}
                 onMouseLeave={(e) => {
-                  e.target.style.color = 'white'
-                  e.target.style.background = 'transparent'
+                  e.currentTarget.style.color = 'white'
+                  e.currentTarget.style.background = 'transparent'
                 }}
               >
                 Experiencias
@@ -97,12 +97,12 @@ export default function Navbar() {
                   textDecoration: 'none'
                 }}
                 onMouseEnter={(e) => {
-                  e.target.style.color = '#F5C542'
-                  e.target.style.background = 'rgba(255, 255, 255, 0.1)'
+                  e.currentTarget.style.color = '#F5C542'
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)'
                 }}
                 onMouseLeave={(e) => {
-                  e.target.style.color = 'white'
-                  e.target.style.background = 'transparent'
+                  e.currentTarget.style.color = 'white'
+                  e.currentTarget.style.background = 'transparent'
                 }}
               >
                 Nosotros
@@ -119,12 +119,12 @@ export default function Navbar() {
                   textDecoration: 'none'
                 }}
                 onMouseEnter={(e) => {
-                  e.target.style.color = '#F5C542'
-                  e.target.style.background = 'rgba(255, 255, 255, 0.1)'
+                  e.currentTarget.style.color = '#F5C542'
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)'
                 }}
                 onMouseLeave={(e) => {
-                  e.target.style.color = 'white'
-                  e.target.style.background = 'transparent'
+                  e.currentTarget.style.color = 'white'
+                  e.currentTarget.style.background = 'transparent'
                 }}
               >
                 Contacto
@@ -142,12 +142,12 @@ export default function Navbar() {
                   transition: 'all 0.3s ease'
                 }}
                 onMouseEnter={(e) => {
-                  e.target.style.transform = 'translateY(-2px)'
-                  e.target.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.12)'
+                  e.currentTarget.style.transform = 'translateY(-2px)'
+                  e.currentTarget.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.12)'
                 }}
                 onMouseLeave={(e) => {
-                  e.target.style.transform = 'translateY(0)'
-                  e.target.style.boxShadow = 'none'
+                  e.currentTarget.style.transform = 'translateY(0)'
+                  e.currentTarget.style.boxShadow = 'none'
                 }}
               >
                 Regístrate

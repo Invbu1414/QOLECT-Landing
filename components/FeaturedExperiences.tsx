@@ -63,12 +63,12 @@ export default function FeaturedExperiences() {
                 cursor: 'pointer'
               }}
               onMouseEnter={(e) => {
-                e.target.style.transform = 'translateY(-8px)'
-                e.target.style.boxShadow = '0 16px 48px rgba(0, 0, 0, 0.16)'
+                e.currentTarget.style.transform = 'translateY(-8px)'
+                e.currentTarget.style.boxShadow = '0 16px 48px rgba(0, 0, 0, 0.16)'
               }}
               onMouseLeave={(e) => {
-                e.target.style.transform = 'translateY(0)'
-                e.target.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.08)'
+                e.currentTarget.style.transform = 'translateY(0)'
+                e.currentTarget.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.08)'
               }}
             >
               {/* Image placeholder */}
@@ -84,10 +84,10 @@ export default function FeaturedExperiences() {
                   overflow: 'hidden'
                 }}
                 onMouseEnter={(e) => {
-                  e.target.style.transform = 'scale(1.05)'
+                  e.currentTarget.style.transform = 'scale(1.05)'
                 }}
                 onMouseLeave={(e) => {
-                  e.target.style.transform = 'scale(1)'
+                  e.currentTarget.style.transform = 'scale(1)'
                 }}
               >
                 {experience.image}
@@ -158,12 +158,12 @@ export default function FeaturedExperiences() {
                     transition: 'all 0.2s ease'
                   }}
                   onMouseEnter={(e) => {
-                    e.target.style.transform = 'translateY(-1px)'
-                    e.target.style.filter = 'brightness(1.1)'
+                    e.currentTarget.style.transform = 'translateY(-1px)'
+                    e.currentTarget.style.filter = 'brightness(1.1)'
                   }}
                   onMouseLeave={(e) => {
-                    e.target.style.transform = 'translateY(0)'
-                    e.target.style.filter = 'brightness(1)'
+                    e.currentTarget.style.transform = 'translateY(0)'
+                    e.currentTarget.style.filter = 'brightness(1)'
                   }}
                 >
                   Ver detalles
