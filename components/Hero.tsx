@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import ExperienceDetailPanel from './ExperienceDetailPanel'
+import SimpleModal from './SimpleModal'
 import { useScrollReveal, useParallax } from '@/lib/hooks/useScrollReveal'
 
 const experiencesData = {
@@ -640,8 +640,8 @@ export default function Hero() {
 
       </div>
 
-      {/* Experience Detail Panel */}
-      <ExperienceDetailPanel 
+      {/* Simple Modal for Testing */}
+      <SimpleModal 
         isOpen={isPanelOpen}
         onClose={handleClosePanel}
         experience={selectedExperience}

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 
 interface ExperienceData {
   id: number
@@ -29,6 +30,7 @@ interface ExperienceDetailPanelProps {
 
 export default function ExperienceDetailPanel({ isOpen, onClose, experience }: ExperienceDetailPanelProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  
 
   useEffect(() => {
     if (isOpen) {
@@ -59,6 +61,7 @@ export default function ExperienceDetailPanel({ isOpen, onClose, experience }: E
   }, [isOpen, onClose])
 
   if (!isOpen || !experience) return null
+
 
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % experience.images.length)
@@ -100,7 +103,7 @@ export default function ExperienceDetailPanel({ isOpen, onClose, experience }: E
           maxWidth: '900px',
           height: '85vh',
           maxHeight: '700px',
-          background: 'rgba(255, 255, 255, 0.15)',
+          background: 'rgba(255, 255, 255, 0.95)','
           backdropFilter: 'blur(20px)',
           borderRadius: '2rem',
           border: '1px solid rgba(255, 255, 255, 0.2)',
