@@ -161,6 +161,7 @@ export default function Hero({ isLoading = false }: { isLoading?: boolean }) {
   const [isPanelOpen, setIsPanelOpen] = useState(false)
   const [cardsVisible, setCardsVisible] = useState([false, false, false, false, false, false])
   const [cardsHovered, setCardsHovered] = useState([false, false, false, false, false, false])
+  const [showCards, setShowCards] = useState(false)
 
   const handleCardClick = (experienceKey: keyof typeof experiencesData) => {
     setSelectedExperience(experiencesData[experienceKey])
@@ -174,37 +175,51 @@ export default function Hero({ isLoading = false }: { isLoading?: boolean }) {
 
   useEffect(() => {
     if (!isLoading) {
-      // Show cards one by one with delay after title appears
+      // Show cards section after headline animation
+      const showCardsTimer = setTimeout(() => {
+        setShowCards(true)
+        // Smooth scroll to cards section
+        const cardsSection = document.getElementById('cards-section')
+        if (cardsSection) {
+          cardsSection.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          })
+        }
+      }, 2000) // Wait for headline to be fully visible
+
+      // Show cards one by one with delay after scroll
       const showTimers = [
-        setTimeout(() => setCardsVisible(prev => [true, ...prev.slice(1)]), 800),
-        setTimeout(() => setCardsVisible(prev => [prev[0], true, ...prev.slice(2)]), 1100),
-        setTimeout(() => setCardsVisible(prev => [...prev.slice(0, 2), true, ...prev.slice(3)]), 1400),
-        setTimeout(() => setCardsVisible(prev => [...prev.slice(0, 3), true, ...prev.slice(4)]), 1700),
-        setTimeout(() => setCardsVisible(prev => [...prev.slice(0, 4), true, prev[5]]), 2000),
-        setTimeout(() => setCardsVisible(prev => [...prev.slice(0, 5), true]), 2300)
+        setTimeout(() => setCardsVisible(prev => [true, ...prev.slice(1)]), 2800),
+        setTimeout(() => setCardsVisible(prev => [prev[0], true, ...prev.slice(2)]), 3100),
+        setTimeout(() => setCardsVisible(prev => [...prev.slice(0, 2), true, ...prev.slice(3)]), 3400),
+        setTimeout(() => setCardsVisible(prev => [...prev.slice(0, 3), true, ...prev.slice(4)]), 3700),
+        setTimeout(() => setCardsVisible(prev => [...prev.slice(0, 4), true, prev[5]]), 4000),
+        setTimeout(() => setCardsVisible(prev => [...prev.slice(0, 5), true]), 4300)
       ]
 
       // Auto-hover effect for each card with delay
       const hoverTimers = [
-        setTimeout(() => setCardsHovered(prev => [true, ...prev.slice(1)]), 1200),
-        setTimeout(() => setCardsHovered(prev => [prev[0], true, ...prev.slice(2)]), 1500),
-        setTimeout(() => setCardsHovered(prev => [...prev.slice(0, 2), true, ...prev.slice(3)]), 1800),
-        setTimeout(() => setCardsHovered(prev => [...prev.slice(0, 3), true, ...prev.slice(4)]), 2100),
-        setTimeout(() => setCardsHovered(prev => [...prev.slice(0, 4), true, prev[5]]), 2400),
-        setTimeout(() => setCardsHovered(prev => [...prev.slice(0, 5), true]), 2700)
+        setTimeout(() => setCardsHovered(prev => [true, ...prev.slice(1)]), 3200),
+        setTimeout(() => setCardsHovered(prev => [prev[0], true, ...prev.slice(2)]), 3500),
+        setTimeout(() => setCardsHovered(prev => [...prev.slice(0, 2), true, ...prev.slice(3)]), 3800),
+        setTimeout(() => setCardsHovered(prev => [...prev.slice(0, 3), true, ...prev.slice(4)]), 4100),
+        setTimeout(() => setCardsHovered(prev => [...prev.slice(0, 4), true, prev[5]]), 4400),
+        setTimeout(() => setCardsHovered(prev => [...prev.slice(0, 5), true]), 4700)
       ]
 
       // Reset hover effect after a brief moment
       const resetTimers = [
-        setTimeout(() => setCardsHovered(prev => [false, ...prev.slice(1)]), 2200),
-        setTimeout(() => setCardsHovered(prev => [prev[0], false, ...prev.slice(2)]), 2500),
-        setTimeout(() => setCardsHovered(prev => [...prev.slice(0, 2), false, ...prev.slice(3)]), 2800),
-        setTimeout(() => setCardsHovered(prev => [...prev.slice(0, 3), false, ...prev.slice(4)]), 3100),
-        setTimeout(() => setCardsHovered(prev => [...prev.slice(0, 4), false, prev[5]]), 3400),
-        setTimeout(() => setCardsHovered(prev => [...prev.slice(0, 5), false]), 3700)
+        setTimeout(() => setCardsHovered(prev => [false, ...prev.slice(1)]), 4200),
+        setTimeout(() => setCardsHovered(prev => [prev[0], false, ...prev.slice(2)]), 4500),
+        setTimeout(() => setCardsHovered(prev => [...prev.slice(0, 2), false, ...prev.slice(3)]), 4800),
+        setTimeout(() => setCardsHovered(prev => [...prev.slice(0, 3), false, ...prev.slice(4)]), 5100),
+        setTimeout(() => setCardsHovered(prev => [...prev.slice(0, 4), false, prev[5]]), 5400),
+        setTimeout(() => setCardsHovered(prev => [...prev.slice(0, 5), false]), 5700)
       ]
 
       return () => {
+        clearTimeout(showCardsTimer)
         showTimers.forEach(clearTimeout)
         hoverTimers.forEach(clearTimeout)
         resetTimers.forEach(clearTimeout)
@@ -212,50 +227,71 @@ export default function Hero({ isLoading = false }: { isLoading?: boolean }) {
     }
   }, [isLoading])
   return (
-    <section 
-      style={{
-        minHeight: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-        background: 'linear-gradient(135deg, #1DB7BF 0%, #0F7FA3 100%)',
-        position: 'relative',
-        overflow: 'hidden'
-      }}
-    >
-      <div className="container" style={{ position: 'relative', zIndex: 10 }}>
-        <div 
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr',
-            gap: '3rem',
-            alignItems: 'center',
-            minHeight: '100vh',
-            paddingTop: '5rem',
-            paddingBottom: '5rem'
-          }}
-          className="lg:grid-cols-2"
-        >
-          {/* Content */}
-          <div style={{ textAlign: 'center' }} className="lg:text-left">
+    <>
+      {/* Headline Section - Full Screen */}
+      <section
+        style={{
+          minHeight: '100vh',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          background: 'linear-gradient(135deg, #1DB7BF 0%, #0F7FA3 100%)',
+          position: 'relative',
+          overflow: 'hidden'
+        }}
+      >
+        <div className="container" style={{ position: 'relative', zIndex: 10 }}>
+          <div style={{ textAlign: 'center', maxWidth: '900px', margin: '0 auto' }}>
             <h1
               style={{
-                fontSize: 'clamp(2.5rem, 5vw, 4rem)',
-                fontWeight: '800',
+                fontSize: 'clamp(3rem, 8vw, 6rem)',
+                fontWeight: '900',
                 color: 'white',
-                marginBottom: '1.5rem',
+                marginBottom: '2rem',
                 lineHeight: '1.1',
-                textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)'
+                textShadow: '0 4px 8px rgba(0, 0, 0, 0.3)'
               }}
             >
-              <BlurText text="Descubre experiencias " isPageLoading={isLoading} />
+              <BlurText text="Viaja con propósito, " isPageLoading={isLoading} />
               <span style={{ color: '#F5C542', display: 'block' }}>
-                <BlurText text="inolvidables" delay={200} isPageLoading={isLoading} />
+                <BlurText text="conecta con lo que importa" delay={200} isPageLoading={isLoading} />
               </span>
             </h1>
-            
 
+            <p
+              style={{
+                fontSize: 'clamp(1.3rem, 3vw, 1.8rem)',
+                color: 'rgba(255, 255, 255, 0.9)',
+                marginBottom: '0',
+                fontWeight: '500',
+                lineHeight: '1.6',
+                textShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
+                maxWidth: '700px',
+                margin: '0 auto'
+              }}
+            >
+              <BlurText text="Experiencias auténticas diseñadas para jóvenes profesionales que buscan aventuras transformadoras y conexiones significativas" delay={400} isPageLoading={isLoading} />
+            </p>
           </div>
+        </div>
+      </section>
 
+      {/* Cards Section */}
+      <section
+        id="cards-section"
+        style={{
+          minHeight: '100vh',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          background: 'linear-gradient(135deg, #1DB7BF 0%, #0F7FA3 100%)',
+          position: 'relative',
+          overflow: 'hidden',
+          opacity: showCards ? 1 : 0,
+          transition: 'opacity 1s ease'
+        }}
+      >
+        <div className="container" style={{ position: 'relative', zIndex: 10 }}>
           {/* Book stack of cards */}
           <div 
             style={{
@@ -727,15 +763,14 @@ export default function Hero({ isLoading = false }: { isLoading?: boolean }) {
             </div>
           </div>
         </div>
-
-      </div>
+      </section>
 
       {/* Simple Modal for Testing */}
-      <SimpleModal 
+      <SimpleModal
         isOpen={isPanelOpen}
         onClose={handleClosePanel}
         experience={selectedExperience}
       />
-    </section>
+    </>
   )
 }
