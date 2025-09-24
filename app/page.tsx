@@ -32,7 +32,7 @@ export default function HomePage() {
         transform: isLoading ? 'scale(0.95)' : 'scale(1)'
       }}>
         <Navbar />
-        <Hero />
+        <Hero isLoading={isLoading} />
         <Benefits />
         <FeaturedExperiences />
         <Categories />

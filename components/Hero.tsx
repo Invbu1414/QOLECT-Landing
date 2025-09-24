@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import SimpleModal from './SimpleModal'
 import { useScrollReveal, useParallax } from '@/lib/hooks/useScrollReveal'
 
@@ -115,7 +115,48 @@ const experiencesData = {
   }
 }
 
-export default function Hero() {
+// BlurText component for animated text
+function BlurText({ text, className = "", style = {}, delay = 0, isPageLoading = false }: { text: string, className?: string, style?: React.CSSProperties, delay?: number, isPageLoading?: boolean }) {
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    if (!isPageLoading) {
+      const timer = setTimeout(() => setIsVisible(true), 500 + delay)
+      return () => clearTimeout(timer)
+    } else {
+      setIsVisible(false)
+    }
+  }, [delay, isPageLoading])
+
+  return (
+    <span
+      className={className}
+      style={{
+        ...style,
+        display: 'inline-block'
+      }}
+    >
+      {text.split('').map((char, index) => (
+        <span
+          key={index}
+          style={{
+            display: 'inline-block',
+            filter: isVisible ? 'blur(0px)' : 'blur(12px)',
+            opacity: isVisible ? 1 : 0.1,
+            transform: isVisible ? 'translateY(0px) scale(1)' : 'translateY(20px) scale(0.8)',
+            transition: `all 1s cubic-bezier(0.4, 0, 0.2, 1) ${(index * 0.08) + delay}ms`,
+            whiteSpace: char === ' ' ? 'pre' : 'normal',
+            willChange: 'filter, opacity, transform'
+          }}
+        >
+          {char === ' ' ? '\u00A0' : char}
+        </span>
+      ))}
+    </span>
+  )
+}
+
+export default function Hero({ isLoading = false }: { isLoading?: boolean }) {
   const [selectedExperience, setSelectedExperience] = useState<any>(null)
   const [isPanelOpen, setIsPanelOpen] = useState(false)
 
@@ -154,7 +195,7 @@ export default function Hero() {
         >
           {/* Content */}
           <div style={{ textAlign: 'center' }} className="lg:text-left">
-            <h1 
+            <h1
               style={{
                 fontSize: 'clamp(2.5rem, 5vw, 4rem)',
                 fontWeight: '800',
@@ -164,54 +205,13 @@ export default function Hero() {
                 textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)'
               }}
             >
-              Descubre experiencias{' '}
+              <BlurText text="Descubre experiencias " isPageLoading={isLoading} />
               <span style={{ color: '#F5C542', display: 'block' }}>
-                inolvidables
+                <BlurText text="inolvidables" delay={1200} isPageLoading={isLoading} />
               </span>
             </h1>
             
-            <p 
-              style={{
-                fontSize: '1.125rem',
-                color: 'white',
-                marginBottom: '2.5rem',
-                maxWidth: '32rem',
-                margin: '0 auto 2.5rem auto',
-                fontWeight: '500',
-                lineHeight: '1.6',
-                textShadow: '0 1px 2px rgba(0, 0, 0, 0.2)'
-              }}
-              className="lg:mx-0"
-            >
-              Viaja con propósito y transforma tu manera de ver el mundo
-            </p>
 
-            <button
-              style={{
-                background: '#F5C542',
-                color: '#0F172A',
-                padding: '1rem 2.5rem',
-                border: 'none',
-                borderRadius: '1rem',
-                fontSize: '1.125rem',
-                fontWeight: '700',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
-                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-2px)'
-                e.currentTarget.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.12)'
-                e.currentTarget.style.filter = 'brightness(1.1)'
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)'
-                e.currentTarget.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.08)'
-                e.currentTarget.style.filter = 'brightness(1)'
-              }}
-            >
-              Explorar experiencias
-            </button>
           </div>
 
           {/* Book stack of cards */}
@@ -222,11 +222,11 @@ export default function Hero() {
             }}
             className="lg:justify-end"
           >
-            <div 
+            <div
               style={{
                 position: 'relative',
-                width: '45rem',
-                height: '26rem'
+                width: '80rem',
+                height: '50rem'
               }}
             >
               {/* Card 1 - Aventuras */}
@@ -235,8 +235,8 @@ export default function Hero() {
                   position: 'absolute',
                   top: 0,
                   left: 0,
-                  width: '18rem',
-                  height: '22rem',
+                  width: '38rem',
+                  height: '42rem',
                   background: 'rgba(255, 255, 255, 0.15)',
                   borderRadius: '1.5rem',
                   backdropFilter: 'blur(12px)',
@@ -246,7 +246,7 @@ export default function Hero() {
                   flexDirection: 'column',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  padding: '2rem',
+                  padding: '4rem',
                   boxShadow: '0 16px 48px rgba(0, 0, 0, 0.16)',
                   transition: 'all 0.4s ease',
                   transform: 'translateX(0px)',
@@ -272,23 +272,23 @@ export default function Hero() {
                 <div style={{ textAlign: 'center', color: 'white' }}>
                   <div 
                     style={{
-                      width: '5rem',
-                      height: '5rem',
+                      width: '9rem',
+                      height: '9rem',
                       background: 'rgba(245, 197, 66, 0.3)',
                       borderRadius: '50%',
                       margin: '0 auto 1rem auto',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      fontSize: '2.5rem'
+                      fontSize: '4.5rem'
                     }}
                   >
                     🏔️
                   </div>
-                  <p style={{ fontSize: '1rem', fontWeight: '600', marginBottom: '0.5rem' }}>
+                  <p style={{ fontSize: '2rem', fontWeight: '600', marginBottom: '1rem' }}>
                     Aventuras
                   </p>
-                  <p style={{ fontSize: '0.875rem', opacity: 0.8 }}>
+                  <p style={{ fontSize: '1.5rem', opacity: 0.8 }}>
                     Montañas épicas y experiencias extremas
                   </p>
                 </div>
@@ -316,8 +316,8 @@ export default function Hero() {
                   position: 'absolute',
                   top: 0,
                   left: 0,
-                  width: '18rem',
-                  height: '22rem',
+                  width: '38rem',
+                  height: '42rem',
                   background: 'rgba(255, 255, 255, 0.15)',
                   borderRadius: '1.5rem',
                   backdropFilter: 'blur(12px)',
@@ -327,23 +327,23 @@ export default function Hero() {
                   flexDirection: 'column',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  padding: '2rem',
+                  padding: '4rem',
                   boxShadow: '0 16px 48px rgba(0, 0, 0, 0.16)',
                   transition: 'all 0.4s ease',
-                  transform: 'translateX(45px)',
+                  transform: 'translateX(85px)',
                   zIndex: 19,
                   cursor: 'pointer'
                 }}
                 onClick={() => handleCardClick('playas')}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateX(45px) scale(1.1) rotateY(-6deg) rotateX(1deg)';
+                  e.currentTarget.style.transform = 'translateX(85px) scale(1.1) rotateY(-6deg) rotateX(1deg)';
                   e.currentTarget.style.zIndex = '30';
                   e.currentTarget.style.boxShadow = '0 30px 60px rgba(0, 0, 0, 0.3)';
                   e.currentTarget.style.filter = 'brightness(1.15)';
                   e.currentTarget.style.transformOrigin = 'right center';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateX(45px) scale(1) rotateY(0deg) rotateX(0deg)';
+                  e.currentTarget.style.transform = 'translateX(85px) scale(1) rotateY(0deg) rotateX(0deg)';
                   e.currentTarget.style.zIndex = '19';
                   e.currentTarget.style.boxShadow = '0 16px 48px rgba(0, 0, 0, 0.16)';
                   e.currentTarget.style.filter = 'brightness(1)';
@@ -353,23 +353,23 @@ export default function Hero() {
                 <div style={{ textAlign: 'center', color: 'white' }}>
                   <div 
                     style={{
-                      width: '5rem',
-                      height: '5rem',
+                      width: '9rem',
+                      height: '9rem',
                       background: 'rgba(245, 197, 66, 0.3)',
                       borderRadius: '50%',
                       margin: '0 auto 1rem auto',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      fontSize: '2.5rem'
+                      fontSize: '4.5rem'
                     }}
                   >
                     🏝️
                   </div>
-                  <p style={{ fontSize: '1rem', fontWeight: '600', marginBottom: '0.5rem' }}>
+                  <p style={{ fontSize: '2rem', fontWeight: '600', marginBottom: '1rem' }}>
                     Playas
                   </p>
-                  <p style={{ fontSize: '0.875rem', opacity: 0.8 }}>
+                  <p style={{ fontSize: '1.5rem', opacity: 0.8 }}>
                     Paraísos tropicales únicos
                   </p>
                 </div>
@@ -381,8 +381,8 @@ export default function Hero() {
                   position: 'absolute',
                   top: 0,
                   left: 0,
-                  width: '18rem',
-                  height: '22rem',
+                  width: '38rem',
+                  height: '42rem',
                   background: 'rgba(255, 255, 255, 0.15)',
                   borderRadius: '1.5rem',
                   backdropFilter: 'blur(12px)',
@@ -392,23 +392,23 @@ export default function Hero() {
                   flexDirection: 'column',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  padding: '2rem',
+                  padding: '4rem',
                   boxShadow: '0 16px 48px rgba(0, 0, 0, 0.16)',
                   transition: 'all 0.4s ease',
-                  transform: 'translateX(90px)',
+                  transform: 'translateX(170px)',
                   zIndex: 18,
                   cursor: 'pointer'
                 }}
                 onClick={() => handleCardClick('retiros')}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateX(90px) scale(1.1) rotateY(-4deg) rotateX(1deg)';
+                  e.currentTarget.style.transform = 'translateX(170px) scale(1.1) rotateY(-4deg) rotateX(1deg)';
                   e.currentTarget.style.zIndex = '30';
                   e.currentTarget.style.boxShadow = '0 30px 60px rgba(0, 0, 0, 0.3)';
                   e.currentTarget.style.filter = 'brightness(1.15)';
                   e.currentTarget.style.transformOrigin = 'right center';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateX(90px) scale(1) rotateY(0deg) rotateX(0deg)';
+                  e.currentTarget.style.transform = 'translateX(170px) scale(1) rotateY(0deg) rotateX(0deg)';
                   e.currentTarget.style.zIndex = '18';
                   e.currentTarget.style.boxShadow = '0 16px 48px rgba(0, 0, 0, 0.16)';
                   e.currentTarget.style.filter = 'brightness(1)';
@@ -418,23 +418,23 @@ export default function Hero() {
                 <div style={{ textAlign: 'center', color: 'white' }}>
                   <div 
                     style={{
-                      width: '5rem',
-                      height: '5rem',
+                      width: '9rem',
+                      height: '9rem',
                       background: 'rgba(245, 197, 66, 0.3)',
                       borderRadius: '50%',
                       margin: '0 auto 1rem auto',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      fontSize: '2.5rem'
+                      fontSize: '4.5rem'
                     }}
                   >
                     🧘
                   </div>
-                  <p style={{ fontSize: '1rem', fontWeight: '600', marginBottom: '0.5rem' }}>
+                  <p style={{ fontSize: '2rem', fontWeight: '600', marginBottom: '1rem' }}>
                     Retiros
                   </p>
-                  <p style={{ fontSize: '0.875rem', opacity: 0.8 }}>
+                  <p style={{ fontSize: '1.5rem', opacity: 0.8 }}>
                     Bienestar y crecimiento personal
                   </p>
                 </div>
@@ -446,8 +446,8 @@ export default function Hero() {
                   position: 'absolute',
                   top: 0,
                   left: 0,
-                  width: '18rem',
-                  height: '22rem',
+                  width: '38rem',
+                  height: '42rem',
                   background: 'rgba(255, 255, 255, 0.15)',
                   borderRadius: '1.5rem',
                   backdropFilter: 'blur(12px)',
@@ -457,23 +457,23 @@ export default function Hero() {
                   flexDirection: 'column',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  padding: '2rem',
+                  padding: '4rem',
                   boxShadow: '0 16px 48px rgba(0, 0, 0, 0.16)',
                   transition: 'all 0.4s ease',
-                  transform: 'translateX(135px)',
+                  transform: 'translateX(255px)',
                   zIndex: 17,
                   cursor: 'pointer'
                 }}
                 onClick={() => handleCardClick('cultura')}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateX(135px) scale(1.1) rotateY(-2deg) rotateX(0.5deg)';
+                  e.currentTarget.style.transform = 'translateX(255px) scale(1.1) rotateY(-2deg) rotateX(0.5deg)';
                   e.currentTarget.style.zIndex = '30';
                   e.currentTarget.style.boxShadow = '0 30px 60px rgba(0, 0, 0, 0.3)';
                   e.currentTarget.style.filter = 'brightness(1.15)';
                   e.currentTarget.style.transformOrigin = 'right center';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateX(135px) scale(1) rotateY(0deg) rotateX(0deg)';
+                  e.currentTarget.style.transform = 'translateX(255px) scale(1) rotateY(0deg) rotateX(0deg)';
                   e.currentTarget.style.zIndex = '17';
                   e.currentTarget.style.boxShadow = '0 16px 48px rgba(0, 0, 0, 0.16)';
                   e.currentTarget.style.filter = 'brightness(1)';
@@ -483,23 +483,23 @@ export default function Hero() {
                 <div style={{ textAlign: 'center', color: 'white' }}>
                   <div 
                     style={{
-                      width: '5rem',
-                      height: '5rem',
+                      width: '9rem',
+                      height: '9rem',
                       background: 'rgba(245, 197, 66, 0.3)',
                       borderRadius: '50%',
                       margin: '0 auto 1rem auto',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      fontSize: '2.5rem'
+                      fontSize: '4.5rem'
                     }}
                   >
                     🏛️
                   </div>
-                  <p style={{ fontSize: '1rem', fontWeight: '600', marginBottom: '0.5rem' }}>
+                  <p style={{ fontSize: '2rem', fontWeight: '600', marginBottom: '1rem' }}>
                     Cultura
                   </p>
-                  <p style={{ fontSize: '0.875rem', opacity: 0.8 }}>
+                  <p style={{ fontSize: '1.5rem', opacity: 0.8 }}>
                     Historia viva y tradiciones
                   </p>
                 </div>
@@ -511,8 +511,8 @@ export default function Hero() {
                   position: 'absolute',
                   top: 0,
                   left: 0,
-                  width: '18rem',
-                  height: '22rem',
+                  width: '38rem',
+                  height: '42rem',
                   background: 'rgba(255, 255, 255, 0.15)',
                   borderRadius: '1.5rem',
                   backdropFilter: 'blur(12px)',
@@ -522,23 +522,23 @@ export default function Hero() {
                   flexDirection: 'column',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  padding: '2rem',
+                  padding: '4rem',
                   boxShadow: '0 16px 48px rgba(0, 0, 0, 0.16)',
                   transition: 'all 0.4s ease',
-                  transform: 'translateX(180px)',
+                  transform: 'translateX(340px)',
                   zIndex: 16,
                   cursor: 'pointer'
                 }}
                 onClick={() => handleCardClick('gastronomia')}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateX(180px) scale(1.1) rotateY(0deg) rotateX(0deg)';
+                  e.currentTarget.style.transform = 'translateX(340px) scale(1.1) rotateY(0deg) rotateX(0deg)';
                   e.currentTarget.style.zIndex = '30';
                   e.currentTarget.style.boxShadow = '0 30px 60px rgba(0, 0, 0, 0.3)';
                   e.currentTarget.style.filter = 'brightness(1.15)';
                   e.currentTarget.style.transformOrigin = 'center center';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateX(180px) scale(1) rotateY(0deg) rotateX(0deg)';
+                  e.currentTarget.style.transform = 'translateX(340px) scale(1) rotateY(0deg) rotateX(0deg)';
                   e.currentTarget.style.zIndex = '16';
                   e.currentTarget.style.boxShadow = '0 16px 48px rgba(0, 0, 0, 0.16)';
                   e.currentTarget.style.filter = 'brightness(1)';
@@ -548,23 +548,23 @@ export default function Hero() {
                 <div style={{ textAlign: 'center', color: 'white' }}>
                   <div 
                     style={{
-                      width: '5rem',
-                      height: '5rem',
+                      width: '9rem',
+                      height: '9rem',
                       background: 'rgba(245, 197, 66, 0.3)',
                       borderRadius: '50%',
                       margin: '0 auto 1rem auto',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      fontSize: '2.5rem'
+                      fontSize: '4.5rem'
                     }}
                   >
                     🍽️
                   </div>
-                  <p style={{ fontSize: '1rem', fontWeight: '600', marginBottom: '0.5rem' }}>
+                  <p style={{ fontSize: '2rem', fontWeight: '600', marginBottom: '1rem' }}>
                     Gastronomía
                   </p>
-                  <p style={{ fontSize: '0.875rem', opacity: 0.8 }}>
+                  <p style={{ fontSize: '1.5rem', opacity: 0.8 }}>
                     Sabores auténticos del mundo
                   </p>
                 </div>
@@ -576,8 +576,8 @@ export default function Hero() {
                   position: 'absolute',
                   top: 0,
                   left: 0,
-                  width: '18rem',
-                  height: '22rem',
+                  width: '38rem',
+                  height: '42rem',
                   background: 'rgba(255, 255, 255, 0.15)',
                   borderRadius: '1.5rem',
                   backdropFilter: 'blur(12px)',
@@ -587,23 +587,23 @@ export default function Hero() {
                   flexDirection: 'column',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  padding: '2rem',
+                  padding: '4rem',
                   boxShadow: '0 16px 48px rgba(0, 0, 0, 0.16)',
                   transition: 'all 0.4s ease',
-                  transform: 'translateX(225px)',
+                  transform: 'translateX(425px)',
                   zIndex: 15,
                   cursor: 'pointer'
                 }}
                 onClick={() => handleCardClick('safari')}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateX(225px) scale(1.1) rotateY(2deg) rotateX(-0.5deg)';
+                  e.currentTarget.style.transform = 'translateX(425px) scale(1.1) rotateY(2deg) rotateX(-0.5deg)';
                   e.currentTarget.style.zIndex = '30';
                   e.currentTarget.style.boxShadow = '0 30px 60px rgba(0, 0, 0, 0.3)';
                   e.currentTarget.style.filter = 'brightness(1.15)';
                   e.currentTarget.style.transformOrigin = 'left center';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateX(225px) scale(1) rotateY(0deg) rotateX(0deg)';
+                  e.currentTarget.style.transform = 'translateX(425px) scale(1) rotateY(0deg) rotateX(0deg)';
                   e.currentTarget.style.zIndex = '15';
                   e.currentTarget.style.boxShadow = '0 16px 48px rgba(0, 0, 0, 0.16)';
                   e.currentTarget.style.filter = 'brightness(1)';
@@ -613,23 +613,23 @@ export default function Hero() {
                 <div style={{ textAlign: 'center', color: 'white' }}>
                   <div 
                     style={{
-                      width: '5rem',
-                      height: '5rem',
+                      width: '9rem',
+                      height: '9rem',
                       background: 'rgba(245, 197, 66, 0.3)',
                       borderRadius: '50%',
                       margin: '0 auto 1rem auto',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      fontSize: '2.5rem'
+                      fontSize: '4.5rem'
                     }}
                   >
                     🦁
                   </div>
-                  <p style={{ fontSize: '1rem', fontWeight: '600', marginBottom: '0.5rem' }}>
+                  <p style={{ fontSize: '2rem', fontWeight: '600', marginBottom: '1rem' }}>
                     Safari
                   </p>
-                  <p style={{ fontSize: '0.875rem', opacity: 0.8 }}>
+                  <p style={{ fontSize: '1.5rem', opacity: 0.8 }}>
                     Vida salvaje africana
                   </p>
                 </div>
