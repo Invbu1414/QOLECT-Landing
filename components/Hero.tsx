@@ -121,7 +121,7 @@ function BlurText({ text, className = "", style = {}, delay = 0, isPageLoading =
 
   useEffect(() => {
     if (!isPageLoading) {
-      const timer = setTimeout(() => setIsVisible(true), 500 + delay)
+      const timer = setTimeout(() => setIsVisible(true), delay)
       return () => clearTimeout(timer)
     } else {
       setIsVisible(false)
@@ -159,6 +159,8 @@ function BlurText({ text, className = "", style = {}, delay = 0, isPageLoading =
 export default function Hero({ isLoading = false }: { isLoading?: boolean }) {
   const [selectedExperience, setSelectedExperience] = useState<any>(null)
   const [isPanelOpen, setIsPanelOpen] = useState(false)
+  const [cardsVisible, setCardsVisible] = useState([false, false, false, false, false, false])
+  const [cardsHovered, setCardsHovered] = useState([false, false, false, false, false, false])
 
   const handleCardClick = (experienceKey: keyof typeof experiencesData) => {
     setSelectedExperience(experiencesData[experienceKey])
@@ -169,6 +171,46 @@ export default function Hero({ isLoading = false }: { isLoading?: boolean }) {
     setIsPanelOpen(false)
     setTimeout(() => setSelectedExperience(null), 300)
   }
+
+  useEffect(() => {
+    if (!isLoading) {
+      // Show cards one by one with delay after title appears
+      const showTimers = [
+        setTimeout(() => setCardsVisible(prev => [true, ...prev.slice(1)]), 800),
+        setTimeout(() => setCardsVisible(prev => [prev[0], true, ...prev.slice(2)]), 1100),
+        setTimeout(() => setCardsVisible(prev => [...prev.slice(0, 2), true, ...prev.slice(3)]), 1400),
+        setTimeout(() => setCardsVisible(prev => [...prev.slice(0, 3), true, ...prev.slice(4)]), 1700),
+        setTimeout(() => setCardsVisible(prev => [...prev.slice(0, 4), true, prev[5]]), 2000),
+        setTimeout(() => setCardsVisible(prev => [...prev.slice(0, 5), true]), 2300)
+      ]
+
+      // Auto-hover effect for each card with delay
+      const hoverTimers = [
+        setTimeout(() => setCardsHovered(prev => [true, ...prev.slice(1)]), 1200),
+        setTimeout(() => setCardsHovered(prev => [prev[0], true, ...prev.slice(2)]), 1500),
+        setTimeout(() => setCardsHovered(prev => [...prev.slice(0, 2), true, ...prev.slice(3)]), 1800),
+        setTimeout(() => setCardsHovered(prev => [...prev.slice(0, 3), true, ...prev.slice(4)]), 2100),
+        setTimeout(() => setCardsHovered(prev => [...prev.slice(0, 4), true, prev[5]]), 2400),
+        setTimeout(() => setCardsHovered(prev => [...prev.slice(0, 5), true]), 2700)
+      ]
+
+      // Reset hover effect after a brief moment
+      const resetTimers = [
+        setTimeout(() => setCardsHovered(prev => [false, ...prev.slice(1)]), 2200),
+        setTimeout(() => setCardsHovered(prev => [prev[0], false, ...prev.slice(2)]), 2500),
+        setTimeout(() => setCardsHovered(prev => [...prev.slice(0, 2), false, ...prev.slice(3)]), 2800),
+        setTimeout(() => setCardsHovered(prev => [...prev.slice(0, 3), false, ...prev.slice(4)]), 3100),
+        setTimeout(() => setCardsHovered(prev => [...prev.slice(0, 4), false, prev[5]]), 3400),
+        setTimeout(() => setCardsHovered(prev => [...prev.slice(0, 5), false]), 3700)
+      ]
+
+      return () => {
+        showTimers.forEach(clearTimeout)
+        hoverTimers.forEach(clearTimeout)
+        resetTimers.forEach(clearTimeout)
+      }
+    }
+  }, [isLoading])
   return (
     <section 
       style={{
@@ -207,7 +249,7 @@ export default function Hero({ isLoading = false }: { isLoading?: boolean }) {
             >
               <BlurText text="Descubre experiencias " isPageLoading={isLoading} />
               <span style={{ color: '#F5C542', display: 'block' }}>
-                <BlurText text="inolvidables" delay={1200} isPageLoading={isLoading} />
+                <BlurText text="inolvidables" delay={200} isPageLoading={isLoading} />
               </span>
             </h1>
             
@@ -230,7 +272,7 @@ export default function Hero({ isLoading = false }: { isLoading?: boolean }) {
               }}
             >
               {/* Card 1 - Aventuras */}
-              <div 
+              <div
                 style={{
                   position: 'absolute',
                   top: 0,
@@ -247,10 +289,18 @@ export default function Hero({ isLoading = false }: { isLoading?: boolean }) {
                   alignItems: 'center',
                   justifyContent: 'center',
                   padding: '4rem',
-                  boxShadow: '0 16px 48px rgba(0, 0, 0, 0.16)',
-                  transition: 'all 0.4s ease',
-                  transform: 'translateX(0px)',
-                  zIndex: 20,
+                  boxShadow: cardsHovered[0]
+                    ? '0 30px 60px rgba(0, 0, 0, 0.3)'
+                    : '0 16px 48px rgba(0, 0, 0, 0.16)',
+                  filter: cardsHovered[0] ? 'brightness(1.15)' : 'brightness(1)',
+                  transition: 'all 0.7s ease',
+                  transform: cardsVisible[0]
+                    ? (cardsHovered[0]
+                        ? 'translateX(0px) scale(1.1) rotateY(-8deg) rotateX(2deg)'
+                        : 'translateX(0px) scale(1)')
+                    : 'translateX(0px) scale(0.8)',
+                  opacity: cardsVisible[0] ? 1 : 0,
+                  zIndex: cardsHovered[0] ? 30 : 20,
                   cursor: 'pointer'
                 }}
                 onClick={() => handleCardClick('aventuras')}
@@ -311,7 +361,7 @@ export default function Hero({ isLoading = false }: { isLoading?: boolean }) {
               </div>
 
               {/* Card 2 - Playas */}
-              <div 
+              <div
                 style={{
                   position: 'absolute',
                   top: 0,
@@ -328,10 +378,18 @@ export default function Hero({ isLoading = false }: { isLoading?: boolean }) {
                   alignItems: 'center',
                   justifyContent: 'center',
                   padding: '4rem',
-                  boxShadow: '0 16px 48px rgba(0, 0, 0, 0.16)',
-                  transition: 'all 0.4s ease',
-                  transform: 'translateX(85px)',
-                  zIndex: 19,
+                  boxShadow: cardsHovered[1]
+                    ? '0 30px 60px rgba(0, 0, 0, 0.3)'
+                    : '0 16px 48px rgba(0, 0, 0, 0.16)',
+                  filter: cardsHovered[1] ? 'brightness(1.15)' : 'brightness(1)',
+                  transition: 'all 0.7s ease',
+                  transform: cardsVisible[1]
+                    ? (cardsHovered[1]
+                        ? 'translateX(85px) scale(1.1) rotateY(-6deg) rotateX(1deg)'
+                        : 'translateX(85px) scale(1)')
+                    : 'translateX(85px) scale(0.8)',
+                  opacity: cardsVisible[1] ? 1 : 0,
+                  zIndex: cardsHovered[1] ? 30 : 19,
                   cursor: 'pointer'
                 }}
                 onClick={() => handleCardClick('playas')}
@@ -376,7 +434,7 @@ export default function Hero({ isLoading = false }: { isLoading?: boolean }) {
               </div>
 
               {/* Card 3 - Retiros */}
-              <div 
+              <div
                 style={{
                   position: 'absolute',
                   top: 0,
@@ -393,10 +451,18 @@ export default function Hero({ isLoading = false }: { isLoading?: boolean }) {
                   alignItems: 'center',
                   justifyContent: 'center',
                   padding: '4rem',
-                  boxShadow: '0 16px 48px rgba(0, 0, 0, 0.16)',
-                  transition: 'all 0.4s ease',
-                  transform: 'translateX(170px)',
-                  zIndex: 18,
+                  boxShadow: cardsHovered[2]
+                    ? '0 30px 60px rgba(0, 0, 0, 0.3)'
+                    : '0 16px 48px rgba(0, 0, 0, 0.16)',
+                  filter: cardsHovered[2] ? 'brightness(1.15)' : 'brightness(1)',
+                  transition: 'all 0.7s ease',
+                  transform: cardsVisible[2]
+                    ? (cardsHovered[2]
+                        ? 'translateX(170px) scale(1.1) rotateY(-4deg) rotateX(1deg)'
+                        : 'translateX(170px) scale(1)')
+                    : 'translateX(170px) scale(0.8)',
+                  opacity: cardsVisible[2] ? 1 : 0,
+                  zIndex: cardsHovered[2] ? 30 : 18,
                   cursor: 'pointer'
                 }}
                 onClick={() => handleCardClick('retiros')}
@@ -441,7 +507,7 @@ export default function Hero({ isLoading = false }: { isLoading?: boolean }) {
               </div>
 
               {/* Card 4 - Cultura */}
-              <div 
+              <div
                 style={{
                   position: 'absolute',
                   top: 0,
@@ -458,10 +524,18 @@ export default function Hero({ isLoading = false }: { isLoading?: boolean }) {
                   alignItems: 'center',
                   justifyContent: 'center',
                   padding: '4rem',
-                  boxShadow: '0 16px 48px rgba(0, 0, 0, 0.16)',
-                  transition: 'all 0.4s ease',
-                  transform: 'translateX(255px)',
-                  zIndex: 17,
+                  boxShadow: cardsHovered[3]
+                    ? '0 30px 60px rgba(0, 0, 0, 0.3)'
+                    : '0 16px 48px rgba(0, 0, 0, 0.16)',
+                  filter: cardsHovered[3] ? 'brightness(1.15)' : 'brightness(1)',
+                  transition: 'all 0.7s ease',
+                  transform: cardsVisible[3]
+                    ? (cardsHovered[3]
+                        ? 'translateX(255px) scale(1.1) rotateY(-2deg) rotateX(0.5deg)'
+                        : 'translateX(255px) scale(1)')
+                    : 'translateX(255px) scale(0.8)',
+                  opacity: cardsVisible[3] ? 1 : 0,
+                  zIndex: cardsHovered[3] ? 30 : 17,
                   cursor: 'pointer'
                 }}
                 onClick={() => handleCardClick('cultura')}
@@ -506,7 +580,7 @@ export default function Hero({ isLoading = false }: { isLoading?: boolean }) {
               </div>
 
               {/* Card 5 - Gastronomía */}
-              <div 
+              <div
                 style={{
                   position: 'absolute',
                   top: 0,
@@ -523,10 +597,18 @@ export default function Hero({ isLoading = false }: { isLoading?: boolean }) {
                   alignItems: 'center',
                   justifyContent: 'center',
                   padding: '4rem',
-                  boxShadow: '0 16px 48px rgba(0, 0, 0, 0.16)',
-                  transition: 'all 0.4s ease',
-                  transform: 'translateX(340px)',
-                  zIndex: 16,
+                  boxShadow: cardsHovered[4]
+                    ? '0 30px 60px rgba(0, 0, 0, 0.3)'
+                    : '0 16px 48px rgba(0, 0, 0, 0.16)',
+                  filter: cardsHovered[4] ? 'brightness(1.15)' : 'brightness(1)',
+                  transition: 'all 0.7s ease',
+                  transform: cardsVisible[4]
+                    ? (cardsHovered[4]
+                        ? 'translateX(340px) scale(1.1) rotateY(0deg) rotateX(0deg)'
+                        : 'translateX(340px) scale(1)')
+                    : 'translateX(340px) scale(0.8)',
+                  opacity: cardsVisible[4] ? 1 : 0,
+                  zIndex: cardsHovered[4] ? 30 : 16,
                   cursor: 'pointer'
                 }}
                 onClick={() => handleCardClick('gastronomia')}
@@ -571,7 +653,7 @@ export default function Hero({ isLoading = false }: { isLoading?: boolean }) {
               </div>
 
               {/* Card 6 - Safari */}
-              <div 
+              <div
                 style={{
                   position: 'absolute',
                   top: 0,
@@ -588,10 +670,18 @@ export default function Hero({ isLoading = false }: { isLoading?: boolean }) {
                   alignItems: 'center',
                   justifyContent: 'center',
                   padding: '4rem',
-                  boxShadow: '0 16px 48px rgba(0, 0, 0, 0.16)',
-                  transition: 'all 0.4s ease',
-                  transform: 'translateX(425px)',
-                  zIndex: 15,
+                  boxShadow: cardsHovered[5]
+                    ? '0 30px 60px rgba(0, 0, 0, 0.3)'
+                    : '0 16px 48px rgba(0, 0, 0, 0.16)',
+                  filter: cardsHovered[5] ? 'brightness(1.15)' : 'brightness(1)',
+                  transition: 'all 0.7s ease',
+                  transform: cardsVisible[5]
+                    ? (cardsHovered[5]
+                        ? 'translateX(425px) scale(1.1) rotateY(2deg) rotateX(-0.5deg)'
+                        : 'translateX(425px) scale(1)')
+                    : 'translateX(425px) scale(0.8)',
+                  opacity: cardsVisible[5] ? 1 : 0,
+                  zIndex: cardsHovered[5] ? 30 : 15,
                   cursor: 'pointer'
                 }}
                 onClick={() => handleCardClick('safari')}
