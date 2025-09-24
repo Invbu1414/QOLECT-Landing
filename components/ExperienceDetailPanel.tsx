@@ -103,7 +103,7 @@ export default function ExperienceDetailPanel({ isOpen, onClose, experience }: E
           maxWidth: '900px',
           height: '85vh',
           maxHeight: '700px',
-          background: 'rgba(255, 255, 255, 0.95)','
+          background: 'rgba(255, 255, 255, 0.95)',
           backdropFilter: 'blur(20px)',
           borderRadius: '2rem',
           border: '1px solid rgba(255, 255, 255, 0.2)',
