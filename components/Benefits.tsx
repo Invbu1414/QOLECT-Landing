@@ -4,7 +4,34 @@ export default function Benefits() {
   return (
     <section style={{ padding: '5rem 0', background: '#F8FAFC' }}>
       <div className="container">
-        <div 
+        {/* Section Header */}
+        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+          <h2
+            style={{
+              fontSize: 'clamp(2rem, 4vw, 3rem)',
+              fontWeight: '800',
+              color: '#0F172A',
+              marginBottom: '1rem',
+              background: 'linear-gradient(135deg, #1DB7BF 0%, #0F7FA3 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text'
+            }}
+          >
+            ¿Por qué elegir Qolect?
+          </h2>
+          <p style={{
+            fontSize: '1.25rem',
+            color: '#64748B',
+            maxWidth: '600px',
+            margin: '0 auto',
+            lineHeight: '1.6'
+          }}>
+            Transformamos la forma en que viajas con experiencias auténticas diseñadas para profesionales que buscan más que un destino
+          </p>
+        </div>
+
+        <div
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
@@ -56,7 +83,7 @@ export default function Benefits() {
               Viajes con propósito
             </h3>
             <p style={{ color: '#64748B', lineHeight: '1.6' }}>
-              Experiencias que transforman tu perspectiva y crean impacto positivo en las comunidades locales.
+              Experiencias que inspiran y generan conexión real con la naturaleza, retiros espirituales y aventuras transformadoras.
             </p>
           </div>
 
@@ -104,11 +131,59 @@ export default function Benefits() {
               Compra fácil y segura
             </h3>
             <p style={{ color: '#64748B', lineHeight: '1.6' }}>
-              Reserva tus experiencias con total confianza gracias a nuestro sistema de pago seguro y atención 24/7.
+              Reserva confiable y sin complicaciones. Pago seguro, atención personalizada y soporte completo en cada etapa.
             </p>
           </div>
 
-          {/* Descarga nuestra app */}
+          {/* Opciones para grupos */}
+          <div
+            style={{
+              background: 'white',
+              borderRadius: '1.5rem',
+              padding: '2rem',
+              boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
+              transition: 'all 0.3s ease'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-4px)'
+              e.currentTarget.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.12)'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)'
+              e.currentTarget.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.08)'
+            }}
+          >
+            <div
+              style={{
+                width: '4rem',
+                height: '4rem',
+                background: 'linear-gradient(135deg, #1DB7BF 0%, #0F7FA3 100%)',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                margin: '0 auto 1.5rem auto',
+                fontSize: '1.5rem'
+              }}
+            >
+              👥
+            </div>
+            <h3
+              style={{
+                fontSize: '1.25rem',
+                fontWeight: '700',
+                color: '#0F172A',
+                marginBottom: '1rem'
+              }}
+            >
+              Opciones para grupos
+            </h3>
+            <p style={{ color: '#64748B', lineHeight: '1.6' }}>
+              Viajes diseñados para grupos pequeños: amigos, familias, empresas y colegios que buscan conexiones significativas.
+            </p>
+          </div>
+
+          {/* Acceso móvil */}
           <div 
             style={{
               background: 'white',
@@ -149,10 +224,10 @@ export default function Benefits() {
                 marginBottom: '1rem'
               }}
             >
-              Descarga nuestra app
+              Acceso móvil
             </h3>
             <p style={{ color: '#64748B', lineHeight: '1.6', marginBottom: '1.5rem' }}>
-              Lleva tus experiencias siempre contigo y descubre nuevas aventuras desde tu móvil.
+              App disponible para planear y reservar experiencias desde cualquier lugar, con acceso offline a tus itinerarios.
             </p>
             
             {/* App Store badges */}

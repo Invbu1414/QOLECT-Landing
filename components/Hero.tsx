@@ -115,7 +115,45 @@ const experiencesData = {
   }
 }
 
-// BlurText component for animated text
+// Respiración de Palabras - Animación definitiva
+function BreathingWords({ text, className = "", style = {}, delay = 0, isPageLoading = false }: {
+  text: string, className?: string, style?: React.CSSProperties, delay?: number, isPageLoading?: boolean
+}) {
+  const [isVisible, setIsVisible] = useState(false)
+  const words = text.split(' ')
+
+  useEffect(() => {
+    if (!isPageLoading) {
+      const timer = setTimeout(() => setIsVisible(true), delay)
+      return () => clearTimeout(timer)
+    } else {
+      setIsVisible(false)
+    }
+  }, [delay, isPageLoading])
+
+  return (
+    <span className={className} style={{ ...style, display: 'inline-block' }}>
+      {words.map((word, index) => (
+        <span
+          key={index}
+          style={{
+            display: 'inline-block',
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? 'scale(1)' : 'scale(0.8)',
+            transition: `all 0.8s ease ${index * 200}ms`,
+            animation: isVisible ? `breatheScale ${3 + (index % 2)}s ease-in-out infinite ${index * 0.5}s` : 'none',
+            marginRight: index < words.length - 1 ? '0.4em' : '0'
+          }}
+        >
+          {word}
+        </span>
+      ))}
+    </span>
+  )
+}
+
+
+// Simple BlurText for other elements
 function BlurText({ text, className = "", style = {}, delay = 0, isPageLoading = false }: { text: string, className?: string, style?: React.CSSProperties, delay?: number, isPageLoading?: boolean }) {
   const [isVisible, setIsVisible] = useState(false)
 
@@ -133,28 +171,58 @@ function BlurText({ text, className = "", style = {}, delay = 0, isPageLoading =
       className={className}
       style={{
         ...style,
-        display: 'inline-block'
+        display: 'inline-block',
+        wordBreak: 'keep-all',
+        hyphens: 'none',
+        WebkitHyphens: 'none',
+        msHyphens: 'none',
+        filter: isVisible ? 'blur(0px)' : 'blur(12px)',
+        opacity: isVisible ? 1 : 0.1,
+        transform: isVisible ? 'translateY(0px) scale(1)' : 'translateY(20px) scale(0.8)',
+        transition: `all 1s cubic-bezier(0.4, 0, 0.2, 1) ${delay}ms`,
+        willChange: 'filter, opacity, transform'
       }}
     >
-      {text.split('').map((char, index) => (
-        <span
-          key={index}
-          style={{
-            display: 'inline-block',
-            filter: isVisible ? 'blur(0px)' : 'blur(12px)',
-            opacity: isVisible ? 1 : 0.1,
-            transform: isVisible ? 'translateY(0px) scale(1)' : 'translateY(20px) scale(0.8)',
-            transition: `all 1s cubic-bezier(0.4, 0, 0.2, 1) ${(index * 0.08) + delay}ms`,
-            whiteSpace: char === ' ' ? 'pre' : 'normal',
-            willChange: 'filter, opacity, transform'
-          }}
-        >
-          {char === ' ' ? '\u00A0' : char}
-        </span>
-      ))}
+      {text}
     </span>
   )
 }
+
+// Cards informativas sobre Qolect
+const qolectInfoCards = [
+  {
+    id: 1,
+    title: 'Experiencias Curadas',
+    description: 'Viajes únicos diseñados por expertos locales para profesionales que buscan aventuras auténticas y transformadoras.',
+    videoUrl: '/videos/curated-experiences.mp4', // Placeholder para video
+    icon: '✨',
+    color: 'rgba(245, 197, 66, 0.3)'
+  },
+  {
+    id: 2,
+    title: 'Comunidad Global',
+    description: 'Conecta con viajeros de ideas afines, crea lazos duraderos y expande tu red profesional en destinos increíbles.',
+    videoUrl: '/videos/global-community.mp4', // Placeholder para video
+    icon: '🌍',
+    color: 'rgba(29, 183, 191, 0.3)'
+  },
+  {
+    id: 3,
+    title: 'Todo Incluido Premium',
+    description: 'Desde alojamientos de lujo hasta experiencias exclusivas, cada detalle está cuidado para tu comodidad total.',
+    videoUrl: '/videos/premium-service.mp4', // Placeholder para video
+    icon: '👑',
+    color: 'rgba(139, 69, 193, 0.3)'
+  },
+  {
+    id: 4,
+    title: 'Impacto Sostenible',
+    description: 'Viaja de forma responsable apoyando comunidades locales y proyectos de conservación ambiental.',
+    videoUrl: '/videos/sustainable-impact.mp4', // Placeholder para video
+    icon: '🌱',
+    color: 'rgba(34, 197, 94, 0.3)'
+  }
+]
 
 export default function Hero({ isLoading = false }: { isLoading?: boolean }) {
   const [selectedExperience, setSelectedExperience] = useState<any>(null)
@@ -162,6 +230,8 @@ export default function Hero({ isLoading = false }: { isLoading?: boolean }) {
   const [cardsVisible, setCardsVisible] = useState([false, false, false, false, false, false])
   const [cardsHovered, setCardsHovered] = useState([false, false, false, false, false, false])
   const [showCards, setShowCards] = useState(false)
+  const [qolectCardsVisible, setQolectCardsVisible] = useState([false, false, false, false])
+  const [showQolectSection, setShowQolectSection] = useState(false)
 
   const handleCardClick = (experienceKey: keyof typeof experiencesData) => {
     setSelectedExperience(experiencesData[experienceKey])
@@ -175,51 +245,58 @@ export default function Hero({ isLoading = false }: { isLoading?: boolean }) {
 
   useEffect(() => {
     if (!isLoading) {
-      // Show cards section after headline animation
-      const showCardsTimer = setTimeout(() => {
-        setShowCards(true)
-        // Smooth scroll to cards section
-        const cardsSection = document.getElementById('cards-section')
-        if (cardsSection) {
-          cardsSection.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          })
-        }
+      // Show Qolect info section after headline animation (sin scroll automático)
+      const showQolectTimer = setTimeout(() => {
+        setShowQolectSection(true)
       }, 2000) // Wait for headline to be fully visible
 
-      // Show cards one by one with delay after scroll
-      const showTimers = [
-        setTimeout(() => setCardsVisible(prev => [true, ...prev.slice(1)]), 2800),
-        setTimeout(() => setCardsVisible(prev => [prev[0], true, ...prev.slice(2)]), 3100),
-        setTimeout(() => setCardsVisible(prev => [...prev.slice(0, 2), true, ...prev.slice(3)]), 3400),
-        setTimeout(() => setCardsVisible(prev => [...prev.slice(0, 3), true, ...prev.slice(4)]), 3700),
-        setTimeout(() => setCardsVisible(prev => [...prev.slice(0, 4), true, prev[5]]), 4000),
-        setTimeout(() => setCardsVisible(prev => [...prev.slice(0, 5), true]), 4300)
+      // Show Qolect cards one by one
+      const showQolectTimers = [
+        setTimeout(() => setQolectCardsVisible(prev => [true, ...prev.slice(1)]), 2500),
+        setTimeout(() => setQolectCardsVisible(prev => [prev[0], true, ...prev.slice(2)]), 3000),
+        setTimeout(() => setQolectCardsVisible(prev => [...prev.slice(0, 2), true, prev[3]]), 3500),
+        setTimeout(() => setQolectCardsVisible(prev => [...prev.slice(0, 3), true]), 4000)
       ]
 
-      // Auto-hover effect for each card with delay
+      // Show experiences section after Qolect cards (sin scroll automático)
+      const showExperiencesTimer = setTimeout(() => {
+        setShowCards(true)
+      }, 5000) // After Qolect cards are shown
+
+      // Show experience cards one by one with more delay between each
+      const showTimers = [
+        setTimeout(() => setCardsVisible(prev => [true, ...prev.slice(1)]), 5500),
+        setTimeout(() => setCardsVisible(prev => [prev[0], true, ...prev.slice(2)]), 6000),
+        setTimeout(() => setCardsVisible(prev => [...prev.slice(0, 2), true, ...prev.slice(3)]), 6500),
+        setTimeout(() => setCardsVisible(prev => [...prev.slice(0, 3), true, ...prev.slice(4)]), 7000),
+        setTimeout(() => setCardsVisible(prev => [...prev.slice(0, 4), true, prev[5]]), 7500),
+        setTimeout(() => setCardsVisible(prev => [...prev.slice(0, 5), true]), 8000)
+      ]
+
+      // Auto-hover effect for each experience card with delay
       const hoverTimers = [
-        setTimeout(() => setCardsHovered(prev => [true, ...prev.slice(1)]), 3200),
-        setTimeout(() => setCardsHovered(prev => [prev[0], true, ...prev.slice(2)]), 3500),
-        setTimeout(() => setCardsHovered(prev => [...prev.slice(0, 2), true, ...prev.slice(3)]), 3800),
-        setTimeout(() => setCardsHovered(prev => [...prev.slice(0, 3), true, ...prev.slice(4)]), 4100),
-        setTimeout(() => setCardsHovered(prev => [...prev.slice(0, 4), true, prev[5]]), 4400),
-        setTimeout(() => setCardsHovered(prev => [...prev.slice(0, 5), true]), 4700)
+        setTimeout(() => setCardsHovered(prev => [true, ...prev.slice(1)]), 5800),
+        setTimeout(() => setCardsHovered(prev => [prev[0], true, ...prev.slice(2)]), 6300),
+        setTimeout(() => setCardsHovered(prev => [...prev.slice(0, 2), true, ...prev.slice(3)]), 6800),
+        setTimeout(() => setCardsHovered(prev => [...prev.slice(0, 3), true, ...prev.slice(4)]), 7300),
+        setTimeout(() => setCardsHovered(prev => [...prev.slice(0, 4), true, prev[5]]), 7800),
+        setTimeout(() => setCardsHovered(prev => [...prev.slice(0, 5), true]), 8300)
       ]
 
       // Reset hover effect after a brief moment
       const resetTimers = [
-        setTimeout(() => setCardsHovered(prev => [false, ...prev.slice(1)]), 4200),
-        setTimeout(() => setCardsHovered(prev => [prev[0], false, ...prev.slice(2)]), 4500),
-        setTimeout(() => setCardsHovered(prev => [...prev.slice(0, 2), false, ...prev.slice(3)]), 4800),
-        setTimeout(() => setCardsHovered(prev => [...prev.slice(0, 3), false, ...prev.slice(4)]), 5100),
-        setTimeout(() => setCardsHovered(prev => [...prev.slice(0, 4), false, prev[5]]), 5400),
-        setTimeout(() => setCardsHovered(prev => [...prev.slice(0, 5), false]), 5700)
+        setTimeout(() => setCardsHovered(prev => [false, ...prev.slice(1)]), 6800),
+        setTimeout(() => setCardsHovered(prev => [prev[0], false, ...prev.slice(2)]), 7300),
+        setTimeout(() => setCardsHovered(prev => [...prev.slice(0, 2), false, ...prev.slice(3)]), 7800),
+        setTimeout(() => setCardsHovered(prev => [...prev.slice(0, 3), false, ...prev.slice(4)]), 8300),
+        setTimeout(() => setCardsHovered(prev => [...prev.slice(0, 4), false, prev[5]]), 8800),
+        setTimeout(() => setCardsHovered(prev => [...prev.slice(0, 5), false]), 9300)
       ]
 
       return () => {
-        clearTimeout(showCardsTimer)
+        clearTimeout(showQolectTimer)
+        clearTimeout(showExperiencesTimer)
+        showQolectTimers.forEach(clearTimeout)
         showTimers.forEach(clearTimeout)
         hoverTimers.forEach(clearTimeout)
         resetTimers.forEach(clearTimeout)
@@ -244,30 +321,45 @@ export default function Hero({ isLoading = false }: { isLoading?: boolean }) {
           <div style={{ textAlign: 'center', maxWidth: '900px', margin: '0 auto' }}>
             <h1
               style={{
-                fontSize: 'clamp(3rem, 8vw, 6rem)',
+                fontSize: 'clamp(2.5rem, 6vw, 5rem)',
                 fontWeight: '900',
                 color: 'white',
                 marginBottom: '2rem',
-                lineHeight: '1.1',
-                textShadow: '0 4px 8px rgba(0, 0, 0, 0.3)'
+                lineHeight: '1.2',
+                wordBreak: 'keep-all',
+                hyphens: 'none',
+                overflowWrap: 'normal',
+                WebkitHyphens: 'none',
+                msHyphens: 'none'
               }}
             >
-              <BlurText text="Viaja con propósito, " isPageLoading={isLoading} />
-              <span style={{ color: '#F5C542', display: 'block' }}>
-                <BlurText text="conecta con lo que importa" delay={200} isPageLoading={isLoading} />
+              <BreathingWords text="Viaja con propósito," isPageLoading={isLoading} />
+              <span style={{
+                color: '#F5C542',
+                display: 'block',
+                marginTop: '0.5rem',
+                fontSize: 'clamp(2rem, 4.5vw, 3.8rem)',
+                transform: 'scale(0.8)'
+              }}>
+                <BreathingWords text="conecta con lo que importa" delay={800} isPageLoading={isLoading} />
               </span>
             </h1>
 
             <p
               style={{
-                fontSize: 'clamp(1.3rem, 3vw, 1.8rem)',
+                fontSize: 'clamp(1.1rem, 2.5vw, 1.5rem)',
                 color: 'rgba(255, 255, 255, 0.9)',
                 marginBottom: '0',
                 fontWeight: '500',
                 lineHeight: '1.6',
                 textShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
-                maxWidth: '700px',
-                margin: '0 auto'
+                maxWidth: '800px',
+                margin: '0 auto',
+                wordBreak: 'keep-all',
+                hyphens: 'none',
+                overflowWrap: 'break-word',
+                WebkitHyphens: 'none',
+                msHyphens: 'none'
               }}
             >
               <BlurText text="Experiencias auténticas diseñadas para jóvenes profesionales que buscan aventuras transformadoras y conexiones significativas" delay={400} isPageLoading={isLoading} />
@@ -276,9 +368,166 @@ export default function Hero({ isLoading = false }: { isLoading?: boolean }) {
         </div>
       </section>
 
-      {/* Cards Section */}
+      {/* Qolect Information Section */}
       <section
-        id="cards-section"
+        id="qolect-info-section"
+        style={{
+          minHeight: '100vh',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          background: 'linear-gradient(135deg, #0F7FA3 0%, #1DB7BF 100%)',
+          position: 'relative',
+          overflow: 'hidden',
+          opacity: showQolectSection ? 1 : 0,
+          transition: 'opacity 1s ease'
+        }}
+      >
+        <div className="container" style={{ position: 'relative', zIndex: 10, padding: '4rem 2rem' }}>
+          {/* Section Title */}
+          <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+            <h2
+              style={{
+                fontSize: 'clamp(2rem, 5vw, 3.5rem)',
+                fontWeight: '800',
+                color: 'white',
+                marginBottom: '1rem',
+                textShadow: '0 4px 8px rgba(0, 0, 0, 0.3)'
+              }}
+            >
+              ¿Por qué elegir Qolect?
+            </h2>
+            <p
+              style={{
+                fontSize: 'clamp(1.1rem, 2.5vw, 1.3rem)',
+                color: 'rgba(255, 255, 255, 0.8)',
+                maxWidth: '600px',
+                margin: '0 auto',
+                lineHeight: '1.6'
+              }}
+            >
+              Descubre lo que nos hace diferentes y por qué somos la elección perfecta para tu próxima aventura
+            </p>
+          </div>
+
+          {/* Horizontal Cards Grid */}
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+              gap: '2rem',
+              maxWidth: '1400px',
+              margin: '0 auto'
+            }}
+          >
+            {qolectInfoCards.map((card, index) => (
+              <div
+                key={card.id}
+                style={{
+                  background: 'rgba(255, 255, 255, 0.1)',
+                  borderRadius: '1.5rem',
+                  backdropFilter: 'blur(12px)',
+                  border: '1px solid rgba(255, 255, 255, 0.15)',
+                  padding: '2rem',
+                  textAlign: 'center',
+                  color: 'white',
+                  boxShadow: '0 16px 48px rgba(0, 0, 0, 0.16)',
+                  transition: 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
+                  transform: qolectCardsVisible[index]
+                    ? 'translateY(0px) scale(1)'
+                    : 'translateY(50px) scale(0.9)',
+                  opacity: qolectCardsVisible[index] ? 1 : 0,
+                  cursor: 'pointer',
+                  position: 'relative',
+                  overflow: 'hidden'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-10px) scale(1.02)'
+                  e.currentTarget.style.boxShadow = '0 25px 60px rgba(0, 0, 0, 0.25)'
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0px) scale(1)'
+                  e.currentTarget.style.boxShadow = '0 16px 48px rgba(0, 0, 0, 0.16)'
+                }}
+              >
+                {/* Video Background Placeholder */}
+                <div
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    background: card.color,
+                    opacity: 0.3,
+                    borderRadius: '1.5rem',
+                    zIndex: -1
+                  }}
+                />
+
+                {/* Icon */}
+                <div
+                  style={{
+                    width: '5rem',
+                    height: '5rem',
+                    background: card.color,
+                    borderRadius: '50%',
+                    margin: '0 auto 1.5rem auto',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '2.5rem',
+                    boxShadow: '0 8px 24px rgba(0, 0, 0, 0.2)'
+                  }}
+                >
+                  {card.icon}
+                </div>
+
+                {/* Content */}
+                <h3
+                  style={{
+                    fontSize: '1.5rem',
+                    fontWeight: '700',
+                    marginBottom: '1rem',
+                    color: 'white'
+                  }}
+                >
+                  {card.title}
+                </h3>
+                <p
+                  style={{
+                    fontSize: '1rem',
+                    lineHeight: '1.6',
+                    color: 'rgba(255, 255, 255, 0.8)',
+                    margin: '0'
+                  }}
+                >
+                  {card.description}
+                </p>
+
+                {/* Video Placeholder */}
+                <div
+                  style={{
+                    marginTop: '1.5rem',
+                    padding: '1rem',
+                    background: 'rgba(0, 0, 0, 0.3)',
+                    borderRadius: '0.75rem',
+                    fontSize: '0.9rem',
+                    color: 'rgba(255, 255, 255, 0.6)',
+                    fontStyle: 'italic'
+                  }}
+                >
+                  🎥 Video demostrativo próximamente
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Experiences Section */}
+      <section
+        id="experiences-section"
         style={{
           minHeight: '100vh',
           display: 'flex',
@@ -292,19 +541,47 @@ export default function Hero({ isLoading = false }: { isLoading?: boolean }) {
         }}
       >
         <div className="container" style={{ position: 'relative', zIndex: 10 }}>
+          {/* Section Title */}
+          <div style={{ textAlign: 'center', marginBottom: '4rem', paddingTop: '2rem' }}>
+            <h2
+              style={{
+                fontSize: 'clamp(2rem, 5vw, 3.5rem)',
+                fontWeight: '800',
+                color: 'white',
+                marginBottom: '1rem',
+                textShadow: '0 4px 8px rgba(0, 0, 0, 0.3)'
+              }}
+            >
+              Nuestras Experiencias
+            </h2>
+            <p
+              style={{
+                fontSize: 'clamp(1.1rem, 2.5vw, 1.3rem)',
+                color: 'rgba(255, 255, 255, 0.8)',
+                maxWidth: '600px',
+                margin: '0 auto',
+                lineHeight: '1.6'
+              }}
+            >
+              Explora nuestras aventuras cuidadosamente curadas para cada tipo de viajero
+            </p>
+          </div>
           {/* Book stack of cards */}
-          <div 
+          <div
             style={{
               display: 'flex',
-              justifyContent: 'center'
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: '100%',
+              height: '100vh'
             }}
-            className="lg:justify-end"
           >
             <div
               style={{
                 position: 'relative',
                 width: '80rem',
-                height: '50rem'
+                height: '50rem',
+                margin: '0 auto'
               }}
             >
               {/* Card 1 - Aventuras */}
