@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import AOSStack from '@/components/ScrollAnimations/AOSStack'
+import BrandsCarousel from '@/components/BrandsCarousel'
 
 // Experiencias de viaje en Colombia
 const colombiaExperiences = {
@@ -240,16 +241,89 @@ export default function Hero({ isLoading = false }: { isLoading?: boolean }) {
     <>
       {/* Headline Section - Full Screen */}
       <section
+        id="inicio"
         style={{
           minHeight: '100vh',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          background: 'linear-gradient(135deg, #1DB7BF 0%, #0F7FA3 100%)',
+          background: 'linear-gradient(180deg, #1DB7BF 0%, #0F7FA3 80%, rgba(29, 183, 191, 0.95) 100%)',
           position: 'relative',
           overflow: 'hidden'
         }}
       >
+        {/* Animated background elements */}
+        <div style={{
+          position: 'absolute',
+          top: '10%',
+          left: '5%',
+          width: '300px',
+          height: '300px',
+          borderRadius: '50%',
+          background: 'linear-gradient(135deg, rgba(245, 197, 66, 0.3) 0%, rgba(245, 197, 66, 0.1) 100%)',
+          filter: 'blur(60px)',
+          animation: 'float 6s ease-in-out infinite'
+        }} />
+
+        <div style={{
+          position: 'absolute',
+          top: '60%',
+          right: '10%',
+          width: '200px',
+          height: '200px',
+          borderRadius: '50%',
+          background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.05) 100%)',
+          filter: 'blur(40px)',
+          animation: 'float 8s ease-in-out infinite reverse'
+        }} />
+
+        <div style={{
+          position: 'absolute',
+          bottom: '20%',
+          left: '15%',
+          width: '150px',
+          height: '150px',
+          borderRadius: '50%',
+          background: 'linear-gradient(135deg, rgba(15, 127, 163, 0.4) 0%, rgba(15, 127, 163, 0.1) 100%)',
+          filter: 'blur(30px)',
+          animation: 'float 7s ease-in-out infinite'
+        }} />
+
+        {/* Geometric decorative elements */}
+        <div style={{
+          position: 'absolute',
+          top: '20%',
+          right: '20%',
+          width: '60px',
+          height: '60px',
+          border: '2px solid rgba(245, 197, 66, 0.3)',
+          borderRadius: '12px',
+          transform: 'rotate(45deg)',
+          animation: 'rotate 10s linear infinite'
+        }} />
+
+        <div style={{
+          position: 'absolute',
+          bottom: '30%',
+          right: '30%',
+          width: '40px',
+          height: '40px',
+          border: '2px solid rgba(255, 255, 255, 0.2)',
+          borderRadius: '50%',
+          animation: 'pulse 4s ease-in-out infinite'
+        }} />
+
+        {/* SVG Pattern overlay */}
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          opacity: 0.5
+        }} />
+
         <div className="container" style={{ position: 'relative', zIndex: 10 }}>
           <div style={{ textAlign: 'center', maxWidth: '900px', margin: '0 auto' }}>
             <h1
@@ -301,7 +375,10 @@ export default function Hero({ isLoading = false }: { isLoading?: boolean }) {
         </div>
       </section>
 
-      {/* AOS Stack Animation */}
+      {/* Brands Carousel - No gap */}
+      <BrandsCarousel />
+
+      {/* AOS Stack Animation - No gap */}
       <AOSStack />
 
       {/* Qolect Information Section */}
@@ -312,11 +389,12 @@ export default function Hero({ isLoading = false }: { isLoading?: boolean }) {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          background: 'linear-gradient(135deg, #0F7FA3 0%, #1DB7BF 100%)',
+          background: 'linear-gradient(180deg, rgba(203, 213, 225, 0.8) 0%, #0F7FA3 30%, #1DB7BF 100%)',
           position: 'relative',
           overflow: 'hidden',
           opacity: showQolectSection ? 1 : 0,
-          transition: 'opacity 1s ease'
+          transition: 'opacity 1s ease',
+          marginTop: '-3rem'
         }}
       >
         <div className="container" style={{ position: 'relative', zIndex: 10, padding: '4rem 2rem' }}>
@@ -790,6 +868,47 @@ export default function Hero({ isLoading = false }: { isLoading?: boolean }) {
           </div>
         </div>
       </section>
+
+      {/* CSS Animations */}
+      <style jsx>{`
+        @keyframes float {
+          0%, 100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-20px);
+          }
+        }
+
+        @keyframes rotate {
+          from {
+            transform: rotate(45deg);
+          }
+          to {
+            transform: rotate(405deg);
+          }
+        }
+
+        @keyframes pulse {
+          0%, 100% {
+            opacity: 0.5;
+            transform: scale(1);
+          }
+          50% {
+            opacity: 1;
+            transform: scale(1.1);
+          }
+        }
+
+        @keyframes breatheScale {
+          0%, 100% {
+            transform: scale(1);
+          }
+          50% {
+            transform: scale(1.05);
+          }
+        }
+      `}</style>
 
     </>
   )

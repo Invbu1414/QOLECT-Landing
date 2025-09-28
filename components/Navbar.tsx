@@ -51,11 +51,10 @@ export default function Navbar() {
           </div>
 
           {/* Desktop Menu */}
-          <div 
+          <div
             style={{
-              display: 'none'
+              display: 'flex'
             }}
-            className="md:flex"
           >
             <div 
               style={{
@@ -65,7 +64,73 @@ export default function Navbar() {
               }}
             >
               <a
-                href="#experiencias"
+                href="#inicio"
+                style={{
+                  color: 'white',
+                  fontWeight: '500',
+                  padding: '0.5rem 1rem',
+                  borderRadius: '0.5rem',
+                  transition: 'all 0.2s ease',
+                  textDecoration: 'none'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = '#F5C542'
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)'
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = 'white'
+                  e.currentTarget.style.background = 'transparent'
+                }}
+              >
+                Inicio
+              </a>
+
+              <a
+                href="#que-es-qolect"
+                style={{
+                  color: 'white',
+                  fontWeight: '500',
+                  padding: '0.5rem 1rem',
+                  borderRadius: '0.5rem',
+                  transition: 'all 0.2s ease',
+                  textDecoration: 'none'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = '#F5C542'
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)'
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = 'white'
+                  e.currentTarget.style.background = 'transparent'
+                }}
+              >
+                Qué es Qolect
+              </a>
+
+              <a
+                href="#qolect-info-section"
+                style={{
+                  color: 'white',
+                  fontWeight: '500',
+                  padding: '0.5rem 1rem',
+                  borderRadius: '0.5rem',
+                  transition: 'all 0.2s ease',
+                  textDecoration: 'none'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = '#F5C542'
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)'
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = 'white'
+                  e.currentTarget.style.background = 'transparent'
+                }}
+              >
+                Por qué Qolect
+              </a>
+
+              <a
+                href="#experiences-section"
                 style={{
                   color: 'white',
                   fontWeight: '500',
@@ -84,50 +149,6 @@ export default function Navbar() {
                 }}
               >
                 Experiencias
-              </a>
-              
-              <a
-                href="#nosotros"
-                style={{
-                  color: 'white',
-                  fontWeight: '500',
-                  padding: '0.5rem 1rem',
-                  borderRadius: '0.5rem',
-                  transition: 'all 0.2s ease',
-                  textDecoration: 'none'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = '#F5C542'
-                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)'
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = 'white'
-                  e.currentTarget.style.background = 'transparent'
-                }}
-              >
-                Nosotros
-              </a>
-              
-              <a
-                href="#contacto"
-                style={{
-                  color: 'white',
-                  fontWeight: '500',
-                  padding: '0.5rem 1rem',
-                  borderRadius: '0.5rem',
-                  transition: 'all 0.2s ease',
-                  textDecoration: 'none'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = '#F5C542'
-                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)'
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = 'white'
-                  e.currentTarget.style.background = 'transparent'
-                }}
-              >
-                Contacto
               </a>
               
               <button
