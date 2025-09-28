@@ -38,7 +38,7 @@ export default function Navbar() {
         >
           {/* Logo */}
           <div>
-            <h2 
+            <h2
               style={{
                 fontWeight: 'bold',
                 fontSize: '1.5rem',

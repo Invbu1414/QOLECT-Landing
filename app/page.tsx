@@ -22,6 +22,15 @@ export default function HomePage() {
     setIsLoading(false)
   }
 
+  useEffect(() => {
+    // Force scroll to top on page load/refresh
+    if (typeof window !== 'undefined') {
+      window.scrollTo(0, 0)
+      document.documentElement.scrollTop = 0
+      document.body.scrollTop = 0
+    }
+  }, [])
+
   return (
     <>
       {isLoading && <LoadingScreen onLoadingComplete={handleLoadingComplete} />}

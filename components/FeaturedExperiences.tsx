@@ -12,7 +12,7 @@ export default function FeaturedExperiences() {
     {
       id: 2,
       title: "Aventura en los Andes Peruanos",
-      date: "10-18 Abril 2024", 
+      date: "10-18 Abril 2024",
       price: "€899",
       image: "🏔️"
     },
@@ -22,6 +22,34 @@ export default function FeaturedExperiences() {
       date: "5-15 Mayo 2024",
       price: "€2,199",
       image: "🏯"
+    },
+    {
+      id: 4,
+      title: "Safari Fotográfico en Kenia",
+      date: "20-28 Junio 2024",
+      price: "€1,899",
+      image: "🦁"
+    },
+    {
+      id: 5,
+      title: "Relajación en las Maldivas",
+      date: "1-8 Julio 2024",
+      price: "€2,599",
+      image: "🏝️"
+    },
+    {
+      id: 6,
+      title: "Exploración de la Patagonia",
+      date: "15-25 Agosto 2024",
+      price: "€1,499",
+      image: "🗻"
+    },
+    {
+      id: 7,
+      title: "Tour Gastronómico por Italia",
+      date: "10-17 Septiembre 2024",
+      price: "€1,799",
+      image: "🍝"
     }
   ]
 

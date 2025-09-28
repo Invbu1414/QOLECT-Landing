@@ -12,7 +12,10 @@
       "Bash(git add:*)",
       "Bash(git commit:*)",
       "Bash(next dev:*)",
-      "Bash(git merge:*)"
+      "Bash(git merge:*)",
+      "Bash(npm install:*)",
+      "Bash(npm search \"react bits\")",
+      "Bash(del \"C:\\Users\\Darka\\Documents\\MyStuff\\QOLECT\\QOLECT-Landing\\components\\QolectInfo.tsx\")"
     ],
     "deny": [],
     "ask": []

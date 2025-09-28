@@ -22,6 +22,19 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              // Force scroll to top immediately on page load
+              if ('scrollRestoration' in history) {
+                history.scrollRestoration = 'manual';
+              }
+              window.scrollTo(0, 0);
+              document.documentElement.scrollTop = 0;
+              document.body.scrollTop = 0;
+            `,
+          }}
+        />
         {children}
         <CursorFollower />
       </body>
