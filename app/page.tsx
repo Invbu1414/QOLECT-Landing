@@ -43,11 +43,10 @@ export default function HomePage() {
         <Navbar />
         <Hero isLoading={isLoading} />
         <Benefits />
-        <FeaturedExperiences />
-        <Categories />
-        <Testimonials />
-        <HowItWorks />
         <GroupExperiences />
+        <Testimonials />
+        <Categories />
+        <HowItWorks />
         <CommunityForm />
         <Footer />
       </main>
