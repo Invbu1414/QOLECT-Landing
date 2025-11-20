@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import CursorFollower from '@/components/CursorFollower'
 
 export const metadata: Metadata = {
   title: 'Qolect - Descubre Experiencias Inolvidables',
@@ -20,23 +19,9 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="es">
+    <html lang="es" suppressHydrationWarning>
       <body>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              // Force scroll to top immediately on page load
-              if ('scrollRestoration' in history) {
-                history.scrollRestoration = 'manual';
-              }
-              window.scrollTo(0, 0);
-              document.documentElement.scrollTop = 0;
-              document.body.scrollTop = 0;
-            `,
-          }}
-        />
         {children}
-        <CursorFollower />
       </body>
     </html>
   )

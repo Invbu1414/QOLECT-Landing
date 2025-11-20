@@ -1,27 +1,24 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { Experience } from '@/lib/api'
+import Image from 'next/image'
 
-const brands = [
-  { name: 'Avianca', logo: '✈️' },
-  { name: 'Hilton', logo: '🏨' },
-  { name: 'Mastercard', logo: '💳' },
-  { name: 'TripAdvisor', logo: '🌟' },
-  { name: 'Booking.com', logo: '🏠' },
-  { name: 'Expedia', logo: '🧳' },
-  { name: 'Colombian Tourism', logo: '🇨🇴' },
-  { name: 'National Geographic', logo: '📸' },
-  { name: 'Lonely Planet', logo: '🗺️' },
-  { name: 'Amadeus', logo: '🌐' }
-]
+interface BrandsCarouselProps {
+  experiences: Experience[]
+}
 
-export default function BrandsCarousel() {
+export default function BrandsCarousel({ experiences }: BrandsCarouselProps) {
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 1500)
     return () => clearTimeout(timer)
   }, [])
+
+  if (!experiences || experiences.length === 0) {
+    return null
+  }
 
   return (
     <section
@@ -80,7 +77,7 @@ export default function BrandsCarousel() {
           marginBottom: '2rem',
           textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)'
         }}>
-          Colaboramos con las mejores marcas
+          Experiencias Destacadas
         </p>
       </div>
 
@@ -93,94 +90,180 @@ export default function BrandsCarousel() {
       }}>
         <div style={{
           display: 'flex',
-          animation: 'scroll-brands 30s linear infinite',
+          animation: 'scroll-brands 40s linear infinite',
           width: 'fit-content'
         }}>
-          {/* Primera serie de logos */}
-          {brands.map((brand, index) => (
+          {/* Primera serie */}
+          {experiences.map((experience, index) => (
             <div
-              key={`first-${index}`}
+              key={`first-${experience.plan_id}`}
               style={{
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                justifyContent: 'center',
-                minWidth: '180px',
-                height: '120px',
+                justifyContent: 'space-between',
+                minWidth: '280px',
+                height: '200px',
                 margin: '0 1rem',
-                background: 'rgba(255,255,255,0.08)',
-                borderRadius: '12px',
-                border: '1px solid rgba(255,255,255,0.15)',
+                background: 'rgba(255,255,255,0.95)',
+                borderRadius: '16px',
+                border: '1px solid rgba(255,255,255,0.3)',
                 transition: 'all 0.3s ease',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                overflow: 'hidden',
+                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'rgba(255,255,255,0.15)'
-                e.currentTarget.style.transform = 'translateY(-5px)'
+                e.currentTarget.style.transform = 'translateY(-8px) scale(1.02)'
+                e.currentTarget.style.boxShadow = '0 12px 48px rgba(0, 0, 0, 0.2)'
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'rgba(255,255,255,0.08)'
-                e.currentTarget.style.transform = 'translateY(0)'
+                e.currentTarget.style.transform = 'translateY(0) scale(1)'
+                e.currentTarget.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.1)'
               }}
             >
-              <div style={{
-                fontSize: '2.5rem',
-                marginBottom: '0.5rem'
-              }}>
-                {brand.logo}
+              {/* Image */}
+              <div style={{ position: 'relative', width: '100%', height: '120px', overflow: 'hidden' }}>
+                <Image
+                  src={experience.plan_image || '/placeholder-experience.jpg'}
+                  alt={experience.plan_title}
+                  fill
+                  className="object-cover"
+                />
+                {/* Gradient overlay */}
+                <div style={{
+                  position: 'absolute',
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  height: '50%',
+                  background: 'linear-gradient(to top, rgba(0,0,0,0.3), transparent)'
+                }} />
               </div>
-              <span style={{
-                color: 'rgba(255,255,255,0.8)',
-                fontSize: '0.85rem',
-                fontWeight: '500',
-                textAlign: 'center'
-              }}>
-                {brand.name}
-              </span>
+
+              {/* Content */}
+              <div style={{ padding: '0.75rem', width: '100%' }}>
+                <h4 style={{
+                  color: '#0F172A',
+                  fontSize: '0.9rem',
+                  fontWeight: '700',
+                  marginBottom: '0.25rem',
+                  lineHeight: '1.2',
+                  display: '-webkit-box',
+                  WebkitLineClamp: 2,
+                  WebkitBoxOrient: 'vertical',
+                  overflow: 'hidden'
+                }}>
+                  {experience.plan_title}
+                </h4>
+                <div style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center'
+                }}>
+                  <span style={{
+                    color: '#1DB7BF',
+                    fontSize: '1rem',
+                    fontWeight: '700'
+                  }}>
+                    ${experience.precio.toLocaleString()}
+                  </span>
+                  <span style={{
+                    color: '#F5C542',
+                    fontSize: '0.75rem',
+                    fontWeight: '600'
+                  }}>
+                    ⭐ {experience.plan_rating || '4.8'}
+                  </span>
+                </div>
+              </div>
             </div>
           ))}
 
-          {/* Segunda serie de logos para efecto infinito */}
-          {brands.map((brand, index) => (
+          {/* Segunda serie para efecto infinito */}
+          {experiences.map((experience, index) => (
             <div
-              key={`second-${index}`}
+              key={`second-${experience.plan_id}`}
               style={{
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                justifyContent: 'center',
-                minWidth: '180px',
-                height: '120px',
+                justifyContent: 'space-between',
+                minWidth: '280px',
+                height: '200px',
                 margin: '0 1rem',
-                background: 'rgba(255,255,255,0.08)',
-                borderRadius: '12px',
-                border: '1px solid rgba(255,255,255,0.15)',
+                background: 'rgba(255,255,255,0.95)',
+                borderRadius: '16px',
+                border: '1px solid rgba(255,255,255,0.3)',
                 transition: 'all 0.3s ease',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                overflow: 'hidden',
+                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'rgba(255,255,255,0.15)'
-                e.currentTarget.style.transform = 'translateY(-5px)'
+                e.currentTarget.style.transform = 'translateY(-8px) scale(1.02)'
+                e.currentTarget.style.boxShadow = '0 12px 48px rgba(0, 0, 0, 0.2)'
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'rgba(255,255,255,0.08)'
-                e.currentTarget.style.transform = 'translateY(0)'
+                e.currentTarget.style.transform = 'translateY(0) scale(1)'
+                e.currentTarget.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.1)'
               }}
             >
-              <div style={{
-                fontSize: '2.5rem',
-                marginBottom: '0.5rem'
-              }}>
-                {brand.logo}
+              {/* Image */}
+              <div style={{ position: 'relative', width: '100%', height: '120px', overflow: 'hidden' }}>
+                <Image
+                  src={experience.plan_image || '/placeholder-experience.jpg'}
+                  alt={experience.plan_title}
+                  fill
+                  className="object-cover"
+                />
+                {/* Gradient overlay */}
+                <div style={{
+                  position: 'absolute',
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  height: '50%',
+                  background: 'linear-gradient(to top, rgba(0,0,0,0.3), transparent)'
+                }} />
               </div>
-              <span style={{
-                color: 'rgba(255,255,255,0.8)',
-                fontSize: '0.85rem',
-                fontWeight: '500',
-                textAlign: 'center'
-              }}>
-                {brand.name}
-              </span>
+
+              {/* Content */}
+              <div style={{ padding: '0.75rem', width: '100%' }}>
+                <h4 style={{
+                  color: '#0F172A',
+                  fontSize: '0.9rem',
+                  fontWeight: '700',
+                  marginBottom: '0.25rem',
+                  lineHeight: '1.2',
+                  display: '-webkit-box',
+                  WebkitLineClamp: 2,
+                  WebkitBoxOrient: 'vertical',
+                  overflow: 'hidden'
+                }}>
+                  {experience.plan_title}
+                </h4>
+                <div style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center'
+                }}>
+                  <span style={{
+                    color: '#1DB7BF',
+                    fontSize: '1rem',
+                    fontWeight: '700'
+                  }}>
+                    ${experience.precio.toLocaleString()}
+                  </span>
+                  <span style={{
+                    color: '#F5C542',
+                    fontSize: '0.75rem',
+                    fontWeight: '600'
+                  }}>
+                    ⭐ {experience.plan_rating || '4.8'}
+                  </span>
+                </div>
+              </div>
             </div>
           ))}
         </div>
