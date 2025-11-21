@@ -67,7 +67,7 @@ export async function getOffers(): Promise<Experience[]> {
 export async function getNews(): Promise<News[]> {
     try {
         console.log('📰 Fetching news from PUBLIC API...');
-        const res = await fetch(`${API_URL}/api/v1/public/noticias`, {
+        const res = await fetch(`${API_URL}/api/v1/mobile/noticias`, {
             headers: {
                 'Content-Type': 'application/json',
                 'X-API-Key': API_KEY,
