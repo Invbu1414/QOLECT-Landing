@@ -12,6 +12,8 @@ export interface Experience {
     precio_normal?: number;
     precio_rebajado?: number;
     is_active: boolean;
+    imagen?: string;  // Fallback image property
+    destino?: string; // Destination property
 }
 
 export interface News {
@@ -35,7 +37,7 @@ export async function getFeaturedExperiences(): Promise<Experience[]> {
                 'Content-Type': 'application/json',
                 'X-API-Key': API_KEY,
             },
-            next: { revalidate: 3600 } // Revalidate every hour
+            next: { revalidate: 3600 }
         });
 
         if (!res.ok) {
@@ -53,27 +55,7 @@ export async function getFeaturedExperiences(): Promise<Experience[]> {
 export async function getOffers(): Promise<Experience[]> {
     try {
         const experiences = await getFeaturedExperiences();
-        // Filter experiences where precio_rebajado < precio (using precio as normal price if precio_normal is not available)
-        // Note: The API response might need inspection to confirm field names for 'precio_rebajado'. 
-        // Based on mobile plan, we look for 'precio_rebajado' and 'precio_normal' or 'precio'.
-        // For now, we'll assume the standard 'precio' is the selling price. 
-        // If the API doesn't explicitly return 'precio_rebajado' separate from 'precio', 
-        // we might need to adjust this logic after inspecting real data.
-        // However, the mobile plan suggests 'precio_rebajado' exists.
-
-        // Let's assume the API returns 'precio' as the current price.
-        // We need to check if there's a 'precio_normal' or similar to compare against, 
-        // or if 'precio' IS the rebated price and there is another field.
-        // Looking at the interface:
-        // export interface Experience { ... precio: number; ... }
-        // It doesn't show 'precio_rebajado'. I should update the interface first.
-
         return experiences.filter(exp => {
-            // Placeholder logic: if we had a 'precio_normal' field. 
-            // Since we don't see it in the interface yet, I will return a subset for now 
-            // or update the interface if I can confirm the API response.
-            // For now, let's return the first 4 items as "offers" to unblock UI dev
-            // until we verify the exact API response structure for offers.
             return true;
         }).slice(0, 4);
     } catch (error) {
@@ -84,7 +66,8 @@ export async function getOffers(): Promise<Experience[]> {
 
 export async function getNews(): Promise<News[]> {
     try {
-        const res = await fetch(`${API_URL}/api/v1/mobile/noticias`, {
+        console.log('📰 Fetching news from PUBLIC API...');
+        const res = await fetch(`${API_URL}/api/v1/public/noticias`, {
             headers: {
                 'Content-Type': 'application/json',
                 'X-API-Key': API_KEY,
@@ -92,14 +75,36 @@ export async function getNews(): Promise<News[]> {
             next: { revalidate: 3600 }
         });
 
+        console.log('📰 News API response status:', res.status);
+
         if (!res.ok) {
-            throw new Error(`Failed to fetch news: ${res.status} ${res.statusText}`);
+            console.error(`❌ Failed to fetch news: ${res.status} ${res.statusText}`);
+            return [];
         }
 
         const data = await res.json();
-        return data.items || [];
+        console.log('📰 News data received:', data);
+        console.log('📰 News items count:', data.items?.length || 0);
+
+        const validNews = (data.items || []).filter((item: News) => {
+            return item.titulo && item.resumen && item.idnoticia;
+        });
+
+        console.log('✅ Valid news items:', validNews.length);
+        return validNews;
     } catch (error) {
-        console.error('Error fetching news:', error);
+        console.error('❌ Error fetching news:', error);
         return [];
+    }
+}
+
+export async function getNewsById(id: number): Promise<News | null> {
+    try {
+        const allNews = await getNews();
+        const newsItem = allNews.find(item => item.idnoticia === id);
+        return newsItem || null;
+    } catch (error) {
+        console.error('Error fetching news by ID:', error);
+        return null;
     }
 }

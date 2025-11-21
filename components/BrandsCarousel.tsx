@@ -1,18 +1,19 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Experience } from '@/lib/api'
+import { Experience, getFeaturedExperiences } from '@/lib/api'
 import Image from 'next/image'
 
-interface BrandsCarouselProps {
-  experiences: Experience[]
-}
-
-export default function BrandsCarousel({ experiences }: BrandsCarouselProps) {
+export default function BrandsCarousel() {
   const [isVisible, setIsVisible] = useState(false)
+  const [experiences, setExperiences] = useState<Experience[]>([])
 
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 1500)
+
+    // Fetch experiences
+    getFeaturedExperiences().then(setExperiences)
+
     return () => clearTimeout(timer)
   }, [])
 
@@ -94,7 +95,7 @@ export default function BrandsCarousel({ experiences }: BrandsCarouselProps) {
           width: 'fit-content'
         }}>
           {/* Primera serie */}
-          {experiences.map((experience, index) => (
+          {experiences.map((experience) => (
             <div
               key={`first-${experience.plan_id}`}
               style={{
@@ -181,7 +182,7 @@ export default function BrandsCarousel({ experiences }: BrandsCarouselProps) {
           ))}
 
           {/* Segunda serie para efecto infinito */}
-          {experiences.map((experience, index) => (
+          {experiences.map((experience) => (
             <div
               key={`second-${experience.plan_id}`}
               style={{

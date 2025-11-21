@@ -11,13 +11,15 @@ import Footer from '@/components/Footer'
 import LoadingScreen from '@/components/LoadingScreen'
 import ScrollToTop from '@/components/ScrollToTop'
 import ScrollProgress from '@/components/ScrollProgress'
-import { Experience } from '@/lib/api'
+import NewsSection from '@/components/NewsSection'
+import { Experience, News } from '@/lib/api'
 
 interface ClientWrapperProps {
     experiences: Experience[]
+    news: News[]
 }
 
-export default function ClientWrapper({ experiences }: ClientWrapperProps) {
+export default function ClientWrapper({ experiences, news }: ClientWrapperProps) {
     const [isLoading, setIsLoading] = useState(true)
 
     const handleLoadingComplete = () => {
@@ -46,6 +48,7 @@ export default function ClientWrapper({ experiences }: ClientWrapperProps) {
                 <Hero isLoading={isLoading} />
                 <ExperiencesCarousel experiences={experiences} isLoading={isLoading} />
                 <Testimonials />
+                <NewsSection news={news} />
                 <HowItWorks />
                 <CommunityForm />
                 <Footer />
