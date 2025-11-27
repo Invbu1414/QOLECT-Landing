@@ -19,8 +19,7 @@ export interface Experience {
 export interface News {
     idnoticia: number;
     titulo: string;
-    resumen: string;
-    contenido: string;
+    descripcion: string;  // Changed from resumen
     imagen: string;
     autor: string;
     created_at: string;
@@ -86,8 +85,12 @@ export async function getNews(): Promise<News[]> {
         console.log('📰 News data received:', data);
         console.log('📰 News items count:', data.items?.length || 0);
 
-        const validNews = (data.items || []).filter((item: News) => {
-            return item.titulo && item.resumen && item.idnoticia;
+        const validNews = (data.items || []).filter((item: any) => {
+            const isValid = item.titulo && item.descripcion && item.idnoticia;
+            if (!isValid) {
+                console.log('❌ Invalid news item:', { titulo: item.titulo, descripcion: item.descripcion, idnoticia: item.idnoticia });
+            }
+            return isValid;
         });
 
         console.log('✅ Valid news items:', validNews.length);
