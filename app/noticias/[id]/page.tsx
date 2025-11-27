@@ -242,16 +242,16 @@ export default function NewsPage() {
                                 paddingLeft: '1.5rem',
                                 borderLeft: '4px solid #1DB7BF'
                             }}>
-                                {newsItem.resumen}
+                                {newsItem.descripcion}
                             </p>
 
                             <div style={{
                                 fontSize: '1.1rem',
                                 lineHeight: '1.8',
                                 color: '#333'
-                            }}
-                                dangerouslySetInnerHTML={{ __html: newsItem.contenido }}
-                            />
+                            }}>
+                                {newsItem.descripcion}
+                            </div>
 
                             <div style={{
                                 marginTop: '3rem',
