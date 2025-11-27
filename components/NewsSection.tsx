@@ -181,7 +181,7 @@ export default function NewsSection({ news }: NewsSectionProps) {
                                         WebkitBoxOrient: 'vertical',
                                         overflow: 'hidden'
                                     }}>
-                                        {item.resumen}
+                                        {item.descripcion}
                                     </p>
 
                                     <div style={{
