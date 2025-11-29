@@ -1,8 +1,10 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useTranslations } from '../contexts/LanguageContext'
 
 export default function FeaturedExperiences() {
+  const t = useTranslations('experiences')
   const experiences = [
     {
       id: 1,
@@ -121,10 +123,10 @@ export default function FeaturedExperiences() {
               marginBottom: '1rem'
             }}
           >
-            Experiencias Destacadas
+            {t('title')}
           </h2>
           <p style={{ color: '#64748B', fontSize: '1.125rem', maxWidth: '32rem', margin: '0 auto' }}>
-            Descubre nuestras experiencias más populares diseñadas para transformar tu manera de viajar
+            {t('subtitle')}
           </p>
 
           {/* Controles de animación */}
@@ -137,8 +139,8 @@ export default function FeaturedExperiences() {
               padding: '0.5rem 1rem',
               borderRadius: '0.5rem'
             }}>
-              Experiencia {currentIndex + 1} de {experiences.length} |
-              {isAnimating ? (isPaused ? ' 🟡 Pausado' : ' 🟢 Activo') : ' 🔴 Manual'}
+              {t('experienceOf')} {currentIndex + 1} {t('of')} {experiences.length} |
+              {isAnimating ? (isPaused ? ` 🟡 ${t('paused')}` : ` 🟢 ${t('active')}`) : ` 🔴 ${t('manual')}`}
             </div>
 
             <div style={{ display: 'flex', gap: '1rem' }}>
@@ -156,7 +158,7 @@ export default function FeaturedExperiences() {
                   transition: 'all 0.2s ease'
                 }}
               >
-                {isPaused ? '▶️ Reanudar' : '⏸️ Pausar'}
+                {isPaused ? `▶️ ${t('resume')}` : `⏸️ ${t('pause')}`}
               </button>
 
               <button
@@ -173,7 +175,7 @@ export default function FeaturedExperiences() {
                   transition: 'all 0.2s ease'
                 }}
               >
-                {isAnimating ? '🔄 Auto' : '📌 Manual'}
+                {isAnimating ? `🔄 ${t('auto')}` : `📌 ${t('manual')}`}
               </button>
 
               <button
@@ -190,7 +192,7 @@ export default function FeaturedExperiences() {
                   transition: 'all 0.2s ease'
                 }}
               >
-                ➡️ Siguiente
+                ➡️ {t('next')}
               </button>
             </div>
           </div>

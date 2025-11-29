@@ -1,6 +1,9 @@
 'use client'
 
+import { useTranslations } from '../contexts/LanguageContext'
+
 export default function Benefits() {
+  const t = useTranslations('benefits')
   return (
     <section style={{ padding: '5rem 0', background: '#F8FAFC' }}>
       <div className="container">
@@ -18,7 +21,7 @@ export default function Benefits() {
               backgroundClip: 'text'
             }}
           >
-            ¿Por qué elegir Qolect?
+            {t('title')}
           </h2>
           <p style={{
             fontSize: '1.25rem',
@@ -27,7 +30,7 @@ export default function Benefits() {
             margin: '0 auto',
             lineHeight: '1.6'
           }}>
-            Transformamos la forma en que viajas con experiencias auténticas diseñadas para profesionales que buscan más que un destino
+            {t('subtitle')}
           </p>
         </div>
 
@@ -72,7 +75,7 @@ export default function Benefits() {
             >
               🎯
             </div>
-            <h3 
+            <h3
               style={{
                 fontSize: '1.25rem',
                 fontWeight: '700',
@@ -80,10 +83,10 @@ export default function Benefits() {
                 marginBottom: '1rem'
               }}
             >
-              Viajes con propósito
+              {t('purposefulTravel.title')}
             </h3>
             <p style={{ color: '#64748B', lineHeight: '1.6' }}>
-              Experiencias que inspiran y generan conexión real con la naturaleza, retiros espirituales y aventuras transformadoras.
+              {t('purposefulTravel.description')}
             </p>
           </div>
 
@@ -120,7 +123,7 @@ export default function Benefits() {
             >
               🔒
             </div>
-            <h3 
+            <h3
               style={{
                 fontSize: '1.25rem',
                 fontWeight: '700',
@@ -128,10 +131,10 @@ export default function Benefits() {
                 marginBottom: '1rem'
               }}
             >
-              Compra fácil y segura
+              {t('easyAndSecure.title')}
             </h3>
             <p style={{ color: '#64748B', lineHeight: '1.6' }}>
-              Reserva confiable y sin complicaciones. Pago seguro, atención personalizada y soporte completo en cada etapa.
+              {t('easyAndSecure.description')}
             </p>
           </div>
 
@@ -176,10 +179,10 @@ export default function Benefits() {
                 marginBottom: '1rem'
               }}
             >
-              Opciones para grupos
+              {t('groupOptions.title')}
             </h3>
             <p style={{ color: '#64748B', lineHeight: '1.6' }}>
-              Viajes diseñados para grupos pequeños: amigos, familias, empresas y colegios que buscan conexiones significativas.
+              {t('groupOptions.description')}
             </p>
           </div>
 
@@ -216,7 +219,7 @@ export default function Benefits() {
             >
               📱
             </div>
-            <h3 
+            <h3
               style={{
                 fontSize: '1.25rem',
                 fontWeight: '700',
@@ -224,10 +227,10 @@ export default function Benefits() {
                 marginBottom: '1rem'
               }}
             >
-              Acceso móvil
+              {t('mobileAccess.title')}
             </h3>
             <p style={{ color: '#64748B', lineHeight: '1.6', marginBottom: '1.5rem' }}>
-              App disponible para planear y reservar experiencias desde cualquier lugar, con acceso offline a tus itinerarios.
+              {t('mobileAccess.description')}
             </p>
             
             {/* App Store badges */}

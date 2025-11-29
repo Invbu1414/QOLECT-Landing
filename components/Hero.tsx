@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import { useTranslations } from '../contexts/LanguageContext'
 import AOSStack from '@/components/ScrollAnimations/AOSStack'
 import BrandsCarousel from '@/components/BrandsCarousel'
 
@@ -154,44 +155,45 @@ function BlurText({ text, className = "", style = {}, delay = 0, isPageLoading =
   )
 }
 
-// Cards informativas sobre Qolect
-const qolectInfoCards = [
-  {
-    id: 1,
-    title: 'Experiencias Curadas',
-    description: 'Viajes únicos diseñados por expertos locales para profesionales que buscan aventuras auténticas y transformadoras.',
-    videoUrl: '/videos/curated-experiences.mp4', // Placeholder para video
-    icon: '✨',
-    color: 'rgba(245, 197, 66, 0.3)'
-  },
-  {
-    id: 2,
-    title: 'Comunidad Global',
-    description: 'Conecta con viajeros de ideas afines, crea lazos duraderos y expande tu red profesional en destinos increíbles.',
-    videoUrl: '/videos/global-community.mp4', // Placeholder para video
-    icon: '🌍',
-    color: 'rgba(29, 183, 191, 0.3)'
-  },
-  {
-    id: 3,
-    title: 'Todo Incluido Premium',
-    description: 'Desde alojamientos de lujo hasta experiencias exclusivas, cada detalle está cuidado para tu comodidad total.',
-    videoUrl: '/videos/premium-service.mp4', // Placeholder para video
-    icon: '👑',
-    color: 'rgba(139, 69, 193, 0.3)'
-  },
-  {
-    id: 4,
-    title: 'Impacto Sostenible',
-    description: 'Viaja de forma responsable apoyando comunidades locales y proyectos de conservación ambiental.',
-    videoUrl: '/videos/sustainable-impact.mp4', // Placeholder para video
-    icon: '🌱',
-    color: 'rgba(34, 197, 94, 0.3)'
-  }
-]
-
 export default function Hero({ isLoading = false }: { isLoading?: boolean }) {
   const router = useRouter()
+  const t = useTranslations('hero')
+
+  // Cards informativas sobre Qolect
+  const qolectInfoCards = [
+    {
+      id: 1,
+      titleKey: 'cards.curatedExperiences.title',
+      descriptionKey: 'cards.curatedExperiences.description',
+      videoUrl: '/videos/curated-experiences.mp4',
+      icon: '✨',
+      color: 'rgba(245, 197, 66, 0.3)'
+    },
+    {
+      id: 2,
+      titleKey: 'cards.globalCommunity.title',
+      descriptionKey: 'cards.globalCommunity.description',
+      videoUrl: '/videos/global-community.mp4',
+      icon: '🌍',
+      color: 'rgba(29, 183, 191, 0.3)'
+    },
+    {
+      id: 3,
+      titleKey: 'cards.premiumAllInclusive.title',
+      descriptionKey: 'cards.premiumAllInclusive.description',
+      videoUrl: '/videos/premium-service.mp4',
+      icon: '👑',
+      color: 'rgba(139, 69, 193, 0.3)'
+    },
+    {
+      id: 4,
+      titleKey: 'cards.sustainableImpact.title',
+      descriptionKey: 'cards.sustainableImpact.description',
+      videoUrl: '/videos/sustainable-impact.mp4',
+      icon: '🌱',
+      color: 'rgba(34, 197, 94, 0.3)'
+    }
+  ]
   const [cardsVisible, setCardsVisible] = useState([false, false, false, false])
   const [showCards, setShowCards] = useState(false)
   const [qolectCardsVisible, setQolectCardsVisible] = useState([false, false, false, false])
@@ -340,7 +342,7 @@ export default function Hero({ isLoading = false }: { isLoading?: boolean }) {
                 msHyphens: 'none'
               }}
             >
-              <BreathingWords text="Viaja con propósito," isPageLoading={isLoading} />
+              <BreathingWords text={t('title')} isPageLoading={isLoading} />
               <span style={{
                 color: '#F5C542',
                 display: 'block',
@@ -348,7 +350,7 @@ export default function Hero({ isLoading = false }: { isLoading?: boolean }) {
                 fontSize: 'clamp(2rem, 4.5vw, 3.8rem)',
                 transform: 'scale(0.8)'
               }}>
-                <BreathingWords text="conecta con lo que importa" delay={800} isPageLoading={isLoading} />
+                <BreathingWords text={t('titleHighlight')} delay={800} isPageLoading={isLoading} />
               </span>
             </h1>
 
@@ -369,7 +371,7 @@ export default function Hero({ isLoading = false }: { isLoading?: boolean }) {
                 msHyphens: 'none'
               }}
             >
-              <BlurText text="Experiencias auténticas diseñadas para jóvenes profesionales que buscan aventuras transformadoras y conexiones significativas" delay={400} isPageLoading={isLoading} />
+              <BlurText text={t('subtitle')} delay={400} isPageLoading={isLoading} />
             </p>
           </div>
         </div>

@@ -1,36 +1,38 @@
 'use client'
 
 import { useScrollReveal, useCountUp } from '@/lib/hooks/useScrollReveal'
+import { useTranslations } from '../contexts/LanguageContext'
 
 export default function Testimonials() {
+  const t = useTranslations('testimonials')
   const testimonials = [
     {
       id: 1,
-      name: 'María González',
-      location: 'Valencia, España',
-      experience: 'Retiro de Mindfulness en Bali',
+      name: t('reviews.review1.name'),
+      location: t('reviews.review1.location'),
+      experience: t('reviews.review1.experience'),
       rating: 5,
-      comment: 'Una experiencia que cambió completamente mi perspectiva sobre la vida. Los facilitadores fueron excepcionales y el entorno simplemente mágico.',
+      comment: t('reviews.review1.comment'),
       avatar: '👩‍💼',
       verified: true
     },
     {
       id: 2,
-      name: 'Carlos Mendoza',
-      location: 'México City, México',
-      experience: 'Safari Fotográfico en Kenia',
+      name: t('reviews.review2.name'),
+      location: t('reviews.review2.location'),
+      experience: t('reviews.review2.experience'),
       rating: 5,
-      comment: 'Increíble aventura que superó todas mis expectativas. Ver la migración en persona fue algo indescriptible. Qolect organizó cada detalle a la perfección.',
+      comment: t('reviews.review2.comment'),
       avatar: '👨‍💻',
       verified: true
     },
     {
       id: 3,
-      name: 'Ana Martín',
-      location: 'Buenos Aires, Argentina',
-      experience: 'Tour Gastronómico en Tokio',
+      name: t('reviews.review3.name'),
+      location: t('reviews.review3.location'),
+      experience: t('reviews.review3.experience'),
       rating: 5,
-      comment: 'Como chef, este viaje me abrió un mundo de sabores completamente nuevo. La autenticidad de cada experiencia fue extraordinaria.',
+      comment: t('reviews.review3.comment'),
       avatar: '👩‍🍳',
       verified: true
     }
@@ -56,7 +58,7 @@ export default function Testimonials() {
             ...headerReveal.animationStyle
           }}
         >
-          <h2 
+          <h2
             style={{
               fontSize: 'clamp(2rem, 4vw, 3rem)',
               fontWeight: '700',
@@ -64,10 +66,10 @@ export default function Testimonials() {
               marginBottom: '1rem'
             }}
           >
-            Lo que dicen nuestros viajeros
+            {t('title')}
           </h2>
           <p style={{ color: '#64748B', fontSize: '1.125rem', maxWidth: '40rem', margin: '0 auto' }}>
-            Miles de experiencias transformadoras avalan nuestra propuesta de valor único
+            {t('subtitle')}
           </p>
         </div>
 

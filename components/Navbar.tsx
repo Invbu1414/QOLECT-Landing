@@ -1,9 +1,21 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useTranslations, useLanguage } from '../contexts/LanguageContext'
+import LanguageSelector from './LanguageSelector'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
+  const { locale } = useLanguage()
+  const t = useTranslations('nav')
+
+  // Debug: mostrar cuando cambia el idioma
+  useEffect(() => {
+    console.log('🔄 Navbar re-rendered with locale:', locale)
+    console.log('🔄 t("home") returns:', t('home'))
+    console.log('🔄 t("whatIsQolect") returns:', t('whatIsQolect'))
+    console.log('🔄 t("register") returns:', t('register'))
+  }, [locale, t])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,7 +26,7 @@ export default function Navbar() {
   }, [])
 
   return (
-    <nav 
+    <nav
       style={{
         position: 'fixed',
         top: 0,
@@ -28,7 +40,7 @@ export default function Navbar() {
       }}
     >
       <div className="container">
-        <div 
+        <div
           style={{
             display: 'flex',
             alignItems: 'center',
@@ -46,7 +58,7 @@ export default function Navbar() {
                 margin: 0
               }}
             >
-              QOLECT
+              QOLECT <span style={{ fontSize: '0.8rem', color: '#fff' }}>({locale})</span>
             </h2>
           </div>
 
@@ -56,7 +68,7 @@ export default function Navbar() {
               display: 'flex'
             }}
           >
-            <div 
+            <div
               style={{
                 display: 'flex',
                 alignItems: 'center',
@@ -82,7 +94,7 @@ export default function Navbar() {
                   e.currentTarget.style.background = 'transparent'
                 }}
               >
-                Inicio
+                {t('home')}
               </a>
 
               <a
@@ -104,7 +116,7 @@ export default function Navbar() {
                   e.currentTarget.style.background = 'transparent'
                 }}
               >
-                Qué es Qolect
+                {t('whatIsQolect')}
               </a>
 
               <a
@@ -126,7 +138,7 @@ export default function Navbar() {
                   e.currentTarget.style.background = 'transparent'
                 }}
               >
-                Por qué Qolect
+                {t('whyQolect')}
               </a>
 
               <a
@@ -148,9 +160,12 @@ export default function Navbar() {
                   e.currentTarget.style.background = 'transparent'
                 }}
               >
-                Experiencias
+                {t('experiences')}
               </a>
-              
+
+              {/* Language Selector */}
+              <LanguageSelector />
+
               <button
                 style={{
                   background: '#F5C542',
@@ -171,7 +186,7 @@ export default function Navbar() {
                   e.currentTarget.style.boxShadow = 'none'
                 }}
               >
-                Regístrate
+                {t('register')}
               </button>
             </div>
           </div>

@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { Experience } from '@/lib/api'
+import { useTranslations } from '../contexts/LanguageContext'
 
 interface ExperiencesCarouselProps {
     experiences: Experience[]
@@ -10,6 +11,7 @@ interface ExperiencesCarouselProps {
 }
 
 export default function ExperiencesCarousel({ experiences, isLoading = false }: ExperiencesCarouselProps) {
+    const t = useTranslations('experiences')
     const [showSection, setShowSection] = useState(false)
     const [currentSlide, setCurrentSlide] = useState(0)
     const whatsappNumber = '573018119374'
@@ -63,7 +65,7 @@ export default function ExperiencesCarousel({ experiences, isLoading = false }: 
                         marginBottom: '1rem',
                         textShadow: '0 4px 8px rgba(0, 0, 0, 0.3)'
                     }}>
-                        Nuestras Experiencias
+                        {t('ourExperiences')}
                     </h2>
                     <p style={{
                         fontSize: 'clamp(1.1rem, 2.5vw, 1.3rem)',
@@ -72,7 +74,7 @@ export default function ExperiencesCarousel({ experiences, isLoading = false }: 
                         margin: '0 auto',
                         lineHeight: '1.6'
                     }}>
-                        Descubre aventuras únicas diseñadas para ti
+                        {t('discoverAdventures')}
                     </p>
                 </div>
 
@@ -210,7 +212,7 @@ export default function ExperiencesCarousel({ experiences, isLoading = false }: 
                             }}
                         >
                             <span style={{ fontSize: '1.5rem' }}>💬</span>
-                            Comprar por WhatsApp
+                            {t('buyWhatsApp')}
                         </a>
 
                         {/* Mercado Pago Coming Soon */}
@@ -220,7 +222,7 @@ export default function ExperiencesCarousel({ experiences, isLoading = false }: 
                             fontStyle: 'italic',
                             margin: 0
                         }}>
-                            🔜 Próximamente: Pagos con Mercado Pago
+                            🔜 {t('comingSoonMercadoPago')}
                         </p>
                     </div>
 

@@ -1,6 +1,9 @@
 'use client'
 
+import { useTranslations } from '../contexts/LanguageContext'
+
 export default function Footer() {
+  const t = useTranslations('footer')
   const currentYear = new Date().getFullYear()
 
   const footerSections = [
@@ -80,17 +83,17 @@ export default function Footer() {
             }}
           >
             <div>
-              <h3 
+              <h3
                 style={{
                   fontSize: '2rem',
                   fontWeight: '700',
                   marginBottom: '0.5rem'
                 }}
               >
-                No te pierdas ninguna aventura
+                {t('newsletter.title')}
               </h3>
               <p style={{ fontSize: '1.125rem', opacity: 0.9 }}>
-                Recibe las mejores ofertas y experiencias exclusivas directamente en tu email
+                {t('newsletter.subtitle')}
               </p>
             </div>
             
@@ -104,7 +107,7 @@ export default function Footer() {
             >
               <input
                 type="email"
-                placeholder="tu@email.com"
+                placeholder={t('newsletter.emailPlaceholder')}
                 style={{
                   flex: 1,
                   padding: '1rem 1.5rem',
@@ -137,7 +140,7 @@ export default function Footer() {
                   e.currentTarget.style.boxShadow = 'none'
                 }}
               >
-                Suscribirse
+                {t('newsletter.subscribe')}
               </button>
             </div>
           </div>
@@ -194,14 +197,14 @@ export default function Footer() {
                 </span>
               </div>
               
-              <p 
+              <p
                 style={{
                   color: 'rgba(255, 255, 255, 0.8)',
                   lineHeight: '1.6',
                   marginBottom: '2rem'
                 }}
               >
-                Transformamos la manera en que descubres el mundo. Experiencias auténticas que conectan, inspiran y transforman vidas.
+                {t('description')}
               </p>
 
               {/* Certifications */}
@@ -287,7 +290,7 @@ export default function Footer() {
             {/* Copyright */}
             <div style={{ color: 'rgba(255, 255, 255, 0.6)' }}>
               <p style={{ margin: 0 }}>
-                © {currentYear} Qolect Travel. Todos los derechos reservados.
+                © {currentYear} Qolect Travel. {t('allRightsReserved')}.
               </p>
             </div>
 

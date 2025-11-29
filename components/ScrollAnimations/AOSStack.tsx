@@ -3,47 +3,50 @@
 import { useEffect } from 'react'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
-
-const cards = [
-  {
-    id: 1,
-    title: "¿Qué es Qolect?",
-    emoji: "🌍",
-    description: "Somos una plataforma que conecta viajeros apasionados con experiencias auténticas y transformadoras alrededor del mundo.",
-    gradient: "linear-gradient(135deg, #7DD3FC 0%, #38BDF8 100%)",
-    pattern: "data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E",
-    features: ["Experiencias curadas", "Viajeros verificados", "Soporte 24/7"]
-  },
-  {
-    id: 2,
-    title: "Nuestra Misión",
-    emoji: "✨",
-    description: "Democratizar el acceso a experiencias de viaje únicas, conectando culturas y creando memorias que duran toda la vida.",
-    gradient: "linear-gradient(135deg, #FEF08A 0%, #FACC15 100%)",
-    pattern: "data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.1'%3E%3Cpath d='M20 20c0 11.046-8.954 20-20 20v20h40V20H20z'/%3E%3C/g%3E%3C/svg%3E",
-    features: ["Conexiones globales", "Cultura auténtica", "Impacto positivo"]
-  },
-  {
-    id: 3,
-    title: "Cómo Funciona",
-    emoji: "🚀",
-    description: "Proceso simple y efectivo para conectar con experiencias únicas y viajeros afines en destinos increíbles.",
-    gradient: "linear-gradient(135deg, #C4B5FD 0%, #8B5CF6 100%)",
-    pattern: "data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.15'%3E%3Cpolygon points='10,0 20,10 10,20 0,10'/%3E%3C/g%3E%3C/svg%3E",
-    features: ["Explora", "Conecta", "Vive"]
-  },
-  {
-    id: 4,
-    title: "¿Listo para la Aventura?",
-    emoji: "🎯",
-    description: "Únete a miles de viajeros que ya han descubierto el mundo de manera diferente con Qolect.",
-    gradient: "linear-gradient(135deg, #FBCFE8 0%, #F472B6 100%)",
-    pattern: "data:image/svg+xml,%3Csvg width='44' height='44' viewBox='0 0 44 44' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='22' cy='22' r='3'/%3E%3Ccircle cx='8' cy='22' r='3'/%3E%3Ccircle cx='36' cy='22' r='3'/%3E%3C/g%3E%3C/svg%3E",
-    features: ["Aventuras únicas", "Comunidad global", "Memorias eternas"]
-  }
-]
+import { useTranslations } from '../../contexts/LanguageContext'
 
 export default function AOSStack() {
+  const t = useTranslations('aosStack')
+
+  const cards = [
+    {
+      id: 1,
+      titleKey: 'card1.title',
+      emoji: "🌍",
+      descriptionKey: 'card1.description',
+      gradient: "linear-gradient(135deg, #7DD3FC 0%, #38BDF8 100%)",
+      pattern: "data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E",
+      featuresKey: 'card1.features'
+    },
+    {
+      id: 2,
+      titleKey: 'card2.title',
+      emoji: "✨",
+      descriptionKey: 'card2.description',
+      gradient: "linear-gradient(135deg, #FEF08A 0%, #FACC15 100%)",
+      pattern: "data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.1'%3E%3Cpath d='M20 20c0 11.046-8.954 20-20 20v20h40V20H20z'/%3E%3C/g%3E%3C/svg%3E",
+      featuresKey: 'card2.features'
+    },
+    {
+      id: 3,
+      titleKey: 'card3.title',
+      emoji: "🚀",
+      descriptionKey: 'card3.description',
+      gradient: "linear-gradient(135deg, #C4B5FD 0%, #8B5CF6 100%)",
+      pattern: "data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.15'%3E%3Cpolygon points='10,0 20,10 10,20 0,10'/%3E%3C/g%3E%3C/svg%3E",
+      featuresKey: 'card3.features'
+    },
+    {
+      id: 4,
+      titleKey: 'card4.title',
+      emoji: "🎯",
+      descriptionKey: 'card4.description',
+      gradient: "linear-gradient(135deg, #FBCFE8 0%, #F472B6 100%)",
+      pattern: "data:image/svg+xml,%3Csvg width='44' height='44' viewBox='0 0 44 44' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='22' cy='22' r='3'/%3E%3Ccircle cx='8' cy='22' r='3'/%3E%3Ccircle cx='36' cy='22' r='3'/%3E%3C/g%3E%3C/svg%3E",
+      featuresKey: 'card4.features',
+      ctaKey: 'card4.cta'
+    }
+  ]
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -180,7 +183,7 @@ export default function AOSStack() {
                 marginBottom: '1rem',
                 lineHeight: '1.2'
               }}>
-                {card.title}
+                {t(card.titleKey)}
               </h2>
 
               {/* Description */}
@@ -191,7 +194,7 @@ export default function AOSStack() {
                 marginBottom: '2rem',
                 maxWidth: '500px'
               }}>
-                {card.description}
+                {t(card.descriptionKey)}
               </p>
 
               {/* Features */}
@@ -200,7 +203,7 @@ export default function AOSStack() {
                 gap: '1rem',
                 flexWrap: 'wrap'
               }}>
-                {card.features.map((feature, featureIndex) => (
+                {(t(card.featuresKey) as string[]).map((feature, featureIndex) => (
                   <span
                     key={featureIndex}
                     style={{
@@ -244,7 +247,7 @@ export default function AOSStack() {
               </div>
 
               {/* Button for last card */}
-              {card.id === 4 && (
+              {card.id === 4 && card.ctaKey && (
                 <button
                   style={{
                     background: 'rgba(255, 255, 255, 0.9)',
@@ -269,7 +272,7 @@ export default function AOSStack() {
                     e.currentTarget.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.2)'
                   }}
                 >
-                  Explorar Experiencias
+                  {t(card.ctaKey)}
                 </button>
               )}
             </div>

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import { LanguageProvider } from '../contexts/LanguageContext'
 
 export const metadata: Metadata = {
   title: 'Qolect - Descubre Experiencias Inolvidables',
@@ -21,7 +22,9 @@ export default function RootLayout({
   return (
     <html lang="es" suppressHydrationWarning>
       <body>
-        {children}
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   )

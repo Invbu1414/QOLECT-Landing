@@ -29,9 +29,9 @@ export interface News {
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://qolect-api-820237834683.us-central1.run.app';
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY || 'qolect-api-key-prod-2024-secure-abc123xyz';
 
-export async function getFeaturedExperiences(): Promise<Experience[]> {
+export async function getFeaturedExperiences(lang: string = 'es'): Promise<Experience[]> {
     try {
-        const res = await fetch(`${API_URL}/api/v1/mobile/planes`, {
+        const res = await fetch(`${API_URL}/api/v1/mobile/planes?lang=${lang}`, {
             headers: {
                 'Content-Type': 'application/json',
                 'X-API-Key': API_KEY,
@@ -51,9 +51,9 @@ export async function getFeaturedExperiences(): Promise<Experience[]> {
     }
 }
 
-export async function getOffers(): Promise<Experience[]> {
+export async function getOffers(lang: string = 'es'): Promise<Experience[]> {
     try {
-        const experiences = await getFeaturedExperiences();
+        const experiences = await getFeaturedExperiences(lang);
         return experiences.filter(exp => {
             return true;
         }).slice(0, 4);
@@ -63,10 +63,10 @@ export async function getOffers(): Promise<Experience[]> {
     }
 }
 
-export async function getNews(): Promise<News[]> {
+export async function getNews(lang: string = 'es'): Promise<News[]> {
     try {
-        console.log('📰 Fetching news from PUBLIC API...');
-        const res = await fetch(`${API_URL}/api/v1/mobile/noticias`, {
+        console.log('📰 Fetching news from PUBLIC API... (lang:', lang, ')');
+        const res = await fetch(`${API_URL}/api/v1/mobile/noticias?lang=${lang}`, {
             headers: {
                 'Content-Type': 'application/json',
                 'X-API-Key': API_KEY,
@@ -101,9 +101,9 @@ export async function getNews(): Promise<News[]> {
     }
 }
 
-export async function getNewsById(id: number): Promise<News | null> {
+export async function getNewsById(id: number, lang: string = 'es'): Promise<News | null> {
     try {
-        const allNews = await getNews();
+        const allNews = await getNews(lang);
         const newsItem = allNews.find(item => item.idnoticia === id);
         return newsItem || null;
     } catch (error) {

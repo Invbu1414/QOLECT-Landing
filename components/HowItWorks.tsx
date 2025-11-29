@@ -1,30 +1,34 @@
 'use client'
 
+import { useTranslations } from '../contexts/LanguageContext'
+
 export default function HowItWorks() {
+  const t = useTranslations('howItWorks')
+
   const steps = [
     {
       number: '01',
       icon: '🔍',
-      title: 'Explora',
-      description: 'Descubre experiencias únicas seleccionadas cuidadosamente para ti'
+      titleKey: 'step1.title',
+      descriptionKey: 'step1.description'
     },
     {
-      number: '02', 
+      number: '02',
       icon: '⚙️',
-      title: 'Personaliza',
-      description: 'Adapta cada detalle según tus preferencias y necesidades'
+      titleKey: 'step2.title',
+      descriptionKey: 'step2.description'
     },
     {
       number: '03',
       icon: '💳',
-      title: 'Reserva',
-      description: 'Confirma tu plaza con nuestro sistema de pago seguro'
+      titleKey: 'step3.title',
+      descriptionKey: 'step3.description'
     },
     {
       number: '04',
       icon: '✨',
-      title: 'Vive',
-      description: 'Disfruta de una experiencia inolvidable que transformará tu perspectiva'
+      titleKey: 'step4.title',
+      descriptionKey: 'step4.description'
     }
   ]
 
@@ -32,7 +36,7 @@ export default function HowItWorks() {
     <section style={{ padding: '5rem 0', background: '#F8FAFC' }}>
       <div className="container">
         <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <h2 
+          <h2
             style={{
               fontSize: 'clamp(2rem, 4vw, 3rem)',
               fontWeight: '700',
@@ -40,10 +44,10 @@ export default function HowItWorks() {
               marginBottom: '1rem'
             }}
           >
-            Cómo funciona Qolect
+            {t('title')}
           </h2>
           <p style={{ color: '#64748B', fontSize: '1.125rem', maxWidth: '32rem', margin: '0 auto' }}>
-            Un proceso simple y transparente para encontrar tu próxima aventura transformadora
+            {t('subtitle')}
           </p>
         </div>
 
@@ -131,7 +135,7 @@ export default function HowItWorks() {
               </div>
 
               {/* Content */}
-              <h3 
+              <h3
                 style={{
                   fontSize: '1.25rem',
                   fontWeight: '700',
@@ -139,10 +143,10 @@ export default function HowItWorks() {
                   marginBottom: '0.75rem'
                 }}
               >
-                {step.title}
+                {t(step.titleKey)}
               </h3>
-              
-              <p 
+
+              <p
                 style={{
                   color: '#64748B',
                   lineHeight: '1.6',
@@ -150,7 +154,7 @@ export default function HowItWorks() {
                   margin: '0 auto'
                 }}
               >
-                {step.description}
+                {t(step.descriptionKey)}
               </p>
             </div>
           ))}

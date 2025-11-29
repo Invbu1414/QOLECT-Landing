@@ -4,12 +4,15 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { News } from '@/lib/api'
+import { useTranslations, useLanguage } from '../contexts/LanguageContext'
 
 interface NewsSectionProps {
     news: News[]
 }
 
 export default function NewsSection({ news }: NewsSectionProps) {
+    const t = useTranslations('news')
+    const { locale } = useLanguage()
     const [showSection, setShowSection] = useState(false)
 
     useEffect(() => {
@@ -35,9 +38,9 @@ export default function NewsSection({ news }: NewsSectionProps) {
                 }}
             >
                 <div style={{ textAlign: 'center', color: 'white' }}>
-                    <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>📰 Noticias</h2>
+                    <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>📰 {t('newsTitle')}</h2>
                     <p style={{ fontSize: '1.2rem', opacity: 0.8 }}>
-                        Próximamente encontrarás aquí las últimas novedades
+                        {t('comingSoon')}
                     </p>
                 </div>
             </section>
@@ -69,7 +72,7 @@ export default function NewsSection({ news }: NewsSectionProps) {
                         marginBottom: '1rem',
                         textShadow: '0 4px 8px rgba(0, 0, 0, 0.3)'
                     }}>
-                        Últimas Noticias
+                        {t('title')}
                     </h2>
                     <p style={{
                         fontSize: 'clamp(1.1rem, 2.5vw, 1.3rem)',
@@ -78,7 +81,7 @@ export default function NewsSection({ news }: NewsSectionProps) {
                         margin: '0 auto',
                         lineHeight: '1.6'
                     }}>
-                        Mantente informado sobre las mejores experiencias de viaje
+                        {t('subtitle')}
                     </p>
                 </div>
 
@@ -150,7 +153,7 @@ export default function NewsSection({ news }: NewsSectionProps) {
                                         gap: '0.5rem'
                                     }}>
                                         <span>📅</span>
-                                        {new Date(item.created_at).toLocaleDateString('es-ES', {
+                                        {new Date(item.created_at).toLocaleDateString(locale === 'es' ? 'es-ES' : 'en-US', {
                                             year: 'numeric',
                                             month: 'long',
                                             day: 'numeric'
@@ -192,7 +195,7 @@ export default function NewsSection({ news }: NewsSectionProps) {
                                         alignItems: 'center',
                                         gap: '0.5rem'
                                     }}>
-                                        Leer más <span>→</span>
+                                        {t('readMore')} <span>→</span>
                                     </div>
                                 </div>
                             </Link>

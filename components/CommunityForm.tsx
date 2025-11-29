@@ -1,8 +1,10 @@
 'use client'
 
 import { useState } from 'react'
+import { useTranslations } from '../contexts/LanguageContext'
 
 export default function CommunityForm() {
+  const t = useTranslations('community')
   const [formData, setFormData] = useState({
     email: '',
     interests: [] as string[],
@@ -74,10 +76,10 @@ export default function CommunityForm() {
               ✨
             </div>
             <h3 style={{ fontSize: '2rem', fontWeight: '700', marginBottom: '1rem' }}>
-              ¡Bienvenido a la comunidad!
+              {t('successTitle')}
             </h3>
             <p style={{ fontSize: '1.125rem', opacity: 0.9 }}>
-              Te mantendremos informado sobre las experiencias más exclusivas y aventuras únicas.
+              {t('successMessage')}
             </p>
           </div>
         </div>
@@ -89,7 +91,7 @@ export default function CommunityForm() {
     <section style={{ padding: '6rem 0', background: 'linear-gradient(135deg, #0F172A 0%, #1E293B 100%)' }}>
       <div className="container">
         <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <h2 
+          <h2
             style={{
               fontSize: 'clamp(2rem, 4vw, 3rem)',
               fontWeight: '700',
@@ -97,10 +99,10 @@ export default function CommunityForm() {
               marginBottom: '1rem'
             }}
           >
-            Únete a nuestra comunidad
+            {t('title')}
           </h2>
           <p style={{ color: 'rgba(255, 255, 255, 0.8)', fontSize: '1.125rem', maxWidth: '40rem', margin: '0 auto' }}>
-            Sé el primero en conocer experiencias exclusivas y recibe contenido inspirador directo en tu bandeja
+            {t('subtitle')}
           </p>
         </div>
 
@@ -127,13 +129,13 @@ export default function CommunityForm() {
                   marginBottom: '1rem'
                 }}
               >
-                Tu email
+                {t('emailLabel')}
               </label>
               <input
                 type="email"
                 value={formData.email}
                 onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                placeholder="tu@email.com"
+                placeholder={t('emailPlaceholder')}
                 required
                 style={{
                   width: '100%',
@@ -277,7 +279,7 @@ export default function CommunityForm() {
                 }
               }}
             >
-              Unirme a la comunidad
+              {t('submit')}
             </button>
           </form>
 

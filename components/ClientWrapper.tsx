@@ -12,19 +12,42 @@ import LoadingScreen from '@/components/LoadingScreen'
 import ScrollToTop from '@/components/ScrollToTop'
 import ScrollProgress from '@/components/ScrollProgress'
 import NewsSection from '@/components/NewsSection'
-import { Experience, News } from '@/lib/api'
+import { Experience, News, getFeaturedExperiences, getNews } from '@/lib/api'
+import { useLanguage } from '../contexts/LanguageContext'
 
 interface ClientWrapperProps {
     experiences: Experience[]
     news: News[]
 }
 
-export default function ClientWrapper({ experiences, news }: ClientWrapperProps) {
+export default function ClientWrapper({ experiences: initialExperiences, news: initialNews }: ClientWrapperProps) {
     const [isLoading, setIsLoading] = useState(true)
+    const { locale } = useLanguage()
+    const [experiences, setExperiences] = useState<Experience[]>(initialExperiences)
+    const [news, setNews] = useState<News[]>(initialNews)
 
     const handleLoadingComplete = () => {
         setIsLoading(false)
     }
+
+    // Fetch data cuando cambia el idioma
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                console.log('🌐 Fetching data for language:', locale)
+                const [newExperiences, newNews] = await Promise.all([
+                    getFeaturedExperiences(locale),
+                    getNews(locale)
+                ])
+                setExperiences(newExperiences)
+                setNews(newNews)
+            } catch (error) {
+                console.error('Error fetching translated data:', error)
+            }
+        }
+
+        fetchData()
+    }, [locale])
 
     useEffect(() => {
         // Force scroll to top on page load/refresh

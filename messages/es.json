@@ -1,0 +1,249 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "whatIsQolect": "Qué es Qolect",
+    "whyQolect": "Por qué Qolect",
+    "experiences": "Experiencias",
+    "register": "Regístrate"
+  },
+  "hero": {
+    "title": "Viaja con propósito,",
+    "titleHighlight": "conecta con lo que importa",
+    "subtitle": "Experiencias auténticas diseñadas para jóvenes profesionales que buscan aventuras transformadoras y conexiones significativas",
+    "cta": "Explorar Ahora",
+    "exploreDestinations": "Explorar Destinos",
+    "cards": {
+      "curatedExperiences": {
+        "title": "Experiencias Curadas",
+        "description": "Viajes únicos diseñados por expertos locales para profesionales que buscan aventuras auténticas y transformadoras."
+      },
+      "globalCommunity": {
+        "title": "Comunidad Global",
+        "description": "Conecta con viajeros de ideas afines, crea lazos duraderos y expande tu red profesional en destinos increíbles."
+      },
+      "premiumAllInclusive": {
+        "title": "Todo Incluido Premium",
+        "description": "Desde alojamientos de lujo hasta experiencias exclusivas, cada detalle está cuidado para tu comodidad total."
+      },
+      "sustainableImpact": {
+        "title": "Impacto Sostenible",
+        "description": "Viaja de forma responsable apoyando comunidades locales y proyectos de conservación ambiental."
+      }
+    }
+  },
+  "benefits": {
+    "title": "¿Por qué elegir Qolect?",
+    "subtitle": "Transformamos la forma en que viajas con experiencias auténticas diseñadas para profesionales que buscan más que un destino",
+    "purposefulTravel": {
+      "title": "Viajes con propósito",
+      "description": "Experiencias que inspiran y generan conexión real con la naturaleza, retiros espirituales y aventuras transformadoras."
+    },
+    "easyAndSecure": {
+      "title": "Compra fácil y segura",
+      "description": "Reserva confiable y sin complicaciones. Pago seguro, atención personalizada y soporte completo en cada etapa."
+    },
+    "groupOptions": {
+      "title": "Opciones para grupos",
+      "description": "Viajes diseñados para grupos pequeños: amigos, familias, empresas y colegios que buscan conexiones significativas."
+    },
+    "mobileAccess": {
+      "title": "Acceso móvil",
+      "description": "App disponible para planear y reservar experiencias desde cualquier lugar, con acceso offline a tus itinerarios."
+    }
+  },
+  "experiences": {
+    "title": "Experiencias Destacadas",
+    "subtitle": "Descubre nuestras experiencias más populares diseñadas para transformar tu manera de viajar",
+    "ourExperiences": "Nuestras Experiencias",
+    "discoverAdventures": "Descubre aventuras únicas diseñadas para ti",
+    "buyWhatsApp": "Comprar por WhatsApp",
+    "comingSoonMercadoPago": "Próximamente: Pagos con Mercado Pago",
+    "experienceOf": "Experiencia",
+    "of": "de",
+    "paused": "Pausado",
+    "active": "Activo",
+    "manual": "Manual",
+    "resume": "Reanudar",
+    "pause": "Pausar",
+    "auto": "Auto",
+    "next": "Siguiente",
+    "viewDetails": "Ver Detalles",
+    "from": "Desde",
+    "perPerson": "por persona",
+    "duration": "Duración",
+    "days": "días"
+  },
+  "categories": {
+    "adventure": {
+      "title": "Aventura",
+      "description": "Experiencias extremas y deportes de adrenalina que desafían tus límites"
+    },
+    "gastronomy": {
+      "title": "Gastronomía",
+      "description": "Descubre sabores auténticos y tradiciones culinarias del mundo"
+    },
+    "wellness": {
+      "title": "Bienestar",
+      "description": "Retiros y experiencias para reconectar contigo mismo"
+    },
+    "culture": {
+      "title": "Cultura",
+      "description": "Sumérgete en tradiciones locales y patrimonio histórico"
+    }
+  },
+  "howItWorks": {
+    "title": "Cómo Funciona",
+    "step1": {
+      "title": "Explora",
+      "description": "Descubre experiencias únicas seleccionadas cuidadosamente para ti"
+    },
+    "step2": {
+      "title": "Reserva",
+      "description": "Elige tu experiencia y reserva de forma segura"
+    },
+    "step3": {
+      "title": "Disfruta",
+      "description": "Vive momentos inolvidables con la tranquilidad de nuestro soporte"
+    }
+  },
+  "news": {
+    "title": "Últimas Noticias",
+    "subtitle": "Mantente informado sobre las mejores experiencias de viaje",
+    "comingSoon": "Próximamente encontrarás aquí las últimas novedades",
+    "newsTitle": "Noticias",
+    "readMore": "Leer más",
+    "by": "Por"
+  },
+  "footer": {
+    "description": "Transformamos la manera en que descubres el mundo. Experiencias auténticas que conectan, inspiran y transforman vidas.",
+    "followUs": "Síguenos",
+    "allRightsReserved": "Todos los derechos reservados",
+    "newsletter": {
+      "title": "No te pierdas ninguna aventura",
+      "subtitle": "Recibe las mejores ofertas y experiencias exclusivas directo a tu inbox",
+      "emailPlaceholder": "tu@email.com",
+      "subscribe": "Suscribirse"
+    },
+    "sections": {
+      "experiences": "Experiencias",
+      "allExperiences": "Todas las Experiencias",
+      "adventure": "Aventura",
+      "wellness": "Bienestar",
+      "culture": "Cultura",
+      "groupExperiences": "Experiencias Grupales",
+
+      "company": "Empresa",
+      "aboutUs": "Sobre Nosotros",
+      "careers": "Carreras",
+      "blog": "Blog",
+      "press": "Prensa",
+
+      "support": "Soporte",
+      "helpCenter": "Centro de Ayuda",
+      "contactUs": "Contáctanos",
+      "faq": "Preguntas Frecuentes",
+      "terms": "Términos y Condiciones",
+      "privacy": "Privacidad",
+
+      "community": "Comunidad",
+      "ambassadors": "Embajadores",
+      "partners": "Socios",
+      "stories": "Historias"
+    },
+    "trustBadges": {
+      "securePayment": "Pago 100% Seguro",
+      "satisfaction": "Garantía de Satisfacción",
+      "support247": "Soporte 24/7",
+      "verifiedExperiences": "Experiencias Verificadas"
+    }
+  },
+  "testimonials": {
+    "title": "Lo que dicen nuestros viajeros",
+    "subtitle": "Miles de experiencias transformadoras avalan nuestra propuesta de valor único",
+    "reviews": {
+      "review1": {
+        "name": "María González",
+        "location": "Valencia, España",
+        "experience": "Retiro de Mindfulness en Bali",
+        "comment": "Una experiencia que cambió completamente mi perspectiva sobre la vida. Los facilitadores fueron excepcionales y el entorno simplemente mágico."
+      },
+      "review2": {
+        "name": "Carlos Mendoza",
+        "location": "México City, México",
+        "experience": "Safari Fotográfico en Kenia",
+        "comment": "Increíble aventura que superó todas mis expectativas. Ver la migración en persona fue algo indescriptible. Qolect organizó cada detalle a la perfección."
+      },
+      "review3": {
+        "name": "Ana Martín",
+        "location": "Buenos Aires, Argentina",
+        "experience": "Tour Gastronómico en Tokio",
+        "comment": "Como chef, este viaje me abrió un mundo de sabores completamente nuevo. La autenticidad de cada experiencia fue extraordinaria."
+      }
+    }
+  },
+  "howItWorks": {
+    "title": "Cómo funciona Qolect",
+    "subtitle": "Un proceso simple y transparente para encontrar tu próxima aventura transformadora",
+    "step1": {
+      "title": "Explora",
+      "description": "Descubre experiencias únicas seleccionadas cuidadosamente para ti"
+    },
+    "step2": {
+      "title": "Personaliza",
+      "description": "Adapta cada detalle según tus preferencias y necesidades"
+    },
+    "step3": {
+      "title": "Reserva",
+      "description": "Confirma tu plaza con nuestro sistema de pago seguro"
+    },
+    "step4": {
+      "title": "Vive",
+      "description": "Disfruta de una experiencia inolvidable que transformará tu perspectiva"
+    }
+  },
+  "community": {
+    "title": "Únete a nuestra comunidad",
+    "subtitle": "Sé el primero en conocer experiencias exclusivas y recibe contenido inspirador directo en tu bandeja",
+    "emailLabel": "Tu email",
+    "emailPlaceholder": "tu@email.com",
+    "interestsLabel": "Qué tipo de experiencias te interesan",
+    "newsletterLabel": "Quiero recibir el newsletter mensual con consejos de viaje y ofertas especiales",
+    "submit": "Unirme a la comunidad",
+    "successTitle": "¡Bienvenido a la comunidad!",
+    "successMessage": "Te mantendremos informado sobre las experiencias más exclusivas y aventuras únicas."
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error al cargar",
+    "close": "Cerrar",
+    "viewMore": "Ver más",
+    "learnMore": "Conocer más",
+    "bookNow": "Reservar Ahora",
+    "getStarted": "Comenzar",
+    "contactUs": "Contáctanos",
+    "language": "Idioma"
+  },
+  "aosStack": {
+    "card1": {
+      "title": "¿Qué es Qolect?",
+      "description": "Somos una plataforma que conecta viajeros apasionados con experiencias auténticas y transformadoras alrededor del mundo.",
+      "features": ["Experiencias curadas", "Viajeros verificados", "Soporte 24/7"]
+    },
+    "card2": {
+      "title": "Nuestra Misión",
+      "description": "Democratizar el acceso a experiencias de viaje únicas, conectando culturas y creando memorias que duran toda la vida.",
+      "features": ["Conexiones globales", "Cultura auténtica", "Impacto positivo"]
+    },
+    "card3": {
+      "title": "Cómo Funciona",
+      "description": "Proceso simple y efectivo para conectar con experiencias únicas y viajeros afines en destinos increíbles.",
+      "features": ["Explora", "Conecta", "Vive"]
+    },
+    "card4": {
+      "title": "¿Listo para la Aventura?",
+      "description": "Únete a miles de viajeros que ya han descubierto el mundo de manera diferente con Qolect.",
+      "features": ["Aventuras únicas", "Comunidad global", "Memorias eternas"],
+      "cta": "Explorar Experiencias"
+    }
+  }
+}
