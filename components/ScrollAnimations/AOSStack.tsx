@@ -203,7 +203,7 @@ export default function AOSStack() {
                 gap: '1rem',
                 flexWrap: 'wrap'
               }}>
-                {(t(card.featuresKey) as string[]).map((feature, featureIndex) => (
+                {(Array.isArray(t(card.featuresKey)) ? t(card.featuresKey) as unknown as string[] : []).map((feature, featureIndex) => (
                   <span
                     key={featureIndex}
                     style={{
