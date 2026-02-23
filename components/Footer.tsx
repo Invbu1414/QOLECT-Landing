@@ -359,6 +359,20 @@ export default function Footer() {
               <span style={{ fontSize: '0.875rem' }}>Experiencias Verificadas</span>
             </div>
           </div>
+          {/* Legal Info */}
+          <div
+            style={{
+              marginTop: '1.5rem',
+              textAlign: 'center',
+              color: 'rgba(255, 255, 255, 0.45)',
+              fontSize: '0.75rem',
+              lineHeight: '1.6'
+            }}
+          >
+            <p style={{ margin: 0 }}>
+              Click and Cut SAS &nbsp;·&nbsp; NIT: 901.466.512-8 &nbsp;·&nbsp; RNT: 165877
+            </p>
+          </div>
         </div>
       </div>
     </footer>
